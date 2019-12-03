@@ -1,0 +1,1 @@
+# okienka w swingu i kombinowanie z tekstem + gotowce
