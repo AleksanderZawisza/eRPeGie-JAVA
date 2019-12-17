@@ -11,4 +11,6 @@ public class Player extends Creature {
         this.savename = savename;
     }
 
+
+
 }
