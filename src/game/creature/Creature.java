@@ -22,48 +22,52 @@ public class Creature {
         return armor;
     }
 
-    public void setArmor(int armor) {
-        this.armor = armor;
+    public void addArmor(int armor) {
+        this.armor += armor;
     }
 
     public int getAttack() {
         return attack;
     }
 
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public void addAttack(int attack) {
+        this.attack += attack;
     }
 
     public int getExp() {
         return exp;
     }
 
-    public void setExp(int exp) {
-        this.exp = exp;
+    public void addExp(int exp) {
+        this.exp += exp;
     }
 
     public int getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
+    public void addMoney(int money) {
+        this.money += money;
     }
 
     public int getMaxhp() {
         return maxhp;
     }
 
-    public void setMaxhp(int maxhp) {
-        this.maxhp = maxhp;
+    public void addMaxhp(int maxhp) {
+        this.maxhp += maxhp;
     }
 
     public int getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
+    public void addHp(int hp) {
+        this.hp += hp;
+    }
+
+    public void lowerHp(int hp) {
+        this.hp -= hp;
     }
 
     public String getName() {
