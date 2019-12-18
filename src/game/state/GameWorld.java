@@ -16,18 +16,21 @@ public class GameWorld {
 
     public void begin() throws InterruptedException {
         System.out.print("\nHi there. What's your NAME?\n> ");
-        String savename = input.next().toUpperCase();
-        ;
-        System.out.print("\n" + savename + ", is it? [Y/N]\n> ");
-        String answer = input.next();
+        String savename = input.nextLine();
+        savename = savename.toUpperCase();
+        System.out.print("\n" + savename + ", right? [Y/N]\n> ");
+        String answer = input.nextLine();
+        answer = answer.toLowerCase();
         while (!answer.toLowerCase().startsWith("y")) {
             System.out.print("\nWell then, what is it?\n> ");
-            savename = input.next().toUpperCase();
-            System.out.print("\n" + savename + ", are you sure this time? [Y/N]\n> ");
-            answer = input.next();
+            savename = input.nextLine();
+            savename = savename.toUpperCase();
+            System.out.print("\n" + savename + "? [Y/N]\n> ");
+            answer = input.nextLine();
+            answer = answer.toLowerCase();
         }  // savename - do wczytywania save'ow DO ZAIMPLEMENTOWANIA
 
-        this.player = new Player(100, 0, 1, 0, 0, savename);
+        this.player = new Player(100, 0, 1, 0, 0, savename); //nowa postać
         System.out.println("\nThat's not your NAME.");
 
         TimeUnit.MILLISECONDS.sleep(2000); // czeka 2 sekundy
@@ -177,7 +180,6 @@ public class GameWorld {
         TimeUnit.MILLISECONDS.sleep(3000);
         System.out.print("You GET THE HELL OUT OF HERE.\n");
         this.STATE = "FIGHT_CHOOSE";
-
     }
 
     public void forest() throws InterruptedException { // combat + generator opisów DO ZAIMPLEMENTOWANIA
@@ -185,7 +187,6 @@ public class GameWorld {
         TimeUnit.MILLISECONDS.sleep(3000);
         System.out.print("You GET THE HELL OUT OF HERE.\n");
         this.STATE = "FIGHT_CHOOSE";
-
     }
 
     public void mountains() throws InterruptedException { // combat + generator opisów DO ZAIMPLEMENTOWANIA
@@ -193,10 +194,7 @@ public class GameWorld {
         TimeUnit.MILLISECONDS.sleep(3000);
         System.out.print("You GET THE HELL OUT OF HERE.\n");
         this.STATE = "FIGHT_CHOOSE";
-
     }
-
-
 
 
 
