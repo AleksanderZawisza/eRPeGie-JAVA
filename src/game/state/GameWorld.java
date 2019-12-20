@@ -99,7 +99,7 @@ public class GameWorld {
     }
 
     public void buy() throws InterruptedException { // sklep kupowanie + generator opisów DO ZAIMPLEMENTOWANIA
-        System.out.print("\nYou want to BUY SHIT. You can't do that because there aren't any ITEMS in the GAME.\n" +
+        System.out.print("\nYou want to BUY SOMETHING. You can't do that because there aren't any ITEMS in the GAME (yet).\n" +
                 "You have " + this.player.getMoney() + " gold coins on you.\n" +
                 "You GET OUT of here.\n");
         TimeUnit.MILLISECONDS.sleep(3000);
@@ -107,7 +107,7 @@ public class GameWorld {
     }
 
     public void sell() throws InterruptedException { // sklep sprzedawanie + generator opisów DO ZAIMPLEMENTOWANIA
-        System.out.print("\nYou want to SELL SHIT. You can't do that because there aren't any ITEMS in the GAME.\n" +
+        System.out.print("\nYou want to SELL SOMETHING. You can't do that because there aren't any ITEMS in the GAME (yet).\n" +
                 "You have " + this.player.getMoney() + " gold coins on you.\n" +
                 "You GET OUT of here.\n");
         TimeUnit.MILLISECONDS.sleep(3000);
