@@ -1,11 +1,12 @@
 package game.state;
 
+import game.combat.Combat;
 import game.creature.*;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class GameWorld {
-    Player player;
+    Player player = new Player(100, 0, 2, 0, 0); //nowa postać
     String choice;
     int choiceN;
     String STATE; //od tego zalezy gdzie jestesmy, rozpiska: TOWN, TOWN_LOOK, CONTEMPLATE, FIGHT_CHOOSE, DRINK, REST
@@ -30,7 +31,7 @@ public class GameWorld {
             answer = answer.toLowerCase();
         }  // savename - do wczytywania save'ow DO ZAIMPLEMENTOWANIA
 
-        this.player = new Player(100, 0, 1, 0, 0, savename); //nowa postać
+        player.setSavename(savename);
         System.out.println("\nThat's not your NAME.");
 
         TimeUnit.MILLISECONDS.sleep(2000); // czeka 2 sekundy
@@ -175,11 +176,58 @@ public class GameWorld {
             case 4: this.STATE = "TOWN"; break;}
     }
 
-    public void plains() throws InterruptedException { // combat + generator opisów DO ZAIMPLEMENTOWANIA
-        System.out.print("\nYou are now in the PLAINS. It is [WEATHER]. There's ABSOLUTELY NOTHING AROUND.\n");
-        TimeUnit.MILLISECONDS.sleep(3000);
-        System.out.print("You GET THE HELL OUT OF HERE.\n");
-        this.STATE = "FIGHT_CHOOSE";
+    public void plains() throws InterruptedException { // generator opisów DO ZAIMPLEMENTOWANIA
+        Enemy enemy = new Enemy(10, 0, 1, 10, 1);
+        enemy.setName("Rat Bob");
+        System.out.print("\nYou are now in the PLAINS. It is [WEATHER]. You see the lonely rat. \n" +
+                "His name is " + enemy.getName() + ".\n" +
+                "You decide to\n" +
+                "1. Get closer to this creature!\n" +
+                "2. Get back on the road!\n" +
+                "\n> ");
+        choiceN = input.nextInt();
+        TimeUnit.MILLISECONDS.sleep(1000);
+        switch (choiceN)
+        {case 1: {
+            boolean flag = true;
+            while(flag) {
+                System.out.print("\nWhat do you do now?\n" +
+                        "1. Attack!\n" +
+                        "2. Wait.\n" +
+                        "3. Get out of here.\n> ");
+                String command = input.next();
+                switch (command) {
+                    case "1":
+                        int attack1 = Combat.attack(player, enemy);
+                        int attack2 = Combat.attack(enemy, player);
+                        System.out.println("You dealt " + attack1 +" dmg");
+                        System.out.println(enemy.getName() + " bit u for " + attack2 + " dmg.");
+                        break;
+
+                    case "2":
+                        int attack3 = Combat.attack(enemy, player);
+                        System.out.println("You did nothing and got hit!!!");
+                        System.out.println(enemy.getName() + " bit u for " + attack3 + " dmg.");
+                        break;
+                    case "3":
+                        flag=false;
+                        break;
+                }
+                if (!flag) break;
+                System.out.println("You got " + player.getHp() + " hp.");
+                System.out.println(enemy.getName() + "'s got " + enemy.getHp() + " hp.");
+                if (player.getHp()<1){
+                    player.isAlive = false;
+                    break;
+                }
+                if (enemy.getHp()<1){
+                    System.out.println( enemy.getName()+ " is dead." +
+                            "\n" + "You won!\n");
+                    break;
+                }
+            }
+            break;}
+            case 2: this.STATE = "FIGHT_CHOOSE"; break; }
     }
 
     public void forest() throws InterruptedException { // combat + generator opisów DO ZAIMPLEMENTOWANIA
@@ -203,7 +251,7 @@ public class GameWorld {
         game.begin();
         game.opisPostaci();
         game.STATE = "TOWN";
-        while (true) {
+        while (player.isAlive) {
             switch(game.STATE){
                 case "CONTEMPLATE": game.contemplate(); break;
                 case "TOWN": game.town(); break;

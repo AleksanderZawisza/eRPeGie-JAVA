@@ -28,6 +28,12 @@ public class Combat {
         }
         int armor = attacked.getArmor();
         int actDamage = (int) Math.ceil(potDamage * (1 - (((double) armor ) / (armor + 50))));
+
+        if (attacked.getHp() < actDamage){
+            int actDamage1 = attacked.getHp();
+            attacked.lowerHp(actDamage1);
+            return actDamage1;
+        }
         attacked.lowerHp(actDamage);
         return actDamage;
     }
