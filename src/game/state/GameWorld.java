@@ -15,7 +15,7 @@ public class GameWorld {
     public GameWorld() {
     }
 
-    public void begin() throws InterruptedException {
+    public String begin() throws InterruptedException {
         System.out.print("\nHi there. What's your NAME?\n> ");
         String savename = input.nextLine();
         savename = savename.toUpperCase();
@@ -36,12 +36,13 @@ public class GameWorld {
 
         TimeUnit.MILLISECONDS.sleep(2000); // czeka 2 sekundy
         STATE = "TOWN";
-        System.out.println(new String(new char[70]).replace("\0", "\r\n"));  //"clear screen"
+        System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+        return savename; //"clear screen"
     }
 
 
-    public void opisPostaci() {
-        System.out.print("\nYour NAME is [NAME]. It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].\n" +
+    public void opisPostaci(String savename) {
+        System.out.print("\nYour NAME is "+ savename + ". It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].\n" +
                 "You have a fondness for [HOBBY] and are an ASPIRING [JOB]. You like to [HOBBY] but are NOT VERY GOOD AT IT. \n" +
                 "You also enjoy KILLING THINGS sometimes.\n"); // generator postaci DO ZAIMPLEMENTOWANIA
     }
@@ -183,13 +184,14 @@ public class GameWorld {
                 "His name is " + enemy.getName() + ".\n" +
                 "You decide to\n" +
                 "1. Get closer to this creature!\n" +
-                "2. Get back on the road!\n" +
+                "2. Get back on the road!" +
                 "\n> ");
         choiceN = input.nextInt();
         TimeUnit.MILLISECONDS.sleep(1000);
         switch (choiceN)
         {case 1: {
             boolean flag = true;
+            System.out.println("\nThe rat seems nervous.");
             while(flag) {
                 System.out.print("\nWhat do you do now?\n" +
                         "1. Attack!\n" +
@@ -200,13 +202,13 @@ public class GameWorld {
                     case "1":
                         int attack1 = Combat.attack(player, enemy);
                         int attack2 = Combat.attack(enemy, player);
-                        System.out.println("You dealt " + attack1 +" dmg");
+                        System.out.println("\nYou dealt " + attack1 +" dmg");
                         System.out.println(enemy.getName() + " bit u for " + attack2 + " dmg.");
                         break;
 
                     case "2":
                         int attack3 = Combat.attack(enemy, player);
-                        System.out.println("You did nothing and got hit!!!");
+                        System.out.println("\nYou did nothing and got hit!!!");
                         System.out.println(enemy.getName() + " bit u for " + attack3 + " dmg.");
                         break;
                     case "3":
@@ -215,13 +217,15 @@ public class GameWorld {
                 }
                 if (!flag) break;
                 System.out.println("You got " + player.getHp() + " hp.");
-                System.out.println(enemy.getName() + "'s got " + enemy.getHp() + " hp.");
+                System.out.println(enemy.getName() + " has " + enemy.getHp() + " hp.");
                 if (player.getHp()<1){
                     player.isAlive = false;
+                    System.out.println("\nYou died. \nGAME OVER!");
+                    this.STATE = "DEAD";
                     break;
                 }
                 if (enemy.getHp()<1){
-                    System.out.println( enemy.getName()+ " is dead." +
+                    System.out.println("\n" + enemy.getName()+ " is dead." +
                             "\n" + "You won!\n");
                     break;
                 }
@@ -230,11 +234,61 @@ public class GameWorld {
             case 2: this.STATE = "FIGHT_CHOOSE"; break; }
     }
 
-    public void forest() throws InterruptedException { // combat + generator opisów DO ZAIMPLEMENTOWANIA
-        System.out.print("\nYou are now in the FOREST. It is [WEATHER]. There's ABSOLUTELY NOTHING AROUND.\n");
-        TimeUnit.MILLISECONDS.sleep(3000);
-        System.out.print("You GET THE HELL OUT OF HERE.\n");
-        this.STATE = "FIGHT_CHOOSE";
+    public void forest() throws InterruptedException { // generator opisów DO ZAIMPLEMENTOWANIA
+        Enemy enemy = new Enemy(40, 10, 20, 100, 100);
+        enemy.setName("Troll Martin");
+        System.out.print("\nYou are now in the FOREST. It is [WEATHER]. You see a very big troll. \n" +
+                "His name is " + enemy.getName() + ".\n" +
+                "You decide to\n" +
+                "1. Get closer to this monster!\n" +
+                "2. Get back on the road!" +
+                "\n> ");
+        choiceN = input.nextInt();
+        TimeUnit.MILLISECONDS.sleep(1000);
+        switch (choiceN)
+        {case 1: {
+            boolean flag = true;
+            System.out.println("\nEnormous troll furiously charges at you.");
+            while(flag) {
+                System.out.print("\nWhat do you do now?\n" +
+                        "1. Attack!\n" +
+                        "2. Wait.\n" +
+                        "3. Get out of this cursed place.\n> ");
+                String command = input.next();
+                switch (command) {
+                    case "1":
+                        int attack1 = Combat.attack(player, enemy);
+                        int attack2 = Combat.attack(enemy, player);
+                        System.out.println("\nYou dealt " + attack1 +" dmg");
+                        System.out.println(enemy.getName() + " smashed you for " + attack2 + " dmg.");
+                        break;
+
+                    case "2":
+                        int attack3 = Combat.attack(enemy, player);
+                        System.out.println("\nYou did nothing and got hit!!!");
+                        System.out.println(enemy.getName() + " smashed you for " + attack3 + " dmg.");
+                        break;
+                    case "3":
+                        flag=false;
+                        break;
+                }
+                if (!flag) break;
+                System.out.println("You got " + player.getHp() + " hp.");
+                System.out.println(enemy.getName() + " has " + enemy.getHp() + " hp.");
+                if (player.getHp()<1){
+                    player.isAlive = false;
+                    this.STATE = "DEAD";
+                    System.out.println("\nYou died. \nGAME OVER!");
+                    break;
+                }
+                if (enemy.getHp()<1){
+                    System.out.println("\n" + enemy.getName()+ " is dead." +
+                            "\n" + "You won!\n");
+                    break;
+                }
+            }
+            break;}
+            case 2: this.STATE = "FIGHT_CHOOSE"; break; }
     }
 
     public void mountains() throws InterruptedException { // combat + generator opisów DO ZAIMPLEMENTOWANIA
@@ -248,10 +302,10 @@ public class GameWorld {
 
     public void play () throws InterruptedException {
         GameWorld game = new GameWorld();
-        game.begin();
-        game.opisPostaci();
+        String savename = game.begin();
+        game.opisPostaci(savename);
         game.STATE = "TOWN";
-        while (player.isAlive) {
+        while (game.STATE != "DEAD") {
             switch(game.STATE){
                 case "CONTEMPLATE": game.contemplate(); break;
                 case "TOWN": game.town(); break;
@@ -266,6 +320,7 @@ public class GameWorld {
                 case "PLAINS": game.plains(); break;
                 case "FOREST": game.forest(); break;
                 case "MOUNTAINS": game.mountains(); break;
+                case "DEAD": break;
             }
         }
 
