@@ -226,7 +226,7 @@ public class GameWorld {
                 }
                 if (enemy.getHp()<1){
                     System.out.println("\n" + enemy.getName()+ " is dead." +
-                            "\n" + "You won!\n");
+                            "\n" + "You won the fight!\n");
                     break;
                 }
             }
@@ -283,7 +283,7 @@ public class GameWorld {
                 }
                 if (enemy.getHp()<1){
                     System.out.println("\n" + enemy.getName()+ " is dead." +
-                            "\n" + "You won!\n");
+                            "\n" + "You won the fight. Incredible!\n");
                     break;
                 }
             }
