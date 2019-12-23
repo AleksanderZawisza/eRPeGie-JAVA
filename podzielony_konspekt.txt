@@ -1,0 +1,23 @@
+10% stworzenie lokacji świata gry i podstawowego systemu walki - zarys przyszłych funkcjonalności
+
+-----
+
+10% - stworzenie przedmiotów/generatora przedmiotów: broń, zbroja, przedmioty odnawiające życie 
+
+10% - stworzenie zróżnicowanych przeciwników/ generatora przeciwników
+
+10% - implementacja funkcjonalności ekwipunku 
+
+10% - rozwinięcie systemu walki - zwiększenie losowości walki, pozyskiwane nagrody, system szansy ucieczki, ewentualne Stany typu poisoned, on fire, etc.
+
+-----
+
+10% - implementacja sklepu
+
+10% - implementacja systemu zadań/questów
+
+10% - implementacja wydarzeń/eventów w zależności od zadań/stanu postaci/losowej szansy
+
+10% - implementacja funkcjonalności zmiany opisów bohatera i lokacji w zależności od stanu postaci 
+
+10% - implementacja systemu zapisu stanu gry
