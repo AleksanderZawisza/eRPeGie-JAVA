@@ -17,6 +17,5 @@ public class EnemyGeneratorTest {
         Enemy testEnemy = EnemyGenerator.plainsEnemy();
         System.out.println( EnemyGenerator.plainsEnemy() );
 
-
     }
 }
