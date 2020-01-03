@@ -45,6 +45,7 @@ public class Player extends Creature {
     public void remove(Item item){
         if (inventory.contains(item)) {
             inventory.remove(item);
+            unequip(item);
         }
         else{
             System.out.println("You don't have that item.");
@@ -110,9 +111,7 @@ public class Player extends Creature {
                 head = defaultHead;
             }
         }
-        else {
-            System.out.println("\nItem cannot be unequipped!\n");
-        }
+        else {}
     }
 
 }
