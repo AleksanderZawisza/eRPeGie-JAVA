@@ -54,23 +54,23 @@ public class Player extends Creature {
     public void equip(Item item){
         if (inventory.contains(item)) {
             if (item instanceof Weapon){
-                this.setAttack(getAttack() - weapon.getDamage() + ((Weapon) item).getDamage());
+                this.setAttack(this.getAttack() - weapon.getDamage() + ((Weapon) item).getDamage());
                 weapon = (Weapon) item;
             }
             else if (item instanceof Legs){
-                this.setArmor(getArmor() - legs.getDefence() + ((Legs) item).getDefence());
+                this.setArmor(this.getArmor() - legs.getDefence() + ((Legs) item).getDefence());
                 legs = (Legs) item;
             }
             else if (item instanceof Arms){
-                this.setArmor(getArmor() - arms.getDefence() + ((Arms) item).getDefence());
+                this.setArmor(this.getArmor() - arms.getDefence() + ((Arms) item).getDefence());
                 arms = (Arms) item;
             }
             else if (item instanceof Torso){
-                this.setArmor(getArmor() - torso.getDefence() + ((Torso) item).getDefence());
+                this.setArmor(this.getArmor() - torso.getDefence() + ((Torso) item).getDefence());
                 torso = (Torso) item;
             }
             else if (item instanceof Head){
-                this.setArmor(getArmor() - head.getDefence() + ((Head) item).getDefence());
+                this.setArmor(this.getArmor() - head.getDefence() + ((Head) item).getDefence());
                 head = (Head) item;
             }
             else{
@@ -82,31 +82,31 @@ public class Player extends Creature {
     public void unequip(Item item){
         if (item instanceof Weapon) {
             if (item == weapon) {
-                this.setAttack(getAttack() - weapon.getDamage());
+                this.setAttack(this.getAttack() - weapon.getDamage());
                 weapon = defaultWeapon;
             }
         }
         else if (item instanceof Legs) {
             if (item == legs) {
-                this.setArmor(getArmor() - legs.getDefence());
+                this.setArmor(this.getArmor() - legs.getDefence());
                 legs = defaultLegs;
             }
         }
         else if (item instanceof Torso) {
             if (item == torso) {
-                this.setArmor(getArmor() - torso.getDefence());
+                this.setArmor(this.getArmor() - torso.getDefence());
                 torso = defaultTorso;
             }
         }
         else if (item instanceof Arms) {
             if (item == arms) {
-                this.setArmor(getArmor() - arms.getDefence());
+                this.setArmor(this.getArmor() - arms.getDefence());
                 arms = defaultArms;
             }
         }
         else if (item instanceof Head) {
             if (item == head) {
-                this.setArmor(getArmor() - head.getDefence());
+                this.setArmor(this.getArmor() - head.getDefence());
                 head = defaultHead;
             }
         }
