@@ -1,5 +1,9 @@
 package game.item;
 
+import java.util.Objects;
+
+// TODO isEquipped ?
+
 public class Item {
     private String name;
     private int price;
@@ -27,4 +31,17 @@ public class Item {
         this.isEquipped = false;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Item)) return false;
+        Item item = (Item) o;
+        return getPrice() == item.getPrice() &&
+                isEquipped == item.isEquipped &&
+                Objects.equals(getName(), item.getName());
+    }
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

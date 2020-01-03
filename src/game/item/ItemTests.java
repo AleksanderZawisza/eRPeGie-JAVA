@@ -10,12 +10,13 @@ public class ItemTests {
         System.out.println("armor" + player.getArmor());
         Weapon stick = new Weapon("Stick",10,0);
         Arms kek = new Arms("Kek", 15,1000);
-        player.take(stick);
+        player.take(new Weapon("Stick",10,0));
         player.take(kek);
-        player.equip(stick);
+        player.equip(new Weapon("Stick",10,0));
         player.equip(kek);
         System.out.println("newattack" + player.getAttack());
         System.out.println("newarmor" + player.getArmor());
+
 
     }
 }

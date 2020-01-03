@@ -6,4 +6,13 @@ public class Head extends Armor {
     public Head(String name, int defence, int price) {
         super(name, defence, price);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

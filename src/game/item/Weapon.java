@@ -11,4 +11,18 @@ public class Weapon extends Item {
     public int getDamage() {
         return damage;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Weapon)) return false;
+        if (!super.equals(o)) return false;
+        Weapon weapon = (Weapon) o;
+        return getDamage() == weapon.getDamage();
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

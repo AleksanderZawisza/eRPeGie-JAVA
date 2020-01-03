@@ -44,8 +44,8 @@ public class Player extends Creature {
 
     public void remove(Item item){
         if (inventory.contains(item)) {
-            inventory.remove(item);
             unequip(item);
+            inventory.remove(item);
         }
         else{
             System.out.println("You don't have that item.");
@@ -82,31 +82,31 @@ public class Player extends Creature {
 
     public void unequip(Item item){
         if (item instanceof Weapon) {
-            if (item == weapon) {
+            if (item.equals(weapon)) {
                 this.setAttack(this.getAttack() - weapon.getDamage());
                 weapon = defaultWeapon;
             }
         }
         else if (item instanceof Legs) {
-            if (item == legs) {
+            if (item.equals(legs)) {
                 this.setArmor(this.getArmor() - legs.getDefence());
                 legs = defaultLegs;
             }
         }
         else if (item instanceof Torso) {
-            if (item == torso) {
+            if (item.equals(torso)) {
                 this.setArmor(this.getArmor() - torso.getDefence());
                 torso = defaultTorso;
             }
         }
         else if (item instanceof Arms) {
-            if (item == arms) {
+            if (item.equals(arms)) {
                 this.setArmor(this.getArmor() - arms.getDefence());
                 arms = defaultArms;
             }
         }
         else if (item instanceof Head) {
-            if (item == head) {
+            if (item.equals(head)) {
                 this.setArmor(this.getArmor() - head.getDefence());
                 head = defaultHead;
             }
