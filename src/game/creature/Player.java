@@ -11,4 +11,5 @@ public class Player extends Creature {
     public void setSavename(String savename) {
         this.savename = savename;
     }
+
 }
