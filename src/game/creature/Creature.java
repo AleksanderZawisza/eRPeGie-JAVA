@@ -1,15 +1,25 @@
 package game.creature;
 
 public class Creature {
-    private String name;
-    private int hp;
-    private int maxhp;
-    private int armor;
-    private int attack;
-    private int exp;
-    private int money;
+    protected String name = "";
+    protected int hp;
+    protected int maxhp;
+    protected int armor;
+    protected int attack;
+    protected float exp;
+    protected int money;
 
-    public Creature(int maxhp, int armor, int attack, int exp, int money) {
+    public Creature(int maxhp, int armor, int attack, float exp, int money) {
+        this.hp = maxhp;
+        this.maxhp = maxhp;
+        this.armor = armor;
+        this.attack = attack;
+        this.exp = exp;
+        this.money = money;
+    }
+
+    public Creature(String name, int maxhp, int armor, int attack, float exp, int money) {
+        this.name = name;
         this.hp = maxhp;
         this.maxhp = maxhp;
         this.armor = armor;
@@ -34,7 +44,7 @@ public class Creature {
         this.attack += attack;
     }
 
-    public int getExp() {
+    public float getExp() {
         return exp;
     }
 
