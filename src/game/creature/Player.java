@@ -110,8 +110,9 @@ public class Player extends Creature {
                 head = defaultHead;
             }
         }
-        else{
+        else {
             System.out.println("\nItem cannot be unequipped!\n");
+        }
     }
 
 }
