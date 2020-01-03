@@ -1,5 +1,7 @@
 package game.item;
 
+import game.item.Item;
+
 public class Armor extends Item {
 
     private final int defence;

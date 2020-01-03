@@ -77,4 +77,12 @@ public class Creature {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setArmor(int armor) {
+        this.armor = armor;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
 }
