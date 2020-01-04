@@ -9,6 +9,8 @@ public class Creature {
     protected float exp;
     protected int money;
 
+    public Creature(){}
+
     public Creature(int maxhp, int armor, int attack, float exp, int money) {
         this.hp = maxhp;
         this.maxhp = maxhp;

@@ -45,12 +45,6 @@ public class ItemGenerator {
         return items;
     }
 
-    public static Item newItem() {
-        Item item = items().get(rand.nextInt(items().size()));
-        item = descriptor(item);
-        return item;
-    }
-
     protected static Item descriptor(Item item) {
 
         String desc = "";
@@ -238,5 +232,60 @@ public class ItemGenerator {
         return quality;
     }
 
+    public static Item newItem() {
+        Item item = items().get(rand.nextInt(items().size()));
+        item = descriptor(item);
+        return item;
+    }
+
+    public static Item newItemPriceRange(int begin, int end) {
+        Item item = newItem();
+        int i = 0;
+        while(item.getPrice()<begin || item.getPrice()>end)
+        { item = newItem(); i++;
+          if(i==10000) {
+            System.out.println("uwaga: prawdopodobnie nieskonczona petla w newItemPriceRange");
+            break; }
+        }
+        return item;
+    }
+
+    public static Item newItemPriceRangeAndName(int begin, int end, String whatsInTheName) {
+        Item item = newItem();
+        int i = 0;
+        while(item.getPrice()<begin || item.getPrice()>end || !item.getName().contains(whatsInTheName))
+        { item = newItem(); i++;
+          if(i==10000) {
+            System.out.println("uwaga: prawdopodobnie nieskonczona petla w newItemPriceRangeAndName");
+            break; }
+        }
+        return item;
+    }
+
+    public static Item newItemPriceRangeArmor(int begin, int end) {
+        Item item = newItem();
+        int i = 0;
+        while(item.getPrice()<begin || item.getPrice()>end || item.getClass().getSimpleName().equals("Weapon"))
+        { item = newItem(); i++;
+          if(i==10000) {
+              System.out.println("uwaga: prawdopodobnie nieskonczona petla w newItemPriceRangeArmor");
+              break; }
+        }
+        return item;
+    }
+
+    public static Item newItemPriceRangeWeapon(int begin, int end) {
+        Item item = newItem();
+        int i = 0;
+        while(item.getPrice()<begin || item.getPrice()>end || !item.getClass().getSimpleName().equals("Weapon"))
+        { item = newItem(); i++;
+          if(i==10000) {
+              System.out.println("uwaga: prawdopodobnie nieskonczona petla w newItemPriceRangeArmor");
+              break; }
+        }
+        return item;
+    }
+
 
 }
+
