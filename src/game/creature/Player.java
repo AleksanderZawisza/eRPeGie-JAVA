@@ -6,12 +6,14 @@ import game.item.armor.Arms;
 import game.item.armor.Head;
 import game.item.armor.Legs;
 import game.item.armor.Torso;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Player extends Creature {
     public String savename;
     public boolean isAlive = true;
-    public HashSet<Item> inventory;
+    public ArrayList<Item> inventory;
     private Weapon weapon;
     private Legs legs;
     private Torso torso;
@@ -26,7 +28,7 @@ public class Player extends Creature {
 
     public Player(int maxhp, int armor, int attack, int exp, int money) {
         super(maxhp, armor, attack, exp, money);
-        this.inventory = new HashSet<Item>();
+        this.inventory = new ArrayList<Item>();
         this.weapon = defaultWeapon;
         this.legs = defaultLegs;
         this.torso = defaultTorso;
@@ -39,7 +41,11 @@ public class Player extends Creature {
     }
 
     public void take(Item item){
-        inventory.add(item);
+        if(inventory.size() < 12){
+            inventory.add(item);
+            return;
+        }
+        System.out.println("Your inventory is full!");
     }
 
     public void remove(Item item){
