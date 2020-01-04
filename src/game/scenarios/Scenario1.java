@@ -28,14 +28,14 @@ public class Scenario1 {
             String command = input.next();
             switch (command) {
                 case "1":
-                    int attack1 = Combat.fight(player, rat);
-                    int attack2 = Combat.fight(rat, player);
+                    int attack1 = Combat.attack(player, rat);
+                    int attack2 = Combat.attack(rat, player);
                     System.out.println("u dealt " + attack1 +" dmg");
                     System.out.println(rat.getName() + " bit u for " + attack2 + " dmg");
                     break;
 
                 case "2":
-                    int attack3 = Combat.fight(rat, player);
+                    int attack3 = Combat.attack(rat, player);
                     System.out.println("cant run gotta fight!!!");
                     System.out.println(rat.getName() + " bit u for " + attack3 + " dmg");
                     break;

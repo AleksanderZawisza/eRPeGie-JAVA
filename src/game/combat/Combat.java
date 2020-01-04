@@ -5,7 +5,7 @@ import game.creature.Creature;
 import java.util.Random;
 
 public class Combat {
-    
+
     public static int attack(Creature attacker, Creature attacked){
 
         // random dmg from normal distribution
