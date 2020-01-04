@@ -11,8 +11,8 @@ public class Scenario2 {
         Scanner input = new Scanner(System.in);
         boolean flag = true;
 
-        Player player = new Player(50, 40, 12, 0, 0);
-        Enemy enemy = new Enemy(40, 15, 20, 100, 1);
+        Player player = new Player(500, 0, 10, 0, 0);
+        Enemy enemy = new Enemy(400, 0, 10, 100, 1);
         enemy.setName("troll Martin");
 
 
