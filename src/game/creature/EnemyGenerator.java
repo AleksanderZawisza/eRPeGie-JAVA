@@ -28,7 +28,7 @@ public class EnemyGenerator {
         return enemy;
     }
 
-    public static Enemy descriptor(Enemy enemy) {
+    protected static Enemy descriptor(Enemy enemy) {
         String[] desc = {"injured", "small", "diseased",  // -EXP, -ATT/HP
                 "completely average", "mediocre", "common", "typical", "plain", "boringly ordinary",
                 "shaggy", "rare", // -/+MONEY

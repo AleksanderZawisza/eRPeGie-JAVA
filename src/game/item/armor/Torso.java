@@ -3,8 +3,8 @@ package game.item.armor;
 import game.item.Armor;
 
 public class Torso extends Armor {
-    public Torso(String name, int defence, int price) {
-        super(name, defence, price);
+    public Torso(String type, int defence, int price) {
+        super(type, defence, price);
     }
 
     @Override
@@ -14,5 +14,10 @@ public class Torso extends Armor {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

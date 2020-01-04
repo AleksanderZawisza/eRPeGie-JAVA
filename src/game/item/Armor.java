@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Armor extends Item {
 
-    private final int defence;
+    private int defence;
 
     public Armor(String name, int defence, int price) {
         super(name, price);
@@ -15,6 +15,17 @@ public class Armor extends Item {
 
     public int getDefence() {
         return defence;
+    }
+
+    public void setDefence(int defence) {
+        this.defence = defence;
+    }
+
+    public void addDefence(int defence) {
+        this.defence += defence;
+    }
+    public void lowerDefence(int defence) {
+        this.defence -= defence;
     }
 
     @Override
@@ -28,5 +39,12 @@ public class Armor extends Item {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Armor{" +
+                "defence=" + defence +
+                "} " + super.toString();
     }
 }

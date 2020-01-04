@@ -5,12 +5,14 @@ import java.util.Objects;
 // TODO isEquipped ?
 
 public class Item {
+    private String type;
     private String name;
     private int price;
     public boolean isEquipped;
 
-    public Item(String name, int price) {
-        this.name = name;
+    public Item(String type, int price) {
+        this.type = type;
+        this.name = type;
         this.price = price;
         this.isEquipped = false;
     }
@@ -19,8 +21,20 @@ public class Item {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getPrice() {
         return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public void equip() {
@@ -43,5 +57,14 @@ public class Item {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
