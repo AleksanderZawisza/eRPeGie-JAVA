@@ -1,8 +1,5 @@
 package game.item;
 
-import game.creature.Enemy;
-import game.creature.EnemyGenerator;
-
 import java.util.ArrayList;
 import java.util.Random;
 
