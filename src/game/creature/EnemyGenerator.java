@@ -14,7 +14,7 @@ public class EnemyGenerator {
         String[] desc = {"injured", "small", "diseased",  // -EXP, -ATT/HP
                 "completely average", "mediocre", "common", "typical", "plain", "boringly ordinary",
                 "shaggy", "rare", // -/+MONEY
-                "large", "ferocious", "rabid", // +EXP, +ATT/ARMOR/HP
+                "huge", "ferocious", "frenzied", // +EXP, +ATT/ARMOR/HP
                 "massive",  // ++EXP, ++ATT, ++HP, +ARMOR, +MONEY
         };
 
@@ -36,10 +36,10 @@ public class EnemyGenerator {
                 enemy.lowerAttack((int) enemy.getAttack()/10  +1); enemy.lowerExp(1); break;
             case "shaggy": enemy.lowerMoney((int) enemy.getMoney()/5 +1); break;
             case "rare": enemy.addMoney((int) enemy.getMoney()/5 +10); break;
-            case "large": enemy.addHp((int) enemy.getMaxhp()/10 +2); enemy.addExp(1);
+            case "huge": enemy.addHp((int) enemy.getMaxhp()/10 +2); enemy.addExp(1);
                 enemy.addArmor((int) enemy.getArmor()/10); break;
             case "ferocious": enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
-            case "rabid": enemy.addHp((int) enemy.getMaxhp()/10 +2);
+            case "frenzied": enemy.addHp((int) enemy.getMaxhp()/10 +2);
                 enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
             case "massive": enemy.addHp((int) enemy.getMaxhp()/5 +2); enemy.addArmor(1);
                 enemy.addMoney((int) enemy.getMoney()/5 +5); enemy.addAttack((int) enemy.getAttack()/5 +1);
@@ -54,11 +54,14 @@ public class EnemyGenerator {
         String[] desc = {"", "", "",  // NO CLASS
                 " ranger",  //dagger
                 " hunter", //knife
-                " warrior",  //swords/axes/whatevs
+                " warrior",  //any ++EXP
                 " swordsman",  //swords
                 " spearman", //spears duh
-                " lumberjack", //axe
+                " axeman", //axe
+                " soldier", //halberd
         };
+
+        String[] desc2 = {"completely average", "typical", "female", "male", "boringly ordinary"};
 
         enemy.setPossibleDrop(Arrays.asList(
                 ItemGenerator.newItemPriceRangeArmor(0, enemy.getMoney()),
@@ -67,6 +70,7 @@ public class EnemyGenerator {
                 ItemGenerator.newItemPriceRangeArmor(0, enemy.getMoney()) ));
 
         String myDesc = desc[rand.nextInt(desc.length)];
+        enemy.setName(enemy.getRace() + myDesc);
         switch(myDesc)
         {   case " ranger": enemy.addPossibleDrop(Arrays.asList(
                 ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney(), "dagger")  ));
@@ -81,15 +85,18 @@ public class EnemyGenerator {
                 ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney(), "sword")  ));
                 enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
             case " spearman":  enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney(), "spear")  ));
+                ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney()+10, "spear")  ));
                 enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
-            case " lumberjack":  enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney(), "axe")  ));
+            case " axeman":  enemy.addPossibleDrop(Arrays.asList(
+                ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney()+5, "axe")  ));
+                enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
+            case " soldier":  enemy.addPossibleDrop(Arrays.asList(
+                    ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney()+15, "halberd")  ));
                 enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
             default: enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeWeapon(0, enemy.getMoney()/2)  ));  break;
+                ItemGenerator.newItemPriceRangeWeapon(0, enemy.getMoney()/2 + 5)  ));
+                enemy.setName(desc2[rand.nextInt(desc2.length)]+ " " + enemy.getRace()); break;
         }
-        enemy.setName(enemy.getRace() + myDesc);
         return enemy;
     }
 
@@ -105,7 +112,6 @@ public class EnemyGenerator {
         plainsEnemies.add(new Enemy("badger", 30,5,27,13,25));
         plainsEnemies.add(new Enemy("gaggle of geese", 50,3,23,15,30));
         plainsEnemies.add(new Enemy("bison", 60,10,20,17,40));
-
         return plainsEnemies;
     }
 
@@ -161,7 +167,7 @@ public class EnemyGenerator {
         forestAnimals.add(new Enemy("murder of crows", 40,20,40,22,20));
         forestAnimals.add(new Enemy("moose", 80,35,20,23,40));
         forestAnimals.add(new Enemy("wolf", 60,15,55,26,45));
-        forestAnimals.add(new Enemy("brown bear", 100,20,40,29,50));
+        forestAnimals.add(new Enemy("black bear", 100,20,40,29,50));
         forestAnimals.add(new Enemy("grizzly bear", 150,30,50,32,65));
         forestAnimals.add(new Enemy("dire wolf", 180,25,70,35,70));
         forestAnimals.add(new Enemy("cockatrice", 200,40,90,38,90));
@@ -181,13 +187,14 @@ public class EnemyGenerator {
         forestSentients.add(new Enemy("lizardman", 160,60,50,34,50));
         forestSentients.add(new Enemy("green orc", 200,60,80,37,90));
         forestSentients.add(new Enemy("wood elf", 180,40,120,40,100));
+        forestSentients.add(new Enemy("tauren", 280,100,100,48,100));
         return forestSentients;
     }
 
     public static Enemy forestEnemy() {
         Enemy enemy = new Enemy();
 
-        if(rand.nextInt(6)==5) {
+        if(rand.nextInt(4)==0) {
             enemy = forestSentients().get(rand.nextInt(forestSentients().size()));
             enemy = profession(enemy);
         }
@@ -236,5 +243,101 @@ public class EnemyGenerator {
         return enemy;
     }
 
+    public static ArrayList<Enemy> mountainAnimals() {
+        ArrayList<Enemy> mountainAnimals = new ArrayList<>();
+        mountainAnimals.add(new Enemy("chipmunk", 10,0,7,3,3));
+        mountainAnimals.add(new Enemy("mountain goat", 30,8,18,13,20));
+        mountainAnimals.add(new Enemy("yak", 80,20,25,19,27));
+        mountainAnimals.add(new Enemy("cougar", 50,14,60,27,36));
+        mountainAnimals.add(new Enemy("mountain wolf", 70,20,70,31,40));
+        mountainAnimals.add(new Enemy("dire bear", 180,40,75,37,65));
+        mountainAnimals.add(new Enemy("manticore", 200,35,90,41,80));
+        mountainAnimals.add(new Enemy("griffin", 260,45,85,42,85));
+        mountainAnimals.add(new Enemy("rock drake", 380,80,120,48,100));
+        mountainAnimals.add(new Enemy("white wyvern", 550,120,150,53,155));
+        mountainAnimals.add(new Enemy("rock wyvern", 650,135,155,56,180));
+        mountainAnimals.add(new Enemy("frostfang basilisk", 450,100,200,59,100));
+        mountainAnimals.add(new Enemy("archgriffin", 600,130,190,62,180));
+        mountainAnimals.add(new Enemy("frostscale wyvern", 700,150,185,67,200));
+        mountainAnimals.add(new Enemy("royal basilisk", 600,120,285,69,250));
+        mountainAnimals.add(new Enemy("royal wyvern", 900,185,230,72,300));
+        mountainAnimals.add(new Enemy("brass dragon", 1100,210,270,75,450));
+        mountainAnimals.add(new Enemy("copper dragon", 1050,200,275,79,550));
+        mountainAnimals.add(new Enemy("silver dragon", 1150,205,295,81,650));
+        mountainAnimals.add(new Enemy("gold dragon", 1100,225,320,85,750));
+        mountainAnimals.add(new Enemy("platinum dragon", 1300,260,380,89,800));
+        mountainAnimals.add(new Enemy("prismatic dragon", 1600,400,650,96,1200));
+        mountainAnimals.add(new Enemy("frost dracolich", 2000,500,550,100,1400));
+        return mountainAnimals;
+    }
+
+    public static ArrayList<Enemy> mountainSentients() {
+        ArrayList<Enemy> mountainSentients = new ArrayList<>();
+        mountainSentients.add(new Enemy("mountain kobold", 100,40,45,30,40));
+        mountainSentients.add(new Enemy("white gnoll", 140,50,85,38,70));
+        mountainSentients.add(new Enemy("half-dragon", 200,80,95,44,100));
+        mountainSentients.add(new Enemy("mountain dwarf", 220,100,105,48,100));
+        mountainSentients.add(new Enemy("goliath", 300,130,145,53,120));
+        mountainSentients.add(new Enemy("troll", 400,150,155,57,150));
+        mountainSentients.add(new Enemy("cyclops", 550,160,170,62,200));
+        mountainSentients.add(new Enemy("ettin", 550,165,190,66,230));
+        mountainSentients.add(new Enemy("cloud giant", 650,180,200,70,280));
+        mountainSentients.add(new Enemy("mountain giant", 800,200,240,76,320));
+        mountainSentients.add(new Enemy("frost titan", 1000,280,300,85,420));
+        mountainSentients.add(new Enemy("angel", 1200,400,440,92,800));
+        return mountainSentients;
+    }
+
+    public static Enemy mountainEnemy() {
+        Enemy enemy = new Enemy();
+
+        if(rand.nextInt(4)==0) {
+            enemy = mountainSentients().get(rand.nextInt(mountainSentients().size()));
+            enemy = profession(enemy);
+        }
+
+        else {
+            enemy = mountainAnimals().get(rand.nextInt(mountainAnimals().size()));
+            enemy = descriptor(enemy);
+        }
+
+        return enemy;
+    }
+
+    public static Enemy mountainEnemyName(String whatsInTheName) {
+        Enemy enemy = mountainEnemy();
+        int i = 0;
+        while(!enemy.getName().contains(whatsInTheName))
+        {   enemy = mountainEnemy(); i++;
+            if(i==10000) {
+                System.out.println("uwaga: prawdopodobnie nieskonczona petla w forestEnemyName");
+                break; }
+        }
+        return enemy;
+    }
+
+    public static Enemy mountainEnemyExpRangeAndName(int begin, int end, String whatsInTheName) {
+        Enemy enemy = mountainEnemy();
+        int i = 0;
+        while(enemy.getExp()<begin || enemy.getExp()>end || !enemy.getName().contains(whatsInTheName))
+        {   enemy = mountainEnemy(); i++;
+            if(i==10000) {
+                System.out.println("uwaga: prawdopodobnie nieskonczona petla w forestEnemyExpRangeAndName");
+                break; }
+        }
+        return enemy;
+    }
+
+    public static Enemy mountainEnemyExpRange(int begin, int end) {
+        Enemy enemy = mountainEnemy();
+        int i = 0;
+        while(enemy.getExp()<begin || enemy.getExp()>end)
+        {   enemy = mountainEnemy(); i++;
+            if(i==10000) {
+                System.out.println("uwaga: prawdopodobnie nieskonczona petla w forestEnemyExpRange");
+                break; }
+        }
+        return enemy;
+    }
 
 }

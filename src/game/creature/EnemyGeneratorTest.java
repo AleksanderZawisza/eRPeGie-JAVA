@@ -18,17 +18,21 @@ public class EnemyGeneratorTest {
         testenemy = EnemyGenerator.descriptor(testenemy);
         System.out.println(testenemy );
 
-        //fin
+        //fin plains
         Enemy testEnemy1 = EnemyGenerator.plainsEnemy();
         System.out.println( testEnemy1 );
 
-        //part2
+        //forest
         Enemy testEnemy2 = EnemyGenerator.forestEnemy();
         System.out.println( testEnemy2 );
 
         //ExpRange and names
-        Enemy testEnemy3 = EnemyGenerator.forestEnemyName("swordsman");
+        Enemy testEnemy3 = EnemyGenerator.forestEnemyName("soldier");
         System.out.println( testEnemy3 );
-        
+
+        //mountain
+        Enemy testEnemy4 = EnemyGenerator.mountainEnemyName("angel hunter");
+        System.out.println( testEnemy4 );
+
     }
 }
