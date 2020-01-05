@@ -12,9 +12,9 @@ public class FightChoose {
 
         System.out.print("\nYou are NEAR THE TOWN GATES. It is [WEATHER]. You see THREE PATHS.\n" +
                 "You decide to\n" +
-                "1. Go EAST into the PLAINS\n" +
-                "2. Go NORTH into the FOREST\n" +
-                "3. Go WEST into the MOUNTAINS\n" +
+                "1. Go EAST, towards the PLAINS\n" +
+                "2. Go NORTH, towards the FOREST\n" +
+                "3. Go WEST, towards the MOUNTAINS\n" +
                 "4. Turn around and GO BACK to the TOWN\n> ");
 
         choiceN = input.nextLine();

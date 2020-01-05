@@ -61,7 +61,7 @@ public class EnemyGenerator {
                 " soldier", //halberd
         };
 
-        String[] desc2 = {"completely average", "typical", "female", "male", "boringly ordinary"};
+        String[] desc2 = {"completely average", "typical", "female", "male", "boringly ordinary", "suspicious-looking"};
 
         enemy.setPossibleDrop(Arrays.asList(
                 ItemGenerator.newItemPriceRangeArmor(0, enemy.getMoney()),
