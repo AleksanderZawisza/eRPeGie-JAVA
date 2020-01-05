@@ -5,9 +5,9 @@ import game.creature.Player;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class Begin {
+public class Start {
 
-    public void go(Player player) throws InterruptedException {
+    public void begin(Player player) throws InterruptedException {
         Scanner input = new Scanner(System.in);
 
         System.out.print("\nHi there. What's your NAME?\n> ");
@@ -31,5 +31,12 @@ public class Begin {
         TimeUnit.MILLISECONDS.sleep(2000); // czeka 2 sekundy
         player.setSTATE("TOWN");
         System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+    }
+
+    public void description(Player player) {
+
+        System.out.print("\nYour NAME is [NAME]. It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].\n" +
+                "You have a fondness for [HOBBY] and are an ASPIRING [JOB]. You like to [HOBBY] but are NOT VERY GOOD AT IT. \n" +
+                "You also enjoy KILLING THINGS sometimes.\n"); // generator postaci DO ZAIMPLEMENTOWANIA
     }
 }

@@ -11,8 +11,7 @@ public class GameWorld {
     }
 
     Player player;
-    Begin begin = new Begin();
-    CharacterDescription description = new CharacterDescription();
+    Start start = new Start();
     Town town = new Town();
     Tavern tavern = new Tavern();
     Shop shop = new Shop();
@@ -23,11 +22,12 @@ public class GameWorld {
 
 
     public void play () throws InterruptedException {
-        begin.go(player);
-        description.go(player);
+        start.begin(player);
+        start.description(player);
+
         while (!player.getSTATE().equals("DEAD")) {
             switch(player.getSTATE()){
-                case "CONTEMPLATE": tavern.contemplate(player); break;
+                case "CONTEMPLATE": town.contemplate(player); break;
                 case "TOWN": town.go(player); break;
                 case "TOWN_LOOK": town.look(player); break;
                 case "TAVERN": tavern.go(player); break;

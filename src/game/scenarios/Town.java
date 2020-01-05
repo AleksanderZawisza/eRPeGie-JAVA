@@ -38,4 +38,19 @@ public class Town {
             case "2": player.setSTATE("SHOP"); break;
             case "3": player.setSTATE("TOWN"); break;}
     }
+
+    public void contemplate(Player player) {
+        Scanner input = new Scanner(System.in);
+        String choiceN;
+
+        System.out.print("\nYour NAME is [NAME]. It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].\n" +
+                "You have a fondness for [HOBBY] and are an ASPIRING [JOB]. You like to [HOBBY] but are NOT VERY GOOD AT IT. \n" +
+                "You also enjoy KILLING THINGS sometimes.\n" +
+                "You probably will be able to CHECK YOUR STATS here in the future, but for now KEEP DREAMING, LOSER.\n" +
+                "1. Get me THE HELL OUT OF HERE\n> " ); // generator postaci + staty + eq DO ZAIMPLEMENTOWANIA
+
+        choiceN = input.nextLine();
+        switch (choiceN)
+        {case "1": player.setSTATE("TOWN"); break;}
+    }
 }
