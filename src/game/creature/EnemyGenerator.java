@@ -18,12 +18,12 @@ public class EnemyGenerator {
                 "massive",  // ++EXP, ++ATT, ++HP, +ARMOR, +MONEY
         };
 
-        if(rand.nextInt(201)==200) {
-            enemy.addHp(100);
-            enemy.addArmor(10);
-            enemy.addMoney(100);
-            enemy.addAttack(10);
-            enemy.addExp(10);
+        if(rand.nextInt(500)==0) {
+            enemy.addHp(100 + enemy.getMaxhp());
+            enemy.addArmor(10 + enemy.getArmor());
+            enemy.addMoney(100 + enemy.getMoney());
+            enemy.addAttack(10 + enemy.getAttack());
+            enemy.addExp(20);
             enemy.setName("titanic " + enemy.getRace());
             return enemy;
         }

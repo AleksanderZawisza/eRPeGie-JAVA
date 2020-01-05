@@ -31,7 +31,7 @@ public class EnemyGeneratorTest {
         System.out.println( testEnemy3 );
 
         //mountain
-        Enemy testEnemy4 = EnemyGenerator.mountainEnemyName("angel hunter");
+        Enemy testEnemy4 = EnemyGenerator.mountainEnemyName("titanic");
         System.out.println( testEnemy4 );
 
     }
