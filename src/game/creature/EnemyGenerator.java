@@ -254,9 +254,9 @@ public class EnemyGenerator {
         mountainAnimals.add(new Enemy("manticore", 200,35,90,41,80));
         mountainAnimals.add(new Enemy("griffin", 260,45,85,42,85));
         mountainAnimals.add(new Enemy("rock drake", 380,80,120,48,100));
-        mountainAnimals.add(new Enemy("white wyvern", 550,120,150,53,155));
-        mountainAnimals.add(new Enemy("rock wyvern", 650,135,155,56,180));
-        mountainAnimals.add(new Enemy("frostfang basilisk", 450,100,200,59,100));
+        mountainAnimals.add(new Enemy("maned wyvern", 550,120,150,53,155));
+        mountainAnimals.add(new Enemy("gem-eating wyvern", 650,135,155,56,280));
+        mountainAnimals.add(new Enemy("frostfang basilisk", 450,100,200,59,160));
         mountainAnimals.add(new Enemy("archgriffin", 600,130,190,62,180));
         mountainAnimals.add(new Enemy("frostscale wyvern", 700,150,185,67,200));
         mountainAnimals.add(new Enemy("royal basilisk", 600,120,285,69,250));
