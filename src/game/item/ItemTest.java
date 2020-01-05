@@ -3,7 +3,7 @@ package game.item;
 import game.creature.Player;
 import game.item.armor.Arms;
 
-public class ItemTests {
+public class ItemTest {
     public static void main(String[] args) {
         Player player = new Player(100,10,10,0,0);
         System.out.println("attack" + player.getAttack());
