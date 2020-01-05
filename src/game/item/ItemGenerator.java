@@ -235,6 +235,8 @@ public class ItemGenerator {
     public static Item newItem() {
         Item item = items().get(rand.nextInt(items().size()));
         item = descriptor(item);
+        if(item instanceof Armor && ((Armor) item).getDefence()<1){ ((Armor) item).addDefence(1); }
+        if(item instanceof Weapon && ((Weapon) item).getDamage()<1){ ((Weapon) item).addDamage(1); }
         return item;
     }
 
@@ -243,8 +245,6 @@ public class ItemGenerator {
         int i = 0;
         while(item.getPrice()<begin || item.getPrice()>end)
         { item = newItem(); i++;
-            if(item instanceof Armor && ((Armor) item).getDefence()<1){ ((Armor) item).addDefence(1); }
-            if(item instanceof Weapon && ((Weapon) item).getDamage()<1){ ((Weapon) item).addDamage(1); }
             if(i==10000) {
                 System.out.println("uwaga: prawdopodobnie nieskonczona petla w newItemPriceRange");
                 break; }
@@ -257,8 +257,6 @@ public class ItemGenerator {
         int i = 0;
         while(item.getPrice()<begin || item.getPrice()>end || !item.getName().contains(whatsInTheName))
         { item = newItem(); i++;
-            if(item instanceof Armor && ((Armor) item).getDefence()<1){ ((Armor) item).addDefence(1); }
-            if(item instanceof Weapon && ((Weapon) item).getDamage()<1){ ((Weapon) item).addDamage(1); }
             if(i==10000) {
                 System.out.println("uwaga: prawdopodobnie nieskonczona petla w newItemPriceRangeAndName");
                 break; }
@@ -271,7 +269,6 @@ public class ItemGenerator {
         int i = 0;
         while(item.getPrice()<begin || item.getPrice()>end || item.getClass().getSimpleName().equals("Weapon"))
         { item = newItem(); i++;
-            if(item instanceof Armor && ((Armor) item).getDefence()<1){ ((Armor) item).addDefence(1); }
             if(i==10000) {
                 System.out.println("uwaga: prawdopodobnie nieskonczona petla w newItemPriceRangeArmor");
                 break; }
@@ -284,7 +281,6 @@ public class ItemGenerator {
         int i = 0;
         while(item.getPrice()<begin || item.getPrice()>end || !item.getClass().getSimpleName().equals("Weapon"))
         { item = newItem(); i++;
-            if(item instanceof Weapon && ((Weapon) item).getDamage()<1){ ((Weapon) item).addDamage(1); }
             if(i>=10000) {
                 System.out.println("uwaga: prawdopodobnie nieskonczona petla w newItemPriceRangeArmor");
                 break; }
