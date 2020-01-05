@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Player extends Creature {
-    public String savename;
-    public boolean isAlive = true;
+    public String savename = "";
+    public String STATE;
     public ArrayList<Item> inventory;
     private Weapon weapon;
     private Legs legs;
@@ -34,6 +34,7 @@ public class Player extends Creature {
         this.torso = defaultTorso;
         this.arms = defaultArms;
         this.head = defaultHead;
+        this.STATE = "BEGIN";
     }
 
     public void setSavename(String savename) {
@@ -120,4 +121,11 @@ public class Player extends Creature {
         else {}
     }
 
+    public void setSTATE(String STATE) {
+        this.STATE = STATE;
+    }
+
+    public String getSTATE() {
+        return STATE;
+    }
 }
