@@ -28,7 +28,7 @@ public class Inventory {
                 "\nTHREAT RATING: " + (int) gameworld.player.getExp() +
                 "\nGold coins: " + gameworld.player.getMoney() +
                 "\nKills today: " + "?" + //TODO
-                "\n\nCurrent goals:" +
+                "\n\nCurrent goals:\n" +
                 "\nKill things." +
                 "\nDon't get killed." +
                 "\nHave fun! :)" //TODO
