@@ -6,13 +6,16 @@ import java.awt.*;
 public class UI {
 
     public JFrame window;
-    public JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, inputPanel, nameTextPanel;
+    public JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, inputPanel, nameTextPanel,
+                    inventoryPanel, goBackPanel, characterPanel;
     public JLabel titleNameLabel, hpLabel, hpNumberLabel, weaponLabel, weaponNameLabel, nameTextLabel;
-    Font titleFont = new Font("Consolas", Font.PLAIN, 90);
-    Font normalFont = new Font("Consolas", Font.PLAIN, 22);
-    public JButton startButton, choice1, choice2, choice3, choice4, enterB;
-    public JTextArea mainTextArea;
+    Font titleFont = new Font("Monospaced", Font.PLAIN, 90);
+    Font normalFont = new Font("Monospaced", Font.PLAIN, 20);
+    Font smallFont = new Font("Monospaced", Font.PLAIN, 14);
+    public JButton startButton, choice1, choice2, choice3, choice4, enterB, inventoryButton, characterButton, goBackButton;
+    public JTextArea mainTextArea, characterStatsArea, characterEqArea;
     public JTextField jtf;
+    public JButton[] inventoryChoiceButtons;
 
     public void createUI(ChoiceHandler cHandler) {
 
@@ -75,7 +78,7 @@ public class UI {
         choice1.setForeground(Color.white);
         choice1.setFont(normalFont);
         choice1.setFocusPainted(false);
-        choice1.setOpaque(true);
+        choice1.setOpaque(false);
         choice1.addActionListener(cHandler);
         choice1.setActionCommand("c1");
         choiceButtonPanel.add(choice1);
@@ -85,7 +88,7 @@ public class UI {
         choice2.setForeground(Color.white);
         choice2.setFont(normalFont);
         choice2.setFocusPainted(false);
-        choice2.setOpaque(true);
+        choice2.setOpaque(false);
         choice2.addActionListener(cHandler);
         choice2.setActionCommand("c2");
         choiceButtonPanel.add(choice2);
@@ -95,7 +98,7 @@ public class UI {
         choice3.setForeground(Color.white);
         choice3.setFont(normalFont);
         choice3.setFocusPainted(false);
-        choice3.setOpaque(true);
+        choice3.setOpaque(false);
         choice3.addActionListener(cHandler);
         choice3.setActionCommand("c3");
         choiceButtonPanel.add(choice3);
@@ -105,15 +108,15 @@ public class UI {
         choice4.setForeground(Color.white);
         choice4.setFont(normalFont);
         choice4.setFocusPainted(false);
-        choice4.setOpaque(true);
+        choice4.setOpaque(false);
         choice4.addActionListener(cHandler);
         choice4.setActionCommand("c4");
         choiceButtonPanel.add(choice4);
 
-        choice1.setBorderPainted(false);
-        choice2.setBorderPainted(false);
-        choice3.setBorderPainted(false);
-        choice4.setBorderPainted(false);
+        choice1.setBorderPainted(true);
+        choice2.setBorderPainted(true);
+        choice3.setBorderPainted(true);
+        choice4.setBorderPainted(true);
 
         window.add(choiceButtonPanel);
 
@@ -132,6 +135,7 @@ public class UI {
         hpNumberLabel.setForeground(Color.white);
         playerPanel.add(hpNumberLabel);
 
+        /**
         weaponLabel = new JLabel("Weapon:");
         weaponLabel.setFont(normalFont);
         weaponLabel.setForeground(Color.white);
@@ -141,6 +145,27 @@ public class UI {
         weaponNameLabel.setFont(normalFont);
         weaponNameLabel.setForeground(Color.white);
         playerPanel.add(weaponNameLabel);
+         **/
+
+        inventoryButton = new JButton("Inventory");
+        inventoryButton.setBackground(Color.black);
+        inventoryButton.setForeground(Color.white);
+        inventoryButton.setFont(smallFont);
+        inventoryButton.setFocusPainted(false);
+        inventoryButton.setOpaque(false);
+        inventoryButton.addActionListener(cHandler);
+        inventoryButton.setActionCommand("inventory");
+        playerPanel.add(inventoryButton);
+
+        characterButton = new JButton("Journal");
+        characterButton.setBackground(Color.black);
+        characterButton.setForeground(Color.white);
+        characterButton.setFont(smallFont);
+        characterButton.setFocusPainted(false);
+        characterButton.setOpaque(false);
+        characterButton.addActionListener(cHandler);
+        characterButton.setActionCommand("characterSheet");
+        playerPanel.add(characterButton);
 
         window.add(playerPanel);
 
@@ -176,8 +201,73 @@ public class UI {
         window.add(inputPanel);
 
         window.setVisible(true);
+
+        // INVENTORY SCREEN
+        inventoryPanel = new JPanel();
+        inventoryPanel.setBounds(100, 100, 600, 400);
+        inventoryPanel.setBackground(Color.black);
+        inventoryPanel.setLayout(new GridLayout(6,2));
+
+        inventoryChoiceButtons = new JButton[12];
+        for (int i = 0; i < inventoryChoiceButtons.length; i++) {
+            inventoryChoiceButtons[i] = new JButton("Inventory Inventory Inventory " + (i + 1));
+            inventoryChoiceButtons[i].setOpaque(true);
+            inventoryChoiceButtons[i].setFocusPainted(false);
+            inventoryChoiceButtons[i].setBackground(Color.black);
+            inventoryChoiceButtons[i].setForeground(Color.white);
+            inventoryChoiceButtons[i].setFont(smallFont);
+            inventoryChoiceButtons[i].addActionListener(cHandler);
+            inventoryChoiceButtons[i].setActionCommand("i" + (i + 1));
+
+            inventoryPanel.add(inventoryChoiceButtons[i]);
+        }
+
+        goBackPanel = new JPanel();
+        goBackPanel.setBounds(320, 25, 160, 40);
+        goBackPanel.setBackground(Color.black);
+        goBackPanel.setLayout(new GridLayout(1,1));
+
+        goBackButton = new JButton("EXIT");
+        goBackButton.setBackground(Color.black);
+        goBackButton.setForeground(Color.white);
+        goBackButton.setFocusPainted(false);
+        goBackButton.setOpaque(false);
+        goBackButton.addActionListener(cHandler);
+        goBackButton.setActionCommand("goBack");
+
+        goBackPanel.add(goBackButton);
+
+        window.add(goBackPanel);
+        window.add(inventoryPanel);
+        window.setVisible(true);
+
+        // CHARACTER SCREEN
+        characterPanel = new JPanel();
+        characterPanel.setBounds(80, 100, 640, 500);
+        characterPanel.setBackground(Color.black);
+        characterPanel.setLayout(new GridLayout(1,2));
+
+        characterStatsArea = new JTextArea("main text");
+        characterStatsArea.setBackground(Color.black);
+        characterStatsArea.setForeground(Color.white);
+        characterStatsArea.setFont(normalFont);
+        characterStatsArea.setLineWrap(true);
+        characterStatsArea.setWrapStyleWord(true);
+        characterStatsArea.setEditable(false);
+
+        characterEqArea = new JTextArea("main text");
+        characterEqArea.setBackground(Color.black);
+        characterEqArea.setForeground(Color.white);
+        characterEqArea.setFont(normalFont);
+        characterEqArea.setLineWrap(true);
+        characterEqArea.setWrapStyleWord(true);
+        characterEqArea.setEditable(false);
+
+
+        characterPanel.add(characterStatsArea);
+        characterPanel.add(characterEqArea);
+        window.add(characterPanel);
+
     }
-
-
 
 }

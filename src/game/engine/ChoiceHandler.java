@@ -47,6 +47,18 @@ public class ChoiceHandler implements ActionListener{
                 gameworld.selectPosition(gameworld.nextPosition4);
                 break;
 
+            case "inventory":
+                gameworld.selectPosition("INVENTORY");
+                break;
+
+            case "characterSheet":
+                gameworld.selectPosition("CHARACTER_SHEET");
+                break;
+
+            case "goBack":
+                gameworld.vm.showChoices();
+                gameworld.selectPosition(gameworld.inventory.getLastPosition());
+
         }
 
     }

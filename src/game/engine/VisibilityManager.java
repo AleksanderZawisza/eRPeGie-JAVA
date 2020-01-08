@@ -19,6 +19,10 @@ public class VisibilityManager {
 
         ui.inputPanel.setVisible(false);
         ui.nameTextPanel.setVisible(false);
+
+        ui.inventoryPanel.setVisible(false);
+        ui.characterPanel.setVisible(false);
+        ui.goBackPanel.setVisible(false);
     }
 
     public void showTitleScreen(){
@@ -32,6 +36,10 @@ public class VisibilityManager {
 
         ui.inputPanel.setVisible(false);
         ui.nameTextPanel.setVisible(false);
+
+        ui.inventoryPanel.setVisible(false);
+        ui.characterPanel.setVisible(false);
+        ui.goBackPanel.setVisible(false);
     }
 
     public void toBegin(){
@@ -46,6 +54,43 @@ public class VisibilityManager {
         ui.inputPanel.setVisible(true);
         ui.nameTextPanel.setVisible(true);
 
+        ui.inventoryPanel.setVisible(false);
+        ui.characterPanel.setVisible(false);
+        ui.goBackPanel.setVisible(false);
+    }
+
+    public void showInventory(){
+
+        ui.titleNamePanel.setVisible(false);
+        ui.startButtonPanel.setVisible(false);
+
+        ui.mainTextPanel.setVisible(false);
+        ui.choiceButtonPanel.setVisible(false);
+        ui.playerPanel.setVisible(false);
+
+        ui.inputPanel.setVisible(false);
+        ui.nameTextPanel.setVisible(false);
+
+        ui.inventoryPanel.setVisible(true);
+        ui.characterPanel.setVisible(false);
+        ui.goBackPanel.setVisible(true);
+    }
+
+    public void showCharacterSheet(){
+
+        ui.titleNamePanel.setVisible(false);
+        ui.startButtonPanel.setVisible(false);
+
+        ui.mainTextPanel.setVisible(false);
+        ui.choiceButtonPanel.setVisible(false);
+        ui.playerPanel.setVisible(false);
+
+        ui.inputPanel.setVisible(false);
+        ui.nameTextPanel.setVisible(false);
+
+        ui.inventoryPanel.setVisible(false);
+        ui.characterPanel.setVisible(true);
+        ui.goBackPanel.setVisible(true);
     }
 
     public void updateCurrentHPLabel(int currentHP) {

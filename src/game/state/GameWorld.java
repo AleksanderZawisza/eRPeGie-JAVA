@@ -30,9 +30,11 @@ public class GameWorld {
     Plains plains = new Plains(this);
     Forest forest = new Forest(this);
     Mountains mountains = new Mountains(this);
+    public Inventory inventory = new Inventory(this);
 
 
     public void selectPosition(String nextPosition){
+        if (nextPosition!="INVENTORY" && nextPosition!="CHARACTER_SHEET") inventory.setLastPosition(nextPosition);
         switch(nextPosition){
             case "BEGIN": start.begin(); break;
             case "DESCRIPTION": start.description(); break;
@@ -49,15 +51,14 @@ public class GameWorld {
             case "PLAINS": plains.go(); break;
             case "PLAINS_FIGHT_CHOOSE": plains.fightChoose(); break;
             case "PLAINS_FIGHT": plains.fight(); break;
-            case "PLAINS_WAIT": plains.waited(); break;
             case "FOREST": forest.go(); break;
             case "FOREST_FIGHT_CHOOSE": forest.fightChoose(); break;
             case "FOREST_FIGHT": forest.fight(); break;
-            case "FOREST_WAIT": forest.waited(); break;
             case "MOUNTAINS": mountains.go(); break;
             case "MOUNTAINS_FIGHT_CHOOSE": mountains.fightChoose(); break;
             case "MOUNTAINS_FIGHT": mountains.fight(); break;
-            case "MOUNTAINS_WAIT": mountains.waited(); break;
+            case "INVENTORY": inventory.manageInventory(); break;
+            case "CHARACTER_SHEET": inventory.characterSheet(); break;
             case "DEAD": break;
         }
     }

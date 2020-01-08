@@ -14,16 +14,16 @@ public class Player extends Creature {
     public String savename = "";
     public String STATE;
     public ArrayList<Item> inventory;
-    private Weapon weapon;
-    private Legs legs;
-    private Torso torso;
-    private Arms arms;
-    private Head head;
-    private Weapon defaultWeapon = new Weapon("",0,0);
-    private Legs defaultLegs = new Legs("",0,0);
-    private Torso defaultTorso = new Torso("",0,0);
-    private Arms defaultArms = new Arms("",0,0);
-    private Head defaultHead = new Head("",0,0);
+    public Weapon weapon;
+    public Legs legs;
+    public Torso torso;
+    public Arms arms;
+    public Head head;
+    private Weapon defaultWeapon = new Weapon("trusty stick",0,0);
+    private Legs defaultLegs = new Legs("patched linen pants",0,0);
+    private Torso defaultTorso = new Torso("simple linen shirt",0,0);
+    private Arms defaultArms = new Arms("frayed friendship bracelet",0,0);
+    private Head defaultHead = new Head("old straw hat",0,0);
 
 
     public Player(int maxhp, int armor, int attack, int exp, int money) {
@@ -124,8 +124,8 @@ public class Player extends Creature {
     public void setSTATE(String STATE) {
         this.STATE = STATE;
     }
-
     public String getSTATE() {
         return STATE;
     }
+
 }
