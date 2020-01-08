@@ -24,6 +24,7 @@ public class Start {
     public void begin(){
 
         gameworld.vm.toBegin();
+        gameworld.vm.updateCurrentHPLabel(player.getHp());
 
         /* EW DO IMPLEMENTACJI
         System.out.print("\n" + savename + ", right? [Y/N]\n> ");

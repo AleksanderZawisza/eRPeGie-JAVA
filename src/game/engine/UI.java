@@ -8,8 +8,8 @@ public class UI {
     public JFrame window;
     public JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, inputPanel, nameTextPanel;
     public JLabel titleNameLabel, hpLabel, hpNumberLabel, weaponLabel, weaponNameLabel, nameTextLabel;
-    Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
-    Font normalFont = new Font("Times New Roman", Font.PLAIN, 28);
+    Font titleFont = new Font("Consolas", Font.PLAIN, 90);
+    Font normalFont = new Font("Consolas", Font.PLAIN, 22);
     public JButton startButton, choice1, choice2, choice3, choice4, enterB;
     public JTextArea mainTextArea;
     public JTextField jtf;
@@ -66,7 +66,7 @@ public class UI {
         window.add(mainTextPanel);
 
         choiceButtonPanel = new JPanel();
-        choiceButtonPanel.setBounds(250, 350, 300, 150);
+        choiceButtonPanel.setBounds(100, 400, 600, 120);
         choiceButtonPanel.setBackground(Color.black);
         choiceButtonPanel.setLayout(new GridLayout(4,1));
 
@@ -75,6 +75,7 @@ public class UI {
         choice1.setForeground(Color.white);
         choice1.setFont(normalFont);
         choice1.setFocusPainted(false);
+        choice1.setOpaque(true);
         choice1.addActionListener(cHandler);
         choice1.setActionCommand("c1");
         choiceButtonPanel.add(choice1);
@@ -84,6 +85,7 @@ public class UI {
         choice2.setForeground(Color.white);
         choice2.setFont(normalFont);
         choice2.setFocusPainted(false);
+        choice2.setOpaque(true);
         choice2.addActionListener(cHandler);
         choice2.setActionCommand("c2");
         choiceButtonPanel.add(choice2);
@@ -93,6 +95,7 @@ public class UI {
         choice3.setForeground(Color.white);
         choice3.setFont(normalFont);
         choice3.setFocusPainted(false);
+        choice3.setOpaque(true);
         choice3.addActionListener(cHandler);
         choice3.setActionCommand("c3");
         choiceButtonPanel.add(choice3);
@@ -102,9 +105,15 @@ public class UI {
         choice4.setForeground(Color.white);
         choice4.setFont(normalFont);
         choice4.setFocusPainted(false);
+        choice4.setOpaque(true);
         choice4.addActionListener(cHandler);
         choice4.setActionCommand("c4");
         choiceButtonPanel.add(choice4);
+
+        choice1.setBorderPainted(false);
+        choice2.setBorderPainted(false);
+        choice3.setBorderPainted(false);
+        choice4.setBorderPainted(false);
 
         window.add(choiceButtonPanel);
 
@@ -150,6 +159,10 @@ public class UI {
         inputPanel.setLayout(new GridLayout(1,2));
 
         jtf = new JTextField();
+        jtf.setFont(normalFont);
+        jtf.setBackground(Color.black);
+        jtf.setForeground(Color.white);
+        jtf.setHorizontalAlignment(JTextField.CENTER);
         inputPanel.add(jtf);
 
         enterB = new JButton("ENTER");
@@ -164,6 +177,7 @@ public class UI {
 
         window.setVisible(true);
     }
+
 
 
 }

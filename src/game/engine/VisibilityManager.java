@@ -47,4 +47,8 @@ public class VisibilityManager {
         ui.nameTextPanel.setVisible(true);
 
     }
+
+    public void updateCurrentHPLabel(int currentHP) {
+        ui.hpNumberLabel.setText(Integer.toString(currentHP));
+    }
 }

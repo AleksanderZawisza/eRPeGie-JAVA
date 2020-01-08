@@ -21,9 +21,9 @@ public class Plains {
 
         Enemy enemy = EnemyGenerator.plainsEnemy();
         GameWorld.currentEnemy = enemy;
-        gameworld.ui.mainTextArea.setText("You are now in the PLAINS. It is [WEATHER]. You see the \n" +
-                enemy.getName() +
-                "You decide to");
+        gameworld.ui.mainTextArea.setText("You are now in the PLAINS. It is [WEATHER]. You see a " +
+                enemy.getName().toUpperCase() +
+                "\nYou decide to");
 
         gameworld.ui.choice1.setText("Get closer to this creature!");
         gameworld.ui.choice2.setText("Get back on the road!");
@@ -63,16 +63,18 @@ public class Plains {
             gameworld.nextPosition1 = "DEAD";
         }
         else if (enemy.getHp() < 1) {
-            gameworld.ui.mainTextArea.setText(enemy.getName() + " is dead.\n" +
+            gameworld.ui.mainTextArea.setText("The " + enemy.getRace() + " is dead.\n" +
                     "You won the fight!");
             gameworld.nextPosition1 = "PLAINS";
         }
         else {
             gameworld.nextPosition1 = "PLAINS_FIGHT_CHOOSE";
-            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " dmg" +
-                    enemy.getName() + " bit u for " + attack2 + " dmg." +
-                    enemy.getName() + " has " + enemy.getHp() + " hp.");
+            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " dmg.\n" +
+                    enemy.getName().toUpperCase() + " hurt u for " + attack2 + " dmg.\n" +
+                    enemy.getName().toUpperCase() + " has " + enemy.getHp() + " hp.");
         }
+
+        gameworld.vm.updateCurrentHPLabel(player.getHp()); //UPDATE HP
 
         gameworld.ui.choice1.setText(" > ");
         gameworld.ui.choice2.setText("");
@@ -83,6 +85,8 @@ public class Plains {
         gameworld.nextPosition2 = "";
         gameworld.nextPosition3 = "";
         gameworld.nextPosition4 = "";
+
+
     }
 
     public void waited(){
