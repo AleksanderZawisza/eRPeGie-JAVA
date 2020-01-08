@@ -1,11 +1,25 @@
 package game.state;
 
-import game.creature.Player;
+import game.engine.ChoiceHandler;
+import game.engine.UI;
+import game.engine.VisibilityManager;
 
 public class Game {
+
+    UI ui = new UI();
+    VisibilityManager vm = new VisibilityManager(ui);
+    GameWorld gameworld = new GameWorld(this, ui,vm);
+    ChoiceHandler cHandler = new ChoiceHandler(gameworld);
+
     public static void main (String[]args) throws InterruptedException {
-        Player player = new Player(100,0,2,0,0);
-        GameWorld game = new GameWorld(player);
-        game.play();
+
+        new Game();
+    }
+
+    public Game(){
+
+        ui.createUI(cHandler);
+        vm.showTitleScreen();
+
     }
 }

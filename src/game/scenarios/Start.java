@@ -1,18 +1,31 @@
 package game.scenarios;
 
 import game.creature.Player;
+import game.state.GameWorld;
 
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Start {
 
-    public void begin(Player player) throws InterruptedException {
-        Scanner input = new Scanner(System.in);
+    GameWorld gameworld;
 
-        System.out.print("\nHi there. What's your NAME?\n> ");
-        String savename = input.nextLine();
-        savename = savename.toUpperCase();
+    public Start(GameWorld gameworld) {
+        this.gameworld = gameworld;
+    }
+
+    Player player = GameWorld.player;
+    int startHp = 100;
+    int startMaxhp = 100;
+    int startAttack = 2;
+    int startExp = 0;
+    int startMoney = 0;
+    int startArmor = 0;
+
+
+    public void begin(){
+
+        gameworld.vm.toBegin();
+
+        /* EW DO IMPLEMENTACJI
         System.out.print("\n" + savename + ", right? [Y/N]\n> ");
         String answer = input.nextLine();
         answer = answer.toLowerCase();
@@ -24,19 +37,40 @@ public class Start {
             answer = input.nextLine();
             answer = answer.toLowerCase();
         }  // savename - do wczytywania save'ow DO ZAIMPLEMENTOWANIA
+        */
 
+    }
+
+    public void description() {
+
+        String savename = player.savename;
+        savename = savename.toUpperCase();
         player.setSavename(savename);
-        System.out.println("\nThat's not your NAME.");
 
-        TimeUnit.MILLISECONDS.sleep(2000); // czeka 2 sekundy
-        player.setSTATE("TOWN");
-        System.out.println(new String(new char[70]).replace("\0", "\r\n"));
-    }
+        player.setHp(startHp);
+        player.setMaxhp(startMaxhp);
+        player.setAttack(startAttack);
+        player.setExp(startExp);
+        player.setMoney(startMoney);
+        player.setArmor(startArmor);
 
-    public void description(Player player) {
 
-        System.out.print("\nYour NAME is [NAME]. It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].\n" +
-                "You have a fondness for [HOBBY] and are an ASPIRING [JOB]. You like to [HOBBY] but are NOT VERY GOOD AT IT. \n" +
-                "You also enjoy KILLING THINGS sometimes.\n"); // generator postaci DO ZAIMPLEMENTOWANIA
-    }
+        gameworld.ui.mainTextArea.setText("Your NAME is " + player.savename);
+
+        //It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].\n" +
+        //"You have a fondness for [HOBBY] and are an ASPIRING [JOB]. You like to [HOBBY] but are NOT VERY GOOD AT IT. \n" +
+          //      "You also enjoy KILLING THINGS sometimes.
+
+        gameworld.ui.choice1.setText("Understood.");
+        gameworld.ui.choice2.setText("");
+        gameworld.ui.choice3.setText("");
+        gameworld.ui.choice4.setText("");
+
+        gameworld.nextPosition1 = "TOWN";
+        gameworld.nextPosition2 = "";
+        gameworld.nextPosition3 = "";
+        gameworld.nextPosition4 = "";
+
+        gameworld.vm.showChoices();
+}
 }

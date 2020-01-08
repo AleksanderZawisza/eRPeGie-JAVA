@@ -1,67 +1,62 @@
 package game.scenarios;
 
-import game.creature.Player;
-
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+import game.state.GameWorld;
 
 public class Tavern {
 
-    public void go(Player player) { // generator opisów DO ZAIMPLEMENTOWANIA
-        Scanner input = new Scanner(System.in);
-        String choiceN;
+    GameWorld gameworld;
 
-        System.out.print("\nYou manage to find the TAVERN. You see [RANDOM PERSON/GROUP] in the corner. The barmaid looks [EMOTION]. [OPTIONAL DESCRIPTION?].\n" +
-                "It's time to\n" +
-                "1. Buy yourself a STIFF DRINK\n" +
-                "2. Get a room and HIT THE HAY\n" +
-                "3. Get OUT OF here\n> ");
-
-        choiceN = input.nextLine();
-        switch (choiceN)
-        {case "1": player.setSTATE("DRINK"); break;
-            case "2": player.setSTATE("REST"); break;
-            case "3": player.setSTATE("TOWN_LOOK"); break;}
+    public Tavern(GameWorld gameworld) {
+        this.gameworld = gameworld;
     }
 
-    public void drink(Player player) { // questy/potrzeba pieniedzy do kupowania alko + generator opisów DO ZAIMPLEMENTOWANIA
-        Scanner input = new Scanner(System.in);
-        String choiceN;
+    public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
 
-        System.out.print("\nYou get yourself a [DRINK]. It tastes [TASTE]. [GENERAL OPINION]. \n" +
-                "It's time to\n" +
-                "1. Buy yourself ANOTHER STIFF DRINK\n" +
-                "2. Get a room and HIT THE HAY\n" +
-                "3. Get OUT OF here\n> ");
+        gameworld.ui.mainTextArea.setText("\nYou manage to find the TAVERN. You see [RANDOM PERSON/GROUP] in the corner. The barmaid looks [EMOTION]. [OPTIONAL DESCRIPTION?].\n" +
+                "It's time to");
 
-        choiceN = input.nextLine();
-        switch (choiceN)
-        {case "1": player.setSTATE("DRINK"); break;
-            case "2": player.setSTATE("REST"); break;
-            case "3": player.setSTATE("TOWN_LOOK"); break;}
+        gameworld.ui.choice1.setText("Buy yourself a STIFF DRINK");
+        gameworld.ui.choice2.setText("Get a room and HIT THE HAY");
+        gameworld.ui.choice3.setText("Get OUT OF here");
+        gameworld.ui.choice4.setText("");
+
+        gameworld.nextPosition1 = "DRINK";
+        gameworld.nextPosition2 = "REST";
+        gameworld.nextPosition3 = "TOWN_LOOK";
+        gameworld.nextPosition4 = "";
     }
 
-    public void rest(Player player) throws InterruptedException { // save + generator opisów DO ZAIMPLEMENTOWANIA
+    public void drink() { // questy/potrzeba pieniedzy do kupowania alko + generator opisów DO ZAIMPLEMENTOWANIA
 
-        System.out.print("\nYou rent a room and decide to TAKE A BREATHER for the rest of the day.\n");
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.print("You lie down and MAKE AN ENTRY in your JOURNAL.\n");
-        TimeUnit.MILLISECONDS.sleep(3000);
-        System.out.print("Your bed is [DESCRIPTION].\n");
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.print("You hear [SOUND] in the background.\n");
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.print("The pillows are [DESCRIPTION].\n");
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.print("...\n");
-        TimeUnit.MILLISECONDS.sleep(1000);
-        System.out.print("...\n");
-        TimeUnit.MILLISECONDS.sleep(1000);
-        System.out.print("...\n");
-        TimeUnit.MILLISECONDS.sleep(2000);
-        System.out.print("Rise and shine! It's a NEW DAY. The SUN is UP and SO ARE YOU. You get up and GET OUT.\n");
-        TimeUnit.MILLISECONDS.sleep(2000);
+        gameworld.ui.mainTextArea.setText("You get yourself a [DRINK]. It tastes [TASTE]. [GENERAL OPINION]. " +
+                "It's time to");
 
-        player.setSTATE("TOWN");
+        gameworld.ui.choice1.setText("Buy yourself ANOTHER STIFF DRINK");
+        gameworld.ui.choice2.setText("Get a room and HIT THE HAY");
+        gameworld.ui.choice3.setText("Get OUT OF here");
+        gameworld.ui.choice4.setText("");
+
+        gameworld.nextPosition1 = "DRINK";
+        gameworld.nextPosition2 = "REST";
+        gameworld.nextPosition3 = "TOWN_LOOK";
+        gameworld.nextPosition4 = "";
+    }
+
+    public void rest(){ // save + generator opisów DO ZAIMPLEMENTOWANIA
+
+        gameworld.ui.mainTextArea.setText("You rent a room and decide to TAKE A BREATHER for the rest of the day." +
+                "You lie down and MAKE AN ENTRY in your JOURNAL.\n" + "Your bed is [DESCRIPTION].\n" +
+                "You hear [SOUND] in the background.\n" + "The pillows are [DESCRIPTION].\n" +
+                "...\n" + "...\n" + "...\n" + "Rise and shine! It's a NEW DAY. The SUN is UP and SO ARE YOU. You get up and GET OUT.\n");
+
+        gameworld.ui.choice1.setText("Start NEW DAY");
+        gameworld.ui.choice2.setText("");
+        gameworld.ui.choice3.setText("");
+        gameworld.ui.choice4.setText("");
+
+        gameworld.nextPosition1 = "TOWN";
+        gameworld.nextPosition2 = "";
+        gameworld.nextPosition3 = "";
+        gameworld.nextPosition4 = "";
     }
 }

@@ -1,44 +1,65 @@
 package game.scenarios;
 
 import game.creature.Player;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+import game.state.GameWorld;
 
 public class Shop {
-    public void go(Player player) { // generator opisów DO ZAIMPLEMENTOWANIA
-        Scanner input = new Scanner(System.in);
-        String choiceN;
 
-        System.out.print("\nYou go to the SHOP. The SHOPKEEPER seems [EMOTION] when he sees you. He asks if you're interested in BUYING or SELLING.\n" +
+    GameWorld gameworld;
+
+    public Shop(GameWorld gameworld) {
+        this.gameworld = gameworld;
+    }
+
+    Player player = GameWorld.player;
+
+    public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
+
+        gameworld.ui.mainTextArea.setText("You go to the SHOP. The SHOPKEEPER seems [EMOTION] when he sees you. He asks if you're interested in BUYING or SELLING.\n" +
                 "You have " + player.getMoney() + " GOLD COINS on you.\n" +
-                "You say that you want to\n" +
-                "1. BUY stuff\n" +
-                "2. SELL stuff\n" +
-                "3. GET OUT of here\n> ");
+                "You say that you want to\n");
 
-        choiceN = input.nextLine();
-        switch (choiceN)
-        {case "1": player.setSTATE("BUY"); break;
-            case "2": player.setSTATE("SELL"); break;
-            case "3": player.setSTATE("TOWN_LOOK"); break;}
+        gameworld.ui.choice1.setText("BUY stuff");
+        gameworld.ui.choice2.setText("SELL stuff");
+        gameworld.ui.choice3.setText("GET OUT of here");
+        gameworld.ui.choice4.setText("");
+
+        gameworld.nextPosition1 = "BUY";
+        gameworld.nextPosition2 = "SELL";
+        gameworld.nextPosition3 = "TOWN_LOOK";
+        gameworld.nextPosition4 = "";
     }
-    public void buy(Player player) throws InterruptedException { // sklep kupowanie + generator opisów DO ZAIMPLEMENTOWANIA
+    public void buy(){ // sklep kupowanie + generator opisów DO ZAIMPLEMENTOWANIA
 
-        System.out.print("\nYou want to BUY SOMETHING. You can't do that because there aren't any ITEMS in the GAME (yet).\n" +
-                "You have " + player.getMoney() + " gold coins on you.\n" +
-                "You GET OUT of here.\n");
-        TimeUnit.MILLISECONDS.sleep(3000);
+        gameworld.ui.mainTextArea.setText("You want to BUY SOMETHING. You can't do that because there is no SHOP in the GAME (yet).\n" +
+                "You have " + player.getMoney() + " GOLD COINS on you.\n" +
+                "You say that you want to\n");
 
-        player.setSTATE("TOWN_LOOK");
+        gameworld.ui.choice1.setText("GET OUT of here.");
+        gameworld.ui.choice2.setText("");
+        gameworld.ui.choice3.setText("");
+        gameworld.ui.choice4.setText("");
+
+        gameworld.nextPosition1 = "TOWN_LOOK";
+        gameworld.nextPosition2 = "";
+        gameworld.nextPosition3 = "";
+        gameworld.nextPosition4 = "";
     }
 
-    public void sell(Player player) throws InterruptedException { // sklep sprzedawanie + generator opisów DO ZAIMPLEMENTOWANIA
+    public void sell(){ // sklep sprzedawanie + generator opisów DO ZAIMPLEMENTOWANIA
 
-        System.out.print("\nYou want to SELL SOMETHING. You can't do that because there aren't any ITEMS in the GAME (yet).\n" +
-                "You have " + player.getMoney() + " gold coins on you.\n" +
-                "You GET OUT of here.\n");
-        TimeUnit.MILLISECONDS.sleep(3000);
+        gameworld.ui.mainTextArea.setText("You want to SELL SOMETHING. You can't do that because there is no SHOP in the GAME (yet).\n" +
+                "You have " + player.getMoney() + " GOLD COINS on you.\n" +
+                "You say that you want to\n");
 
-        player.setSTATE("TOWN_LOOK");
+        gameworld.ui.choice1.setText("GET OUT of here.");
+        gameworld.ui.choice2.setText("");
+        gameworld.ui.choice3.setText("");
+        gameworld.ui.choice4.setText("");
+
+        gameworld.nextPosition1 = "TOWN_LOOK";
+        gameworld.nextPosition2 = "";
+        gameworld.nextPosition3 = "";
+        gameworld.nextPosition4 = "";
     }
 }

@@ -2,75 +2,115 @@ package game.scenarios;
 
 import game.combat.Combat;
 import game.creature.Enemy;
+import game.creature.EnemyGenerator;
 import game.creature.Player;
-
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+import game.state.GameWorld;
 
 public class Plains {
-    public void go(Player player) throws InterruptedException {
-        Scanner input = new Scanner(System.in);
-        String choiceN;
 
-        Enemy enemy = new Enemy(10, 0, 1, 10, 1);
-        enemy.setName("Rat Bob");
-        System.out.print("\nYou are now in the PLAINS. It is [WEATHER]. You see the lonely rat. \n" +
-                "His name is " + enemy.getName() + ".\n" +
-                "You decide to\n" +
-                "1. Get closer to this creature!\n" +
-                "2. Get back on the road!" +
-                "\n> ");
+    GameWorld gameworld;
 
-        choiceN = input.nextLine();
-        TimeUnit.MILLISECONDS.sleep(1000);
-        switch (choiceN) {
-            case "1": {
-                boolean flag = true;
-                System.out.println("\nThe rat seems nervous.");
-
-                while (flag) {
-                    System.out.print("\nWhat do you do now?\n" +
-                            "1. Attack!\n" +
-                            "2. Wait.\n" +
-                            "3. Get out of here.\n> ");
-                    String command = input.next();
-                    switch (command) {
-                        case "1":
-                            int attack1 = Combat.attack(player, enemy);
-                            int attack2 = Combat.attack(enemy, player);
-                            System.out.println("\nYou dealt " + attack1 + " dmg");
-                            System.out.println(enemy.getName() + " bit u for " + attack2 + " dmg.");
-                            break;
-
-                        case "2":
-                            int attack3 = Combat.attack(enemy, player);
-                            System.out.println("\nYou did nothing and got hit!!!");
-                            System.out.println(enemy.getName() + " bit u for " + attack3 + " dmg.");
-                            break;
-                        case "3":
-                            flag = false;
-                            break;
-                    }
-                    if (!flag) break;
-                    System.out.println("You got " + player.getHp() + " hp.");
-                    System.out.println(enemy.getName() + " has " + enemy.getHp() + " hp.");
-                    if (player.getHp() < 1) {
-                        System.out.println("\nYou died. \nGAME OVER!");
-                        player.setSTATE("DEAD");
-                        break;
-                    }
-                    if (enemy.getHp() < 1) {
-                        System.out.println("\n" + enemy.getName() + " is dead." +
-                                "\n" + "You won the fight!\n");
-                        break;
-                    }
-                }
-                break;
-            }
-            case "2":
-                player.setSTATE("FIGHT_CHOOSE");
-                break;
-        }
+    public Plains(GameWorld gameworld) {
+        this.gameworld = gameworld;
     }
+
+    Player player = GameWorld.player;
+    Enemy enemy = GameWorld.currentEnemy;
+
+    public void go() {
+
+        Enemy enemy = EnemyGenerator.plainsEnemy();
+        GameWorld.currentEnemy = enemy;
+        gameworld.ui.mainTextArea.setText("You are now in the PLAINS. It is [WEATHER]. You see the \n" +
+                enemy.getName() +
+                "You decide to");
+
+        gameworld.ui.choice1.setText("Get closer to this creature!");
+        gameworld.ui.choice2.setText("Get back on the road!");
+        gameworld.ui.choice3.setText("");
+        gameworld.ui.choice4.setText("");
+
+        gameworld.nextPosition1 = "PLAINS_FIGHT_CHOOSE";
+        gameworld.nextPosition2 = "FIGHT_CHOOSE";
+        gameworld.nextPosition3 = "";
+        gameworld.nextPosition4 = "";
+    }
+
+    public void fightChoose(){
+
+        gameworld.ui.mainTextArea.setText("What do you do now?");
+
+        gameworld.ui.choice1.setText("Attack!");
+        gameworld.ui.choice2.setText("Wait.");
+        gameworld.ui.choice3.setText("Get out of here.");
+        gameworld.ui.choice4.setText("");
+
+        gameworld.nextPosition1 = "PLAINS_FIGHT";
+        gameworld.nextPosition2 = "PLAINS_WAIT";
+        gameworld.nextPosition3 = "PLAINS"; //FIGHT CHOOSE ? szukanie nowego przeciwnika
+        gameworld.nextPosition4 = "";
+    }
+
+    public void fight(){
+
+        enemy = GameWorld.currentEnemy;
+        int attack1 = Combat.attack(player, enemy);
+        int attack2 = Combat.attack(enemy, player);
+
+        if (player.getHp() < 1) {
+            gameworld.ui.mainTextArea.setText("You died.\n" +
+                    "GAME OVER");
+            gameworld.nextPosition1 = "DEAD";
+        }
+        else if (enemy.getHp() < 1) {
+            gameworld.ui.mainTextArea.setText(enemy.getName() + " is dead.\n" +
+                    "You won the fight!");
+            gameworld.nextPosition1 = "PLAINS";
+        }
+        else {
+            gameworld.nextPosition1 = "PLAINS_FIGHT_CHOOSE";
+            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " dmg" +
+                    enemy.getName() + " bit u for " + attack2 + " dmg." +
+                    enemy.getName() + " has " + enemy.getHp() + " hp.");
+        }
+
+        gameworld.ui.choice1.setText(" > ");
+        gameworld.ui.choice2.setText("");
+        gameworld.ui.choice3.setText("");
+        gameworld.ui.choice4.setText("");
+
+        //first choice earlier
+        gameworld.nextPosition2 = "";
+        gameworld.nextPosition3 = "";
+        gameworld.nextPosition4 = "";
+    }
+
+    public void waited(){
+
+        enemy = GameWorld.currentEnemy;
+        int attack2 = Combat.attack(enemy, player);
+
+        if (player.getHp() < 1) {
+            gameworld.ui.mainTextArea.setText("You died.\n" +
+                    "GAME OVER");
+            gameworld.nextPosition1 = "DEAD";
+        }
+        else {
+            gameworld.ui.mainTextArea.setText("You did nothing and got hit!" +
+                    enemy.getName() + " bit u for " + attack2 + " dmg.");
+            gameworld.nextPosition1 = "PLAINS_FIGHT_CHOOSE";
+        }
+
+        gameworld.ui.choice1.setText(" > ");
+        gameworld.ui.choice2.setText("");
+        gameworld.ui.choice3.setText("");
+        gameworld.ui.choice4.setText("");
+
+        //first choice earlier
+        gameworld.nextPosition2 = "";
+        gameworld.nextPosition3 = "";
+        gameworld.nextPosition4 = "";
+    }
+
 }
 

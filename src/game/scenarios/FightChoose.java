@@ -1,27 +1,28 @@
 package game.scenarios;
 
-import game.creature.Player;
-
-import java.util.Scanner;
+import game.state.GameWorld;
 
 public class FightChoose {
 
-    public void go(Player player) { // generator opisów DO ZAIMPLEMENTOWANIA
-        Scanner input = new Scanner(System.in);
-        String choiceN;
+    GameWorld gameworld;
 
-        System.out.print("\nYou are NEAR THE TOWN GATES. It is [WEATHER]. You see THREE PATHS.\n" +
-                "You decide to\n" +
-                "1. Go EAST, towards the PLAINS\n" +
-                "2. Go NORTH, towards the FOREST\n" +
-                "3. Go WEST, towards the MOUNTAINS\n" +
-                "4. Turn around and GO BACK to the TOWN\n> ");
+    public FightChoose(GameWorld gameworld) {
+        this.gameworld = gameworld;
+    }
 
-        choiceN = input.nextLine();
-        switch (choiceN)
-        {case "1": player.setSTATE("PLAINS"); break;
-            case "2": player.setSTATE("FOREST"); break;
-            case "3": player.setSTATE("MOUNTAINS"); break;
-            case "4": player.setSTATE("TOWN"); break;}
+    public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
+
+        gameworld.ui.mainTextArea.setText("You are NEAR THE TOWN GATES. It is [WEATHER]. You see THREE PATHS.\n" +
+                "You decide to\n");
+
+        gameworld.ui.choice1.setText("Go EAST, towards the PLAINS");
+        gameworld.ui.choice2.setText("Go NORTH, towards the FOREST");
+        gameworld.ui.choice3.setText("Go WEST, towards the MOUNTAINS");
+        gameworld.ui.choice4.setText("Turn around and GO BACK to the TOWN");
+
+        gameworld.nextPosition1 = "PLAINS";
+        gameworld.nextPosition2 = "FOREST";
+        gameworld.nextPosition3 = "MOUNTAINS";
+        gameworld.nextPosition4 = "TOWN";
     }
 }
