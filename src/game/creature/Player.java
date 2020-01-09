@@ -1,7 +1,6 @@
 package game.creature;
 
-import game.item.Item;
-import game.item.Weapon;
+import game.item.*;
 import game.item.armor.Arms;
 import game.item.armor.Head;
 import game.item.armor.Legs;
@@ -29,6 +28,8 @@ public class Player extends Creature {
     public Player(int maxhp, int armor, int attack, int exp, int money) {
         super(maxhp, armor, attack, exp, money);
         this.inventory = new ArrayList<Item>();
+        for (int i=0; i<5 ; i++) {inventory.add(ItemGenerator.newItem());}
+        for (int i=0; i<2 ; i++) {inventory.add(HealingGenerator.newHealing());}
         this.weapon = defaultWeapon;
         this.legs = defaultLegs;
         this.torso = defaultTorso;
@@ -46,43 +47,67 @@ public class Player extends Creature {
             inventory.add(item);
             return;
         }
-        System.out.println("Your inventory is full!");
     }
 
-    public void remove(Item item){
-        if (inventory.contains(item)) {
-            unequip(item);
-            inventory.remove(item);
+    public void remove(int i){
+        if (inventory.size()-1 <= i && i>=0) {
+            inventory.remove(i);
         }
-        else{
-            System.out.println("You don't have that item.");
-        }
+
     }
 
     public void equip(Item item){
         if (inventory.contains(item)) {
             if (item instanceof Weapon){
-                this.setAttack(this.getAttack() - weapon.getDamage() + ((Weapon) item).getDamage());
-                weapon = (Weapon) item;
+                this.setAttack(this.getAttack() - this.weapon.getDamage() + ((Weapon) item).getDamage());
+                this.weapon = (Weapon) item;
             }
             else if (item instanceof Legs){
-                this.setArmor(this.getArmor() - legs.getDefence() + ((Legs) item).getDefence());
-                legs = (Legs) item;
+                this.setArmor(this.getArmor() - this.legs.getDefence() + ((Legs) item).getDefence());
+                this.legs = (Legs) item;
             }
             else if (item instanceof Arms){
-                this.setArmor(this.getArmor() - arms.getDefence() + ((Arms) item).getDefence());
-                arms = (Arms) item;
+                this.setArmor(this.getArmor() - this.arms.getDefence() + ((Arms) item).getDefence());
+                this.arms = (Arms) item;
             }
             else if (item instanceof Torso){
-                this.setArmor(this.getArmor() - torso.getDefence() + ((Torso) item).getDefence());
-                torso = (Torso) item;
+                this.setArmor(this.getArmor() - this.torso.getDefence() + ((Torso) item).getDefence());
+                this.torso = (Torso) item;
             }
             else if (item instanceof Head){
-                this.setArmor(this.getArmor() - head.getDefence() + ((Head) item).getDefence());
-                head = (Head) item;
+                this.setArmor(this.getArmor() - this.head.getDefence() + ((Head) item).getDefence());
+                this.head = (Head) item;
             }
             else{
                 System.out.println("\nItem cannot be equipped!\n");
+            }
+        }
+    }
+
+    public void useItem(Item item){
+        if (inventory.contains(item)) {
+            if (item instanceof Weapon){
+                this.setAttack(this.getAttack() - this.weapon.getDamage() + ((Weapon) item).getDamage());
+                this.weapon = (Weapon) item;
+            }
+            else if (item instanceof Legs){
+                this.setArmor(this.getArmor() - this.legs.getDefence() + ((Legs) item).getDefence());
+                this.legs = (Legs) item;
+            }
+            else if (item instanceof Arms){
+                this.setArmor(this.getArmor() - this.arms.getDefence() + ((Arms) item).getDefence());
+                this.arms = (Arms) item;
+            }
+            else if (item instanceof Torso){
+                this.setArmor(this.getArmor() - this.torso.getDefence() + ((Torso) item).getDefence());
+                this.torso = (Torso) item;
+            }
+            else if (item instanceof Head){
+                this.setArmor(this.getArmor() - this.head.getDefence() + ((Head) item).getDefence());
+                this.head = (Head) item;
+            }
+            else if (item instanceof Healing){
+                this.setHp(Math.min(this.getHp()+((Healing) item).getRestore(), this.getMaxhp()));
             }
         }
     }
@@ -119,6 +144,25 @@ public class Player extends Creature {
             }
         }
         else {}
+    }
+
+    public int howManyItemsInInv(){
+        return this.inventory.size();
+    }
+
+    public Item getItemFromInv(int i) {
+        if (i<howManyItemsInInv()) return this.inventory.get(i);
+        return null;
+    }
+
+    public void replaceItemInInvWith(int i, Item item) {
+        if (i<howManyItemsInInv()) {
+            this.inventory.set(i, item);
+        }
+    }
+
+    public void yeetItemFromInv(int i) {
+        if (i<howManyItemsInInv()) this.inventory.remove(i);
     }
 
     public void setSTATE(String STATE) {

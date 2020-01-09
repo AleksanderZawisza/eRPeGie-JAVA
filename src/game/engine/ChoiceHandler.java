@@ -19,7 +19,7 @@ public class ChoiceHandler implements ActionListener{
 
         String choice = event.getActionCommand();
 
-        switch(choice){
+        switch(choice) {
 
             case "input":
                 String text = gameworld.ui.jtf.getText();
@@ -47,6 +47,7 @@ public class ChoiceHandler implements ActionListener{
                 gameworld.selectPosition(gameworld.nextPosition4);
                 break;
 
+            case "goBackFromLooking":  gameworld.vm.changeBackButtonToExit();
             case "inventory":
                 gameworld.selectPosition("INVENTORY");
                 break;
@@ -55,11 +56,18 @@ public class ChoiceHandler implements ActionListener{
                 gameworld.selectPosition("CHARACTER_SHEET");
                 break;
 
-            case "goBack":
+            case "exit":
                 gameworld.vm.showChoices();
                 gameworld.selectPosition(gameworld.inventory.getLastPosition());
-
         }
+
+        if (choice.contains("I")) {
+            int i = Integer.parseInt(choice.substring(1));
+            gameworld.inventory.lookItem(gameworld.player.getItemFromInv(i));
+            gameworld.inventory.setLastLooked(i);
+        }
+
+
 
     }
 

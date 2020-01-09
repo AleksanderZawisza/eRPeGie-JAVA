@@ -34,7 +34,7 @@ public class GameWorld {
 
 
     public void selectPosition(String nextPosition){
-        if (nextPosition!="INVENTORY" && nextPosition!="CHARACTER_SHEET") inventory.setLastPosition(nextPosition);
+        if (!nextPosition.contains("INVENTORY") && nextPosition!="CHARACTER_SHEET") inventory.setLastPosition(nextPosition);
         switch(nextPosition){
             case "BEGIN": start.begin(); break;
             case "DESCRIPTION": start.description(); break;
@@ -57,8 +57,13 @@ public class GameWorld {
             case "MOUNTAINS": mountains.go(); break;
             case "MOUNTAINS_FIGHT_CHOOSE": mountains.fightChoose(); break;
             case "MOUNTAINS_FIGHT": mountains.fight(); break;
-            case "INVENTORY": inventory.manageInventory(); break;
             case "CHARACTER_SHEET": inventory.characterSheet(); break;
+            case "INVENTORY": inventory.manageInventory(); break;
+            case "INVENTORY_LOOK_NEXT": inventory.lookNext(); break;
+            case "INVENTORY_LOOK_PREV": inventory.lookPrev(); break;
+            case "INVENTORY_YEET": inventory.yeet(); break;
+            case "INVENTORY_YOTE": inventory.lookAfterYeeting(); break;
+            case "INVENTORY_USE": inventory.use(); break;
             case "DEAD": break;
         }
     }

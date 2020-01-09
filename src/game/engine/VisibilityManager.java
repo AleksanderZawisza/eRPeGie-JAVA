@@ -25,6 +25,23 @@ public class VisibilityManager {
         ui.goBackPanel.setVisible(false);
     }
 
+    public  void showChoicesForLookingAtShit(){
+
+        ui.titleNamePanel.setVisible(false);
+        ui.startButtonPanel.setVisible(false);
+
+        ui.mainTextPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(true);
+        ui.playerPanel.setVisible(false);
+
+        ui.inputPanel.setVisible(false);
+        ui.nameTextPanel.setVisible(false);
+
+        ui.inventoryPanel.setVisible(false);
+        ui.characterPanel.setVisible(false);
+        ui.goBackPanel.setVisible(true);
+    }
+
     public void showTitleScreen(){
 
         ui.startButtonPanel.setVisible(true);
@@ -95,5 +112,13 @@ public class VisibilityManager {
 
     public void updateCurrentHPLabel(int currentHP) {
         ui.hpNumberLabel.setText(Integer.toString(currentHP));
+    }
+    public void changeBackButtonToExit(){
+        ui.goBackButton.setActionCommand("exit");
+        ui.goBackButton.setText("EXIT");
+    }
+    public void changeExitButtonToGoBackFromLooking(){
+        ui.goBackButton.setActionCommand("goBackFromLooking");
+        ui.goBackButton.setText("BACK");
     }
 }

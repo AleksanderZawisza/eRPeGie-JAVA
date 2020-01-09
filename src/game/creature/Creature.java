@@ -31,7 +31,7 @@ public class Creature {
     }
 
     public int getArmor() {
-        return armor;
+        return this.armor;
     }
     public void setArmor(int armor) {
         this.armor = armor;

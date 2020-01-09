@@ -210,14 +210,14 @@ public class UI {
 
         inventoryChoiceButtons = new JButton[12];
         for (int i = 0; i < inventoryChoiceButtons.length; i++) {
-            inventoryChoiceButtons[i] = new JButton("Inventory Inventory Inventory " + (i + 1));
+            inventoryChoiceButtons[i] = new JButton("Inventory Inventory Inventory " + i);
             inventoryChoiceButtons[i].setOpaque(true);
             inventoryChoiceButtons[i].setFocusPainted(false);
             inventoryChoiceButtons[i].setBackground(Color.black);
             inventoryChoiceButtons[i].setForeground(Color.white);
             inventoryChoiceButtons[i].setFont(smallFont);
             inventoryChoiceButtons[i].addActionListener(cHandler);
-            inventoryChoiceButtons[i].setActionCommand("i" + (i + 1));
+            inventoryChoiceButtons[i].setActionCommand("i" + i);
 
             inventoryPanel.add(inventoryChoiceButtons[i]);
         }
@@ -233,7 +233,7 @@ public class UI {
         goBackButton.setFocusPainted(false);
         goBackButton.setOpaque(false);
         goBackButton.addActionListener(cHandler);
-        goBackButton.setActionCommand("goBack");
+        goBackButton.setActionCommand("exit");
 
         goBackPanel.add(goBackButton);
 
