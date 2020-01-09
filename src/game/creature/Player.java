@@ -40,6 +40,7 @@ public class Player extends Creature {
         this.inventory = new ArrayList<Item>();
         for (int i=0; i<5 ; i++) {inventory.add(ItemGenerator.newItem());}
         for (int i=0; i<2 ; i++) {inventory.add(HealingGenerator.newHealing());}
+        inventory.add(new Weapon("AK-47", 9000,420));
         this.weapon = defaultWeapon;
         this.legs = defaultLegs;
         this.torso = defaultTorso;
