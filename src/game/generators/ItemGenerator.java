@@ -1,5 +1,8 @@
-package game.item;
+package game.generators;
 
+import game.item.Armor;
+import game.item.Item;
+import game.item.Weapon;
 import game.item.armor.Arms;
 import game.item.armor.Head;
 import game.item.armor.Legs;
@@ -45,7 +48,7 @@ public class ItemGenerator {
         return items;
     }
 
-    protected static Item descriptor(Item item) {
+    public static Item descriptor(Item item) {
 
         String desc = "";
         

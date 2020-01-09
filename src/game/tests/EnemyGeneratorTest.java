@@ -1,11 +1,9 @@
-package game.creature;
+package game.tests;
 
-import game.item.Item;
-import game.item.ItemGenerator;
+import game.creature.Enemy;
+import game.generators.EnemyGenerator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 

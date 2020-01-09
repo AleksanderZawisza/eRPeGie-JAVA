@@ -1,4 +1,7 @@
-package game.item;
+package game.tests;
+
+import game.item.Item;
+import game.generators.ItemGenerator;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,7 +1,7 @@
-package game.item;
+package game.tests;
 
-import game.creature.Enemy;
-import game.creature.EnemyGenerator;
+import game.item.Healing;
+import game.generators.HealingGenerator;
 
 public class HealingGeneratorTest {
     public static void main(String[] args) {

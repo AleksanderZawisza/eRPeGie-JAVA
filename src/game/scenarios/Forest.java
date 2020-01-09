@@ -2,7 +2,7 @@ package game.scenarios;
 
 import game.combat.Combat;
 import game.creature.Enemy;
-import game.creature.EnemyGenerator;
+import game.generators.EnemyGenerator;
 import game.creature.Player;
 import game.state.GameWorld;
 

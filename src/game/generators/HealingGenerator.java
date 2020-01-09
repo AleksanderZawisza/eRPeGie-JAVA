@@ -1,5 +1,7 @@
-package game.item;
+package game.generators;
 
+
+import game.item.Healing;
 
 import java.util.ArrayList;
 import java.util.Random;

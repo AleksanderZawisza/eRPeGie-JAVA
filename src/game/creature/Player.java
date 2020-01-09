@@ -1,5 +1,7 @@
 package game.creature;
 
+import game.generators.HealingGenerator;
+import game.generators.ItemGenerator;
 import game.item.*;
 import game.item.armor.Arms;
 import game.item.armor.Head;
@@ -7,7 +9,6 @@ import game.item.armor.Legs;
 import game.item.armor.Torso;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Player extends Creature {
     public String savename = "";
@@ -108,29 +109,29 @@ public class Player extends Creature {
     }
 **/
     public void useItem(Item item){
-            if (item instanceof Weapon){
-                setAttack(2 + weapon.getDamage());
-                this.weapon = (Weapon) item;
-            }
-            if (item instanceof Legs){
-                setArmor(0 + ((Legs) item).getDefence());
-                this.legs = (Legs) item;
-            }
-            if (item instanceof Arms){
-                setArmor(0 + ((Arms) item).getDefence());
-                this.arms = (Arms) item;
-            }
-            if (item instanceof Torso){
-                setArmor(0 + ((Torso) item).getDefence());
-                this.torso = (Torso) item;
-            }
-            if (item instanceof Head){
-                setArmor(0 + ((Head) item).getDefence());
-                this.head = (Head) item;
-            }
-            if (item instanceof Healing){
-                setHp(Math.min(this.getHp()+((Healing) item).getRestore(), this.getMaxhp()));
-            }
+        if (item instanceof Weapon){
+            this.setAttack(this.getAttack() - this.weapon.getDamage() + ((Weapon) item).getDamage());
+            this.weapon = (Weapon) item;
+        }
+        if (item instanceof Legs){
+            this.setArmor(this.getArmor() - this.legs.getDefence() + ((Legs) item).getDefence());
+            this.legs = (Legs) item;
+        }
+        if (item instanceof Arms){
+            this.setArmor(this.getArmor() - this.arms.getDefence() + ((Arms) item).getDefence());
+            this.arms = (Arms) item;
+        }
+        if (item instanceof Torso){
+            this.setArmor(this.getArmor() - this.torso.getDefence() + ((Torso) item).getDefence());
+            this.torso = (Torso) item;
+        }
+        if (item instanceof Head){
+            this.setArmor(this.getArmor() - this.head.getDefence() + ((Head) item).getDefence());
+            this.head = (Head) item;
+        }
+        if (item instanceof Healing){
+            setHp(Math.min(this.getHp()+((Healing) item).getRestore(), this.getMaxhp()));
+        }
     }
 
     public void unequip(Item item){

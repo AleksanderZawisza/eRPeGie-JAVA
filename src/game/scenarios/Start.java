@@ -13,13 +13,6 @@ public class Start {
     }
 
     Player player = gameworld.player;
-    int startHp = 100;
-    int startMaxhp = 100;
-    int startAttack = 2;
-    int startExp = 0;
-    int startMoney = 0;
-    int startArmor = 0;
-
 
     public void begin(){
 
@@ -47,14 +40,6 @@ public class Start {
         String savename = player.savename;
         savename = savename.toUpperCase();
         player.setSavename(savename);
-
-        player.setHp(startHp);
-        player.setMaxhp(startMaxhp);
-        player.setAttack(startAttack);
-        player.setExp(startExp);
-        player.setMoney(startMoney);
-        player.setArmor(startArmor);
-
 
         gameworld.ui.mainTextArea.setText("Your NAME is " + player.savename);
 

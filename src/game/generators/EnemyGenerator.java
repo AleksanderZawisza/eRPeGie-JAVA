@@ -1,7 +1,6 @@
-package game.creature;
+package game.generators;
 
-import game.item.Item;
-import game.item.ItemGenerator;
+import game.creature.Enemy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +9,7 @@ import java.util.Random;
 public class EnemyGenerator {
     static Random rand = new Random();
 
-    protected static Enemy descriptor(Enemy enemy) {
+    public static Enemy descriptor(Enemy enemy) {
         String[] desc = {"injured", "small", "diseased",  // -EXP, -ATT/HP
                 "completely average", "mediocre", "common", "typical", "plain", "boringly ordinary",
                 "shaggy", "rare", // -/+MONEY
