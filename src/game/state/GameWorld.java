@@ -8,7 +8,7 @@ import game.scenarios.*;
 
 public class GameWorld {
 
-    public static Player player = new Player(100,0,2,0,0);
+    public static Player player = new Player();
     public static Enemy currentEnemy = new Enemy();
     public UI ui;
     public Game game;

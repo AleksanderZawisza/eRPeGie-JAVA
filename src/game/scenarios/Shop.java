@@ -11,7 +11,7 @@ public class Shop {
         this.gameworld = gameworld;
     }
 
-    Player player = GameWorld.player;
+    Player player = gameworld.player;
 
     public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
 

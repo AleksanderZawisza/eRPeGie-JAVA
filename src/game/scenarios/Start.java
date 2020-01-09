@@ -12,7 +12,7 @@ public class Start {
         this.gameworld = gameworld;
     }
 
-    Player player = GameWorld.player;
+    Player player = gameworld.player;
     int startHp = 100;
     int startMaxhp = 100;
     int startAttack = 2;

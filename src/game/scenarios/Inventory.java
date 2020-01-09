@@ -143,15 +143,17 @@ public class Inventory {
         gameworld.nextPosition3 = "";
         gameworld.nextPosition4 = "";
 
-        this.gameworld.player.useItem(tmp);
-
         if (tmp instanceof Weapon) gameworld.player.replaceItemInInvWith(this.lastLooked, gameworld.player.weapon);
         else if (tmp instanceof Head) gameworld.player.replaceItemInInvWith(this.lastLooked, gameworld.player.head);
         else if (tmp instanceof Torso) gameworld.player.replaceItemInInvWith(this.lastLooked, gameworld.player.torso);
         else if (tmp instanceof Arms) gameworld.player.replaceItemInInvWith(this.lastLooked, gameworld.player.arms);
         else if (tmp instanceof Legs) gameworld.player.replaceItemInInvWith(this.lastLooked, gameworld.player.legs);
-        else if (tmp instanceof Healing) gameworld.player.remove(this.lastLooked);
 
+        this.gameworld.player.useItem(tmp);
+
+
+        if (tmp instanceof Healing) gameworld.player.remove(this.lastLooked);
+        gameworld.vm.updateCurrentHPLabel(gameworld.player.getHp());
     }
 
     public void yeet(){

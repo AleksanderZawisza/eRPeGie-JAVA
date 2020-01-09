@@ -12,8 +12,8 @@ public class ItemTest {
         Arms kek = new Arms("Kek", 15,1000);
         player.take(new Weapon("Stick",10,0));
         player.take(kek);
-        player.equip(new Weapon("Stick",10,0));
-        player.equip(kek);
+        player.useItem(new Weapon("Stick",10,0));
+        player.useItem(kek);
         System.out.println("newattack" + player.getAttack());
         System.out.println("newarmor" + player.getArmor());
 

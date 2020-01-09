@@ -14,8 +14,8 @@ public class Mountains {
         this.gameworld = gameworld;
     }
 
-    Player player = GameWorld.player;
-    Enemy enemy = GameWorld.currentEnemy;
+    Player player = gameworld.player;
+    Enemy enemy = gameworld.currentEnemy;
 
     public void go() {
 

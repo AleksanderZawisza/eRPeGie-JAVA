@@ -23,7 +23,30 @@ public class Player extends Creature {
     private Torso defaultTorso = new Torso("simple linen shirt",0,0);
     private Arms defaultArms = new Arms("frayed friendship bracelet",0,0);
     private Head defaultHead = new Head("old straw hat",0,0);
+    private int defaultMaxHp = 100;
+    private int defaultArmor = 0;
+    private int defaultAttack = 2;
+    private int defaultExp = 0;
+    private int defaultMoney = 0;
 
+
+    public Player(){
+        this.maxhp = defaultMaxHp;
+        this.hp = defaultMaxHp;
+        this.armor = defaultArmor;
+        this.attack = defaultAttack;
+        this.exp = defaultExp;
+        this.money = defaultMoney;
+        this.inventory = new ArrayList<Item>();
+        for (int i=0; i<5 ; i++) {inventory.add(ItemGenerator.newItem());}
+        for (int i=0; i<2 ; i++) {inventory.add(HealingGenerator.newHealing());}
+        this.weapon = defaultWeapon;
+        this.legs = defaultLegs;
+        this.torso = defaultTorso;
+        this.arms = defaultArms;
+        this.head = defaultHead;
+        this.STATE = "BEGIN";
+    }
 
     public Player(int maxhp, int armor, int attack, int exp, int money) {
         super(maxhp, armor, attack, exp, money);
@@ -55,7 +78,7 @@ public class Player extends Creature {
         }
 
     }
-
+/**
     public void equip(Item item){
         if (inventory.contains(item)) {
             if (item instanceof Weapon){
@@ -83,33 +106,31 @@ public class Player extends Creature {
             }
         }
     }
-
+**/
     public void useItem(Item item){
-        if (inventory.contains(item)) {
             if (item instanceof Weapon){
-                this.setAttack(this.getAttack() - this.weapon.getDamage() + ((Weapon) item).getDamage());
+                setAttack(2 + weapon.getDamage());
                 this.weapon = (Weapon) item;
             }
-            else if (item instanceof Legs){
-                this.setArmor(this.getArmor() - this.legs.getDefence() + ((Legs) item).getDefence());
+            if (item instanceof Legs){
+                setArmor(0 + ((Legs) item).getDefence());
                 this.legs = (Legs) item;
             }
-            else if (item instanceof Arms){
-                this.setArmor(this.getArmor() - this.arms.getDefence() + ((Arms) item).getDefence());
+            if (item instanceof Arms){
+                setArmor(0 + ((Arms) item).getDefence());
                 this.arms = (Arms) item;
             }
-            else if (item instanceof Torso){
-                this.setArmor(this.getArmor() - this.torso.getDefence() + ((Torso) item).getDefence());
+            if (item instanceof Torso){
+                setArmor(0 + ((Torso) item).getDefence());
                 this.torso = (Torso) item;
             }
-            else if (item instanceof Head){
-                this.setArmor(this.getArmor() - this.head.getDefence() + ((Head) item).getDefence());
+            if (item instanceof Head){
+                setArmor(0 + ((Head) item).getDefence());
                 this.head = (Head) item;
             }
-            else if (item instanceof Healing){
-                this.setHp(Math.min(this.getHp()+((Healing) item).getRestore(), this.getMaxhp()));
+            if (item instanceof Healing){
+                setHp(Math.min(this.getHp()+((Healing) item).getRestore(), this.getMaxhp()));
             }
-        }
     }
 
     public void unequip(Item item){
@@ -165,11 +186,7 @@ public class Player extends Creature {
         if (i<howManyItemsInInv()) this.inventory.remove(i);
     }
 
-    public void setSTATE(String STATE) {
-        this.STATE = STATE;
-    }
-    public String getSTATE() {
-        return STATE;
-    }
+    public void setSTATE(String STATE) { this.STATE = STATE; }
+    public String getSTATE() { return STATE; }
 
 }

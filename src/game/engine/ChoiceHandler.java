@@ -23,7 +23,7 @@ public class ChoiceHandler implements ActionListener{
 
             case "input":
                 String text = gameworld.ui.jtf.getText();
-                GameWorld.player.setSavename(text);
+                gameworld.player.setSavename(text);
                 gameworld.selectPosition("DESCRIPTION");
                 break;
 
