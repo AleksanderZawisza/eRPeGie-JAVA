@@ -40,7 +40,6 @@ public class Inventory {
                 "\n\nLegs: " + gameworld.player.legs.getName().toUpperCase() + " (+" +  gameworld.player.legs.getDefence() + ")"
 
         );
-
     }
 
     public void manageInventory(){
@@ -61,7 +60,6 @@ public class Inventory {
             gameworld.ui.inventoryChoiceButtons[i].setBorderPainted(false);
             i++;
         }
-
     }
 
     public void lookItem(Item item){
@@ -173,7 +171,6 @@ public class Inventory {
         gameworld.nextPosition2 = "";
         gameworld.nextPosition3 = "";
         gameworld.nextPosition4 = "";
-
     }
 
     public void lookNext(){

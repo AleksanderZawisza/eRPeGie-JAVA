@@ -13,6 +13,9 @@ public class GameWorld {
     public UI ui;
     public Game game;
     public VisibilityManager vm;
+    public Boolean fromInventory = false;
+    public int prevDmgTaken = 0;
+    public int prevDmgDealt = 0;
 
     public GameWorld(Game game, UI ui, VisibilityManager vm) {
         this.game = game;
@@ -40,7 +43,6 @@ public class GameWorld {
             case "DESCRIPTION": start.description(); break;
             case "CONTEMPLATE": town.contemplate(); break;
             case "TOWN": town.go(); break;
-            case "TOWN_LOOK": town.look(); break;
             case "TAVERN": tavern.go(); break;
             case "DRINK": tavern.drink(); break;
             case "REST": tavern.rest(); break;

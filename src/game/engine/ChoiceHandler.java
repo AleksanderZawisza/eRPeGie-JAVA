@@ -22,41 +22,52 @@ public class ChoiceHandler implements ActionListener{
         switch(choice) {
 
             case "input":
+                gameworld.fromInventory = false;
                 String text = gameworld.ui.jtf.getText();
                 gameworld.player.setSavename(text);
                 gameworld.selectPosition("DESCRIPTION");
                 break;
 
             case "start":
+                gameworld.fromInventory = false;
                 gameworld.selectPosition("BEGIN");
                 break;
 
             case "c1":
+                gameworld.fromInventory = false;
                 gameworld.selectPosition(gameworld.nextPosition1);
                 break;
 
             case "c2":
+                gameworld.fromInventory = false;
                 gameworld.selectPosition(gameworld.nextPosition2);
                 break;
 
             case "c3":
+                gameworld.fromInventory = false;
                 gameworld.selectPosition(gameworld.nextPosition3);
                 break;
 
             case "c4":
+                gameworld.fromInventory = false;
                 gameworld.selectPosition(gameworld.nextPosition4);
                 break;
 
-            case "goBackFromLooking":  gameworld.vm.changeBackButtonToExit();
+            case "goBackFromLooking":
+                gameworld.vm.changeBackButtonToExit();
+
             case "inventory":
+                gameworld.fromInventory = true;
                 gameworld.selectPosition("INVENTORY");
                 break;
 
             case "characterSheet":
+                gameworld.fromInventory = true;
                 gameworld.selectPosition("CHARACTER_SHEET");
                 break;
 
             case "exit":
+                gameworld.fromInventory = true;
                 gameworld.vm.showChoices();
                 gameworld.selectPosition(gameworld.inventory.getLastPosition());
         }

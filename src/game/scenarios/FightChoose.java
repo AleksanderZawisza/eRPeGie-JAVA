@@ -13,7 +13,7 @@ public class FightChoose {
     public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
 
         gameworld.ui.mainTextArea.setText("You are NEAR THE TOWN GATES. It is [WEATHER]. You see THREE PATHS.\n" +
-                "You decide to\n");
+                "You decide to:");
 
         gameworld.ui.choice1.setText("Go EAST, towards the PLAINS");
         gameworld.ui.choice2.setText("Go NORTH, towards the FOREST");

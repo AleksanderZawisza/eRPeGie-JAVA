@@ -32,7 +32,6 @@ public class Start {
             answer = answer.toLowerCase();
         }  // savename - do wczytywania save'ow DO ZAIMPLEMENTOWANIA
         */
-
     }
 
     public void description() {

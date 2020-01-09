@@ -11,7 +11,7 @@ public class Game {
     GameWorld gameworld = new GameWorld(this, ui,vm);
     ChoiceHandler cHandler = new ChoiceHandler(gameworld);
 
-    public static void main (String[]args) throws InterruptedException {
+    public static void main (String[]args){
 
         new Game();
     }

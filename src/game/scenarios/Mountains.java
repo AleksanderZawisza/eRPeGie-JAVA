@@ -19,20 +19,24 @@ public class Mountains {
 
     public void go() {
 
-        Enemy enemy = EnemyGenerator.mountainEnemy();
-        GameWorld.currentEnemy = enemy;
+        enemy = gameworld.currentEnemy;
+
+        if (!gameworld.fromInventory){
+            enemy = EnemyGenerator.mountainEnemy();
+            gameworld.currentEnemy = enemy;
+        }
         gameworld.ui.mainTextArea.setText("You are now in the MOUNTAINS. It is [WEATHER]. You see a " +
                 enemy.getName().toUpperCase() + "." +
                 "\nYou decide to:");
 
-        gameworld.ui.choice1.setText("Get closer to this creature!");
-        gameworld.ui.choice2.setText("Get back on the road!");
-        gameworld.ui.choice3.setText("");
+        gameworld.ui.choice1.setText("GET CLOSER to this creature");
+        gameworld.ui.choice2.setText("SEARCH for other enemies");
+        gameworld.ui.choice3.setText("GET BACK on the road");
         gameworld.ui.choice4.setText("");
 
         gameworld.nextPosition1 = "MOUNTAINS_FIGHT_CHOOSE";
-        gameworld.nextPosition2 = "FIGHT_CHOOSE";
-        gameworld.nextPosition3 = "";
+        gameworld.nextPosition2 = "MOUNTAINS";
+        gameworld.nextPosition3 = "FIGHT_CHOOSE";
         gameworld.nextPosition4 = "";
     }
 
@@ -55,12 +59,26 @@ public class Mountains {
 
     public void fight(){
 
-        enemy = GameWorld.currentEnemy;
-        int attack1 = Combat.attack(player, enemy);
+        int attack1 = 0;
+        int attack2 = 0;
+
+        if(!gameworld.fromInventory){
+            enemy = GameWorld.currentEnemy;
+            attack1 = Combat.attack(player, enemy);
+            attack2 = Combat.attack(enemy, player);
+
+            gameworld.prevDmgDealt = attack1;
+            gameworld.prevDmgTaken = attack2;
+        }
+        else {
+            attack1 = gameworld.prevDmgDealt;
+            attack2 = gameworld.prevDmgTaken;
+        }
 
         if (player.getHp() < 1) {
-            int attack2 = Combat.attack(enemy, player);
-            gameworld.ui.mainTextArea.setText("The "+ enemy.getName().toUpperCase() + " hurt u for " + attack2 + " dmg.\n" +
+
+            gameworld.ui.mainTextArea.setText("The "+ enemy.getName().toUpperCase() + " hurt u for "
+                    + attack2 + " dmg.\n" +
                     "You died.\n" +
                     "GAME OVER");
 
@@ -79,6 +97,11 @@ public class Mountains {
                     "The " + enemy.getRace() + " is dead.\n" +
                     "You won the fight!");
 
+            if (!gameworld.fromInventory){
+                // dead enemy does not deal dmg
+                player.addHp(attack2);
+            }
+
             gameworld.ui.choice1.setText("Look for more.");
             gameworld.ui.choice2.setText("Get back on the road.");
             gameworld.ui.choice3.setText("");
@@ -90,7 +113,6 @@ public class Mountains {
             gameworld.nextPosition4 = "";
         }
         else {
-            int attack2 = Combat.attack(enemy, player);
             gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " dmg.\n" +
                     "The "+ enemy.getName().toUpperCase() + " hurt u for " + attack2 + " dmg.\n" +
                     "This " + enemy.getRace().toUpperCase() + " has " + enemy.getHp() + " hp now." +

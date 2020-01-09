@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public class Player extends Creature {
     public String savename = "";
-    public String STATE;
     public ArrayList<Item> inventory;
     public Weapon weapon;
     public Legs legs;
@@ -46,7 +45,6 @@ public class Player extends Creature {
         this.torso = defaultTorso;
         this.arms = defaultArms;
         this.head = defaultHead;
-        this.STATE = "BEGIN";
     }
 
     public Player(int maxhp, int armor, int attack, int exp, int money) {
@@ -59,7 +57,6 @@ public class Player extends Creature {
         this.torso = defaultTorso;
         this.arms = defaultArms;
         this.head = defaultHead;
-        this.STATE = "BEGIN";
     }
 
     public void setSavename(String savename) {
@@ -186,8 +183,5 @@ public class Player extends Creature {
     public void yeetItemFromInv(int i) {
         if (i<howManyItemsInInv()) this.inventory.remove(i);
     }
-
-    public void setSTATE(String STATE) { this.STATE = STATE; }
-    public String getSTATE() { return STATE; }
 
 }
