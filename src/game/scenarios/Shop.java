@@ -26,7 +26,7 @@ public class Shop {
 
         gameworld.nextPosition1 = "BUY";
         gameworld.nextPosition2 = "SELL";
-        gameworld.nextPosition3 = "TOWN_LOOK";
+        gameworld.nextPosition3 = "TOWN";
         gameworld.nextPosition4 = "";
     }
     public void buy(){ // sklep kupowanie + generator opisów DO ZAIMPLEMENTOWANIA
@@ -40,7 +40,7 @@ public class Shop {
         gameworld.ui.choice3.setText("");
         gameworld.ui.choice4.setText("");
 
-        gameworld.nextPosition1 = "TOWN_LOOK";
+        gameworld.nextPosition1 = "TOWN";
         gameworld.nextPosition2 = "";
         gameworld.nextPosition3 = "";
         gameworld.nextPosition4 = "";
@@ -57,7 +57,7 @@ public class Shop {
         gameworld.ui.choice3.setText("");
         gameworld.ui.choice4.setText("");
 
-        gameworld.nextPosition1 = "TOWN_LOOK";
+        gameworld.nextPosition1 = "TOWN";
         gameworld.nextPosition2 = "";
         gameworld.nextPosition3 = "";
         gameworld.nextPosition4 = "";

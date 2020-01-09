@@ -25,7 +25,7 @@ public class Tavern {
 
         gameworld.nextPosition1 = "DRINK";
         gameworld.nextPosition2 = "REST";
-        gameworld.nextPosition3 = "TOWN_LOOK";
+        gameworld.nextPosition3 = "TOWN";
         gameworld.nextPosition4 = "";
     }
 
@@ -41,7 +41,7 @@ public class Tavern {
 
         gameworld.nextPosition1 = "DRINK";
         gameworld.nextPosition2 = "REST";
-        gameworld.nextPosition3 = "TOWN_LOOK";
+        gameworld.nextPosition3 = "TOWN";
         gameworld.nextPosition4 = "";
     }
 
