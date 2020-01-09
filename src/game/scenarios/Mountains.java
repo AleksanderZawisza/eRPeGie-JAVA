@@ -31,7 +31,7 @@ public class Mountains {
         gameworld.ui.choice4.setText("");
 
         gameworld.nextPosition1 = "MOUNTAINS_FIGHT_CHOOSE";
-        gameworld.nextPosition2 = "MOUNTAINS_CHOOSE";
+        gameworld.nextPosition2 = "FIGHT_CHOOSE";
         gameworld.nextPosition3 = "";
         gameworld.nextPosition4 = "";
     }
