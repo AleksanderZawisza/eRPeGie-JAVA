@@ -57,9 +57,9 @@ public class Plains {
 
         enemy = GameWorld.currentEnemy;
         int attack1 = Combat.attack(player, enemy);
-        int attack2 = Combat.attack(enemy, player);
 
         if (player.getHp() < 1) {
+            int attack2 = Combat.attack(enemy, player);
             gameworld.ui.mainTextArea.setText("The "+ enemy.getName().toUpperCase() + " hurt u for "
                     + attack2 + " dmg.\n" +
                     "You died.\n" +
@@ -91,6 +91,7 @@ public class Plains {
             gameworld.nextPosition4 = "";
         }
         else {
+            int attack2 = Combat.attack(enemy, player);
             gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " dmg.\n" +
                     "The "+ enemy.getName().toUpperCase() + " hurt u for " + attack2 + " dmg.\n" +
                     "This " + enemy.getRace().toUpperCase() + " has " + enemy.getHp() + " hp now." +

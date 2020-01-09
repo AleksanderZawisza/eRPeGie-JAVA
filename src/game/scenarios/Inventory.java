@@ -58,6 +58,7 @@ public class Inventory {
         while (i < 12 ) {
             gameworld.ui.inventoryChoiceButtons[i].setText("");
             gameworld.ui.inventoryChoiceButtons[i].setActionCommand("");
+            gameworld.ui.inventoryChoiceButtons[i].setBorderPainted(false);
             i++;
         }
 
