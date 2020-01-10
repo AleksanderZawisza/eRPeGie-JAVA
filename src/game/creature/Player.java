@@ -28,6 +28,7 @@ public class Player extends Creature {
     private int defaultAttack = 2;
     private int defaultExp = 0;
     private int defaultMoney = 0;
+    private ArrayList<Item> defaultInventory = new ArrayList();
 
 
     public Player(){
@@ -37,10 +38,7 @@ public class Player extends Creature {
         this.attack = defaultAttack;
         this.exp = defaultExp;
         this.money = defaultMoney;
-        this.inventory = new ArrayList<Item>();
-        for (int i=0; i<5 ; i++) {inventory.add(ItemGenerator.newItem());}
-        for (int i=0; i<2 ; i++) {inventory.add(HealingGenerator.newHealing());}
-        inventory.add(new Weapon("AK-47", 9000,420));
+        this.inventory = defaultInventory;
         this.weapon = defaultWeapon;
         this.legs = defaultLegs;
         this.torso = defaultTorso;
@@ -50,9 +48,7 @@ public class Player extends Creature {
 
     public Player(int maxhp, int armor, int attack, int exp, int money) {
         super(maxhp, armor, attack, exp, money);
-        this.inventory = new ArrayList<Item>();
-        for (int i=0; i<5 ; i++) {inventory.add(ItemGenerator.newItem());}
-        for (int i=0; i<2 ; i++) {inventory.add(HealingGenerator.newHealing());}
+        this.inventory = defaultInventory;
         this.weapon = defaultWeapon;
         this.legs = defaultLegs;
         this.torso = defaultTorso;
@@ -183,6 +179,25 @@ public class Player extends Creature {
 
     public void yeetItemFromInv(int i) {
         if (i<howManyItemsInInv()) this.inventory.remove(i);
+    }
+
+    public void setEverythingToDefault(){
+        this.weapon = defaultWeapon;
+        this.legs = defaultLegs;
+        this.torso = defaultTorso;
+        this.arms = defaultArms;
+        this.head = defaultHead;
+        this.maxhp = defaultMaxHp;
+        this.hp = defaultMaxHp;
+        this.armor = defaultArmor;
+        this.attack = defaultAttack;
+        this.exp = defaultExp;
+        this.money = defaultMoney;
+        this.inventory.clear();
+        for (int i=0; i<5 ; i++) {inventory.add(ItemGenerator.newItem());}
+        for (int i=0; i<2 ; i++) {inventory.add(HealingGenerator.newHealing());}
+        inventory.add(new Weapon("AK-47", 9000,420));
+        inventory.add(new Head("cool shades", 9000, 69)); //cheaty dla cheaterów
     }
 
 }

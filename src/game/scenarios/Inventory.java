@@ -65,24 +65,35 @@ public class Inventory {
     public void lookItem(Item item){
         gameworld.vm.showChoicesForLookingAtShit();
         gameworld.vm.changeExitButtonToGoBackFromLooking();
+        String tmpText;
+        tmpText = item.getName().toUpperCase();
+        if (gameworld.player.getHp()>0) tmpText = "You look at the " + tmpText + ".";
 
         if (item instanceof Weapon) {
-            gameworld.ui.mainTextArea.setText("You look at the " + item.getName().toUpperCase() + "." +
-                    "\n\nAttack: " + ((Weapon) item).getDamage() +
+            gameworld.ui.mainTextArea.setText(tmpText +
+                    "\n\nAttack: +" + ((Weapon) item).getDamage() +
+                    "\nWorn weapon's attack: +" + gameworld.player.weapon.getDamage() +
                     "\nWorth: " + item.getPrice() + " GOLD COINS"
             );
         }
         if (item instanceof Armor){
+            Armor tmp = new Armor();
+            if (item instanceof Arms) tmp = gameworld.player.arms;
+            if (item instanceof Torso) tmp = gameworld.player.torso;
+            if (item instanceof Legs) tmp = gameworld.player.legs;
+            if (item instanceof Head) tmp = gameworld.player.head;
 
-            gameworld.ui.mainTextArea.setText("You look at the " + item.getName().toUpperCase() + "." +
-                    "\n\nArmor: " + ((Armor) item).getDefence() +
+            gameworld.ui.mainTextArea.setText(tmpText +
+                    "\n\nDefence: +" + ((Armor) item).getDefence() +
+                    "\nWorn armor's defence: +" + tmp.getDefence() +
                     "\nWorth: " + item.getPrice() + " GOLD COINS"
             );
         }
         if (item instanceof Healing) {
 
-            gameworld.ui.mainTextArea.setText("You look at the " + item.getName().toUpperCase() + "." +
+            gameworld.ui.mainTextArea.setText(tmpText +
                     "\n\nRestoration: " + ((Healing) item).getRestore() +
+                    "\nCurrent missing HP: " + (gameworld.player.getMaxhp()-gameworld.player.getHp()) +
                     "\nWorth: " + item.getPrice() + " GOLD COINS"
             );
         }
@@ -96,6 +107,20 @@ public class Inventory {
         gameworld.nextPosition2 = "INVENTORY_LOOK_NEXT";
         gameworld.nextPosition3 = "INVENTORY_LOOK_PREV";
         gameworld.nextPosition4 = "INVENTORY_YEET";
+
+        if (gameworld.player.getHp()==0){
+            gameworld.ui.choice1.setText(">");
+            gameworld.ui.choice2.setText("<");
+            gameworld.ui.choice3.setText("");
+            gameworld.ui.choice4.setText("");
+
+            gameworld.nextPosition1 = "INVENTORY_LOOK_NEXT";
+            gameworld.nextPosition2 = "INVENTORY_LOOK_PREV";
+            gameworld.nextPosition3 = "";
+            gameworld.nextPosition4 = "";
+        }
+
+        gameworld.vm.hideUselessChoiceButtons();
     }
 
     public void use(){
@@ -103,41 +128,44 @@ public class Inventory {
 
         if (tmp instanceof Weapon) {
             gameworld.ui.mainTextArea.setText("You let go of the " + gameworld.player.weapon.getName().toUpperCase() +
-                    " and take up the " + tmp.getName().toUpperCase() + "."
+                    " and arm yourself with the " + tmp.getName().toUpperCase() + "."
             );
         }
         if (tmp instanceof Head) {
             gameworld.ui.mainTextArea.setText("You take off the " + gameworld.player.head.getName().toUpperCase() +
-                    " and don the " + tmp.getName().toUpperCase() + "."
+                    " and put on the " + tmp.getName().toUpperCase() + "."
             );
         }
         if (tmp instanceof Torso) {
             gameworld.ui.mainTextArea.setText("You take off the " + gameworld.player.torso.getName().toUpperCase() +
-                    " and don the " + tmp.getName().toUpperCase() + "."
+                    " and put on the " + tmp.getName().toUpperCase() + "."
             );
         }
         if (tmp instanceof Arms) {
             gameworld.ui.mainTextArea.setText("You take off the " + gameworld.player.arms.getName().toUpperCase() +
-                    " and don the " + tmp.getName().toUpperCase() + "."
+                    " and put on the " + tmp.getName().toUpperCase() + "."
             );
         }
         if (tmp instanceof Legs) {
             gameworld.ui.mainTextArea.setText("You take off the " + gameworld.player.legs.getName().toUpperCase() +
-                    " and don the " + tmp.getName().toUpperCase() + "."
+                    " and put on the " + tmp.getName().toUpperCase() + "."
             );
         }
         if (tmp instanceof Healing) {
-            gameworld.ui.mainTextArea.setText("You devour the " + tmp.getName().toUpperCase() +
-                    " and heal " + ((Healing) tmp).getRestore() + " HP."
+            gameworld.ui.mainTextArea.setText("You devour the " + tmp.getName().toUpperCase() + " and heal " +
+                    Math.min(((Healing) tmp).getRestore(), gameworld.player.getMaxhp()-gameworld.player.getHp()) +
+                    " HP."
             );
+            gameworld.nextPosition1 = "INVENTORY";
         }
+        else {gameworld.nextPosition1 = "INVENTORY_AFTER_EQUIP";}
 
         gameworld.ui.choice1.setText(">");
         gameworld.ui.choice2.setText("");
         gameworld.ui.choice3.setText("");
         gameworld.ui.choice4.setText("");
 
-        gameworld.nextPosition1 = "INVENTORY";
+
         gameworld.nextPosition2 = "";
         gameworld.nextPosition3 = "";
         gameworld.nextPosition4 = "";
@@ -185,7 +213,7 @@ public class Inventory {
         lookItem(gameworld.player.getItemFromInv(this.lastLooked));
     }
 
-    public void lookAfterYeeting(){
+    public void lookAfterSwapping(){
         lookItem(gameworld.player.getItemFromInv(this.lastLooked));
     }
 

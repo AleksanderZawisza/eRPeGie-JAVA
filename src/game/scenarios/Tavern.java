@@ -16,7 +16,7 @@ public class Tavern {
     public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
 
         gameworld.ui.mainTextArea.setText("You manage to find the TAVERN. You see [RANDOM PERSON/GROUP] in the corner. The barmaid looks [EMOTION]. [OPTIONAL DESCRIPTION?].\n" +
-                "It's time to");
+                "It's time to...");
 
         gameworld.ui.choice1.setText("Buy yourself a STIFF DRINK");
         gameworld.ui.choice2.setText("Get a room and HIT THE HAY");
@@ -30,9 +30,10 @@ public class Tavern {
     }
 
     public void drink() { // questy/potrzeba pieniedzy do kupowania alko + generator opisów DO ZAIMPLEMENTOWANIA
+        String tmp = "a ";
+        if(gameworld.lastState.equals("DRINK")) tmp = "another STIFF DRINK. It's a ";
 
-        gameworld.ui.mainTextArea.setText("You get yourself a [DRINK]. It tastes [TASTE]. [GENERAL OPINION]. " +
-                "It's time to");
+        gameworld.ui.mainTextArea.setText("You get yourself " + tmp + "[DRINK]. It tastes [TASTE]. [GENERAL OPINION]. ");
 
         gameworld.ui.choice1.setText("Buy yourself ANOTHER STIFF DRINK");
         gameworld.ui.choice2.setText("Get a room and HIT THE HAY");
@@ -55,7 +56,7 @@ public class Tavern {
         player.setHp(player.getMaxhp());    // HEALOWANIE I UPDATE HP
         gameworld.vm.updateCurrentHPLabel(player.getHp());
 
-        gameworld.ui.choice1.setText("Start NEW DAY");
+        gameworld.ui.choice1.setText("Start a NEW DAY");
         gameworld.ui.choice2.setText("");
         gameworld.ui.choice3.setText("");
         gameworld.ui.choice4.setText("");

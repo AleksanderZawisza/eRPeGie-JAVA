@@ -17,7 +17,7 @@ public class Shop {
 
         gameworld.ui.mainTextArea.setText("You go to the SHOP. The SHOPKEEPER seems [EMOTION] when he sees you. He asks if you're interested in BUYING or SELLING.\n" +
                 "You have " + player.getMoney() + " GOLD COINS on you.\n" +
-                "You say that you want to\n");
+                "You say that you want to...\n");
 
         gameworld.ui.choice1.setText("BUY stuff");
         gameworld.ui.choice2.setText("SELL stuff");

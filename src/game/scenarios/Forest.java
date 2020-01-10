@@ -43,11 +43,11 @@ public class Forest {
     public void fightChoose(){
 
         enemy = GameWorld.currentEnemy;
-        gameworld.ui.mainTextArea.setText(enemy.getRace().toUpperCase() + " looks nervous.\n" +
+        gameworld.ui.mainTextArea.setText("The "+enemy.getRace().toUpperCase() + " looks nervous.\n" +
                 "What do you do now?");
 
-        gameworld.ui.choice1.setText("Attack!");
-        gameworld.ui.choice2.setText("Get out of here.");
+        gameworld.ui.choice1.setText("ATTACK");
+        gameworld.ui.choice2.setText("LEAVE it be");
         gameworld.ui.choice3.setText("");
         gameworld.ui.choice4.setText("");
 
@@ -77,12 +77,12 @@ public class Forest {
 
         if (player.getHp() < 1) {
 
-            gameworld.ui.mainTextArea.setText("The "+ enemy.getName().toUpperCase() + " hurt u for "
-                    + attack2 + " dmg.\n" +
-                    "You died.\n" +
+            gameworld.ui.mainTextArea.setText("The "+ enemy.getName().toUpperCase() + " hurt you for "
+                    + attack2 + " DMG.\n" +
+                    "You DIED.\n" +
                     "GAME OVER");
 
-            gameworld.ui.choice1.setText("Start new game");
+            gameworld.ui.choice1.setText("Start a NEW GAME");
             gameworld.ui.choice2.setText("");
             gameworld.ui.choice3.setText("");
             gameworld.ui.choice4.setText("");
@@ -93,17 +93,17 @@ public class Forest {
             gameworld.nextPosition4 = "";
         }
         else if (enemy.getHp() < 1) {
-            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " dmg.\n" +
-                    "The " + enemy.getRace() + " is dead.\n" +
-                    "You won the fight!");
+            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
+                    "The " + enemy.getRace().toUpperCase() + " is DEAD.\n" +
+                    "You WON the fight!");
 
             if (!gameworld.fromInventory){
                 // dead enemy does not deal dmg
                 player.addHp(attack2);
             }
 
-            gameworld.ui.choice1.setText("Look for more.");
-            gameworld.ui.choice2.setText("Get back on the road.");
+            gameworld.ui.choice1.setText("LOOK for MORE");
+            gameworld.ui.choice2.setText("Get BACK on the ROAD");
             gameworld.ui.choice3.setText("");
             gameworld.ui.choice4.setText("");
 
@@ -113,13 +113,12 @@ public class Forest {
             gameworld.nextPosition4 = "";
         }
         else {
-            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " dmg.\n" +
-                    "The "+ enemy.getName().toUpperCase() + " hurt u for " + attack2 + " dmg.\n" +
-                    "This " + enemy.getRace().toUpperCase() + " has " + enemy.getHp() + " hp now." +
-                    "\nWhat do you do now?");
+            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
+                    "The "+ enemy.getName().toUpperCase() + " hurt you for " + attack2 + " DMG.\n" +
+                    "This " + enemy.getRace().toUpperCase() + " has " + enemy.getHp() + " HP now.");
 
-            gameworld.ui.choice1.setText("Attack!");
-            gameworld.ui.choice2.setText("Get out of here.");
+            gameworld.ui.choice1.setText("ATTACK");
+            gameworld.ui.choice2.setText("RUN for your life");
             gameworld.ui.choice3.setText("");
             gameworld.ui.choice4.setText("");
 

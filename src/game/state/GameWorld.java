@@ -16,6 +16,7 @@ public class GameWorld {
     public Boolean fromInventory = false;
     public int prevDmgTaken = 0;
     public int prevDmgDealt = 0;
+    public String lastState;
 
     public GameWorld(Game game, UI ui, VisibilityManager vm) {
         this.game = game;
@@ -64,9 +65,11 @@ public class GameWorld {
             case "INVENTORY_LOOK_NEXT": inventory.lookNext(); break;
             case "INVENTORY_LOOK_PREV": inventory.lookPrev(); break;
             case "INVENTORY_YEET": inventory.yeet(); break;
-            case "INVENTORY_YOTE": inventory.lookAfterYeeting(); break;
+            case "INVENTORY_AFTER_EQUIP": inventory.lookAfterSwapping(); break;
             case "INVENTORY_USE": inventory.use(); break;
             case "DEAD": break;
         }
+        this.lastState = nextPosition;
+        vm.hideUselessChoiceButtons();
     }
 }

@@ -39,14 +39,25 @@ public class Start {
         String savename = player.savename;
         savename = savename.toUpperCase();
         player.setSavename(savename);
+        player.setEverythingToDefault(); // tu do zmiany jak ładowanie postaci
+        player.setHp(player.getMaxhp());
+        gameworld.vm.updateCurrentHPLabel(player.getHp());
 
-        gameworld.ui.mainTextArea.setText("Your NAME is " + player.savename);
-
+        if (player.savename.equals("FARTMASTER")) {
+            gameworld.ui.mainTextArea.setText("Fine then, be like that." +
+            "\nYour NAME now is " + player.savename + ", and that's the NAME you're going to have TILL YOU DIE." +
+            "\nGOOD LUCK on your adventure, " + player.savename + "!");
+            gameworld.ui.choice1.setText("Uh oh");
+        }
+        else {
+            gameworld.ui.mainTextArea.setText("Your NAME now is " + player.savename + "." +
+                    "\nGOOD LUCK on your adventure, " + player.savename + "!");
+            gameworld.ui.choice1.setText("Yeah!");
+        }
         //It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].\n" +
         //"You have a fondness for [HOBBY] and are an ASPIRING [JOB]. You like to [HOBBY] but are NOT VERY GOOD AT IT. \n" +
           //      "You also enjoy KILLING THINGS sometimes.
 
-        gameworld.ui.choice1.setText("Understood.");
         gameworld.ui.choice2.setText("");
         gameworld.ui.choice3.setText("");
         gameworld.ui.choice4.setText("");

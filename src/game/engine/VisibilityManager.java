@@ -121,4 +121,15 @@ public class VisibilityManager {
         ui.goBackButton.setActionCommand("goBackFromLooking");
         ui.goBackButton.setText("BACK");
     }
+
+    public void hideUselessChoiceButtons(){
+        ui.choice1.setBorderPainted(true);
+        ui.choice2.setBorderPainted(true);
+        ui.choice3.setBorderPainted(true);
+        ui.choice4.setBorderPainted(true);
+        if (ui.choice1.getText().equals("")) ui.choice1.setBorderPainted(false);
+        if (ui.choice2.getText().equals("")) ui.choice2.setBorderPainted(false);
+        if (ui.choice3.getText().equals("")) ui.choice3.setBorderPainted(false);
+        if (ui.choice4.getText().equals("")) ui.choice4.setBorderPainted(false);
+    }
 }

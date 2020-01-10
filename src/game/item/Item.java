@@ -10,6 +10,8 @@ public class Item {
     private int price;
     public boolean isEquipped;
 
+    public Item(){}
+
     public Item(String type, int price) {
         this.type = type;
         this.name = type;

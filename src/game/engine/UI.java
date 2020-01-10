@@ -25,6 +25,7 @@ public class UI {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.black);
         window.setLayout(null);
+        window.setResizable(false);
 
 
         // TITLE SCREEN
@@ -155,7 +156,7 @@ public class UI {
         inventoryButton.setOpaque(false);
         inventoryButton.addActionListener(cHandler);
         inventoryButton.setActionCommand("inventory");
-        playerPanel.add(inventoryButton);
+
 
         characterButton = new JButton("Journal");
         characterButton.setBackground(Color.black);
@@ -165,13 +166,15 @@ public class UI {
         characterButton.setOpaque(false);
         characterButton.addActionListener(cHandler);
         characterButton.setActionCommand("characterSheet");
+
         playerPanel.add(characterButton);
+        playerPanel.add(inventoryButton);
 
         window.add(playerPanel);
 
         // INPUT PANEL
         nameTextPanel = new JPanel();
-        nameTextPanel.setBounds(150,250,500,100);
+        nameTextPanel.setBounds(150,200,500,100);
         nameTextPanel.setBackground(Color.black);
         nameTextLabel = new JLabel("Hi there. What's your NAME?");
         nameTextLabel.setForeground(Color.white);
@@ -204,7 +207,7 @@ public class UI {
 
         // INVENTORY SCREEN
         inventoryPanel = new JPanel();
-        inventoryPanel.setBounds(100, 100, 600, 400);
+        inventoryPanel.setBounds(100, 90, 600, 420);
         inventoryPanel.setBackground(Color.black);
         inventoryPanel.setLayout(new GridLayout(6,2));
 
@@ -243,7 +246,7 @@ public class UI {
 
         // CHARACTER SCREEN
         characterPanel = new JPanel();
-        characterPanel.setBounds(80, 100, 640, 500);
+        characterPanel.setBounds(80, 90, 640, 510);
         characterPanel.setBackground(Color.black);
         characterPanel.setLayout(new GridLayout(1,2));
 
