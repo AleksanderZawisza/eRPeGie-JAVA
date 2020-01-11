@@ -10,7 +10,7 @@ public class EnemyGenerator {
     static Random rand = new Random();
 
     public static Enemy descriptor(Enemy enemy) {
-        String[] desc = {"injured", "small", "diseased",  // -EXP, -ATT/HP
+        String[] desc = {"wounded", "small", "diseased",  // -EXP, -ATT/HP
                 "completely average", "mediocre", "common", "typical", "plain", "boringly ordinary",
                 "shaggy", "rare", // -/+MONEY
                 "huge", "ferocious", "frenzied", // +EXP, +ATT/ARMOR/HP
@@ -29,7 +29,7 @@ public class EnemyGenerator {
 
         String myDesc = desc[rand.nextInt(desc.length)];
         switch(myDesc)
-        {   case "injured": enemy.lowerHp((int) enemy.getMaxhp()/10 +2); enemy.lowerExp(1); break;
+        {   case "wounded": enemy.lowerHp((int) enemy.getMaxhp()/10 +2); enemy.lowerExp(1); break;
             case "small": enemy.lowerAttack((int) enemy.getAttack()/10 +1); enemy.lowerExp(1); break;
             case "diseased": enemy.lowerHp((int) enemy.getMaxhp()/10 +2);
                 enemy.lowerAttack((int) enemy.getAttack()/10  +1); enemy.lowerExp(1); break;
@@ -196,6 +196,7 @@ public class EnemyGenerator {
         if(rand.nextInt(4)==0) {
             enemy = forestSentients().get(rand.nextInt(forestSentients().size()));
             enemy = profession(enemy);
+            enemy.setSentient(true);
         }
 
         else {
@@ -267,6 +268,7 @@ public class EnemyGenerator {
         mountainAnimals.add(new Enemy("platinum dragon", 1300,260,380,89,800));
         mountainAnimals.add(new Enemy("prismatic dragon", 1600,400,650,96,1200));
         mountainAnimals.add(new Enemy("frost dracolich", 2000,500,550,100,1400));
+        mountainAnimals.add(new Enemy("kirin", 5000,1000,1000,110,3000));
         return mountainAnimals;
     }
 
@@ -278,7 +280,7 @@ public class EnemyGenerator {
         mountainSentients.add(new Enemy("mountain dwarf", 220,100,105,48,100));
         mountainSentients.add(new Enemy("goliath", 300,130,145,53,120));
         mountainSentients.add(new Enemy("troll", 400,150,155,57,150));
-        mountainSentients.add(new Enemy("cyclops", 550,160,170,62,200));
+        mountainSentients.add(new Enemy("firbolg", 550,160,170,62,200));
         mountainSentients.add(new Enemy("ettin", 550,165,190,66,230));
         mountainSentients.add(new Enemy("cloud giant", 650,180,200,70,280));
         mountainSentients.add(new Enemy("mountain giant", 800,200,240,76,320));
@@ -293,6 +295,7 @@ public class EnemyGenerator {
         if(rand.nextInt(4)==0) {
             enemy = mountainSentients().get(rand.nextInt(mountainSentients().size()));
             enemy = profession(enemy);
+            enemy.setSentient(true);
         }
 
         else {

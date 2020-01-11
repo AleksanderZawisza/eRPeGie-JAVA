@@ -31,7 +31,7 @@ public class Tavern {
 
     public void drink() { // questy/potrzeba pieniedzy do kupowania alko + generator opisów DO ZAIMPLEMENTOWANIA
         String tmp = "a ";
-        if(gameworld.lastState.equals("DRINK")) tmp = "another STIFF DRINK. It's a ";
+        if(gameworld.trueLastState.equals("DRINK")) tmp = "another STIFF DRINK. It's a ";
 
         gameworld.ui.mainTextArea.setText("You get yourself " + tmp + "[DRINK]. It tastes [TASTE]. [GENERAL OPINION]. ");
 
@@ -49,7 +49,7 @@ public class Tavern {
     public void rest(){ // save + generator opisów DO ZAIMPLEMENTOWANIA
 
         gameworld.ui.mainTextArea.setText("You rent a room and decide to TAKE A BREATHER for the rest of the day." +
-                "You lie down and MAKE AN ENTRY in your JOURNAL.\n" + "Your bed is [DESCRIPTION].\n" +
+                "\nYou lie down and MAKE AN ENTRY in your JOURNAL.\n" + "Your bed is [DESCRIPTION].\n" +
                 "You hear [SOUND] in the background.\n" + "The pillows are [DESCRIPTION].\n" +
                 "...\n" + "Rise and shine! It's a NEW DAY. The SUN is UP and SO ARE YOU. You get up and GET OUT.\n");
 

@@ -55,13 +55,13 @@ public class Creature {
     public float getExp() {
         return exp;
     }
-    public void setExp(int exp) {
+    public void setExp(float exp) {
         this.exp = exp;
     }
-    public void addExp(int exp) {
+    public void addExp(float exp) {
         this.exp += exp;
     }
-    public void lowerExp (int exp) { this.exp -= exp; }
+    public void lowerExp (float exp) { this.exp -= exp; }
 
     public int getMoney() {
         return money;

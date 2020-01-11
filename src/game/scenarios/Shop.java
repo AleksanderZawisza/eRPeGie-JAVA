@@ -32,8 +32,7 @@ public class Shop {
     public void buy(){ // sklep kupowanie + generator opisów DO ZAIMPLEMENTOWANIA
 
         gameworld.ui.mainTextArea.setText("You want to BUY SOMETHING. You can't do that because there is no SHOP in the GAME (yet).\n" +
-                "You have " + player.getMoney() + " GOLD COINS on you.\n" +
-                "You say that you want to\n");
+                "You have " + player.getMoney() + " GOLD COINS on you.\n" );
 
         gameworld.ui.choice1.setText("GET OUT of here.");
         gameworld.ui.choice2.setText("");
@@ -49,8 +48,7 @@ public class Shop {
     public void sell(){ // sklep sprzedawanie + generator opisów DO ZAIMPLEMENTOWANIA
 
         gameworld.ui.mainTextArea.setText("You want to SELL SOMETHING. You can't do that because there is no SHOP in the GAME (yet).\n" +
-                "You have " + player.getMoney() + " GOLD COINS on you.\n" +
-                "You say that you want to\n");
+                "You have " + player.getMoney() + " GOLD COINS on you.\n" );
 
         gameworld.ui.choice1.setText("GET OUT of here.");
         gameworld.ui.choice2.setText("");

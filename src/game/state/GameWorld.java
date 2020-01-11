@@ -16,7 +16,7 @@ public class GameWorld {
     public Boolean fromInventory = false;
     public int prevDmgTaken = 0;
     public int prevDmgDealt = 0;
-    public String lastState;
+    public String trueLastState;
 
     public GameWorld(Game game, UI ui, VisibilityManager vm) {
         this.game = game;
@@ -57,9 +57,13 @@ public class GameWorld {
             case "FOREST": forest.go(); break;
             case "FOREST_FIGHT_CHOOSE": forest.fightChoose(); break;
             case "FOREST_FIGHT": forest.fight(); break;
+            case "FOREST_DROP": forest.inspectDroppedItem(); break;
+            case "FOREST_TAKE_DROP": forest.takeDroppedItem(); break;
             case "MOUNTAINS": mountains.go(); break;
             case "MOUNTAINS_FIGHT_CHOOSE": mountains.fightChoose(); break;
             case "MOUNTAINS_FIGHT": mountains.fight(); break;
+            case "MOUNTAINS_DROP": mountains.inspectDroppedItem(); break;
+            case "MOUNTAINS_TAKE_DROP": mountains.takeDroppedItem(); break;
             case "CHARACTER_SHEET": inventory.characterSheet(); break;
             case "INVENTORY": inventory.manageInventory(); break;
             case "INVENTORY_LOOK_NEXT": inventory.lookNext(); break;
@@ -69,7 +73,7 @@ public class GameWorld {
             case "INVENTORY_USE": inventory.use(); break;
             case "DEAD": break;
         }
-        this.lastState = nextPosition;
+        this.trueLastState = nextPosition;
         vm.hideUselessChoiceButtons();
     }
 }

@@ -73,35 +73,7 @@ public class Player extends Creature {
         }
 
     }
-/**
-    public void equip(Item item){
-        if (inventory.contains(item)) {
-            if (item instanceof Weapon){
-                this.setAttack(this.getAttack() - this.weapon.getDamage() + ((Weapon) item).getDamage());
-                this.weapon = (Weapon) item;
-            }
-            else if (item instanceof Legs){
-                this.setArmor(this.getArmor() - this.legs.getDefence() + ((Legs) item).getDefence());
-                this.legs = (Legs) item;
-            }
-            else if (item instanceof Arms){
-                this.setArmor(this.getArmor() - this.arms.getDefence() + ((Arms) item).getDefence());
-                this.arms = (Arms) item;
-            }
-            else if (item instanceof Torso){
-                this.setArmor(this.getArmor() - this.torso.getDefence() + ((Torso) item).getDefence());
-                this.torso = (Torso) item;
-            }
-            else if (item instanceof Head){
-                this.setArmor(this.getArmor() - this.head.getDefence() + ((Head) item).getDefence());
-                this.head = (Head) item;
-            }
-            else{
-                System.out.println("\nItem cannot be equipped!\n");
-            }
-        }
-    }
-**/
+
     public void useItem(Item item){
         if (item instanceof Weapon){
             this.setAttack(this.getAttack() - this.weapon.getDamage() + ((Weapon) item).getDamage());
@@ -199,5 +171,15 @@ public class Player extends Creature {
         inventory.add(new Weapon("AK-47", 9000,420));
         inventory.add(new Head("cool shades", 9000, 69)); //cheaty dla cheaterów
     }
+
+    public float expWithoutLevel(){
+        return (this.exp - (int) this.exp);
+    }
+
+    public float expTillNextLevel(){
+        return (1 - (this.exp - (int) this.exp));
+    }
+
+    public void updateMaxHp() {this.maxhp = defaultMaxHp + 10* (int) getExp();}
 
 }

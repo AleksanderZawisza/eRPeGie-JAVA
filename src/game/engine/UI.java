@@ -10,7 +10,7 @@ public class UI {
                     inventoryPanel, goBackPanel, characterPanel;
     public JLabel titleNameLabel, hpLabel, hpNumberLabel, weaponLabel, weaponNameLabel, nameTextLabel;
     Font titleFont = new Font("Monospaced", Font.PLAIN, 90);
-    Font normalFont = new Font("Monospaced", Font.PLAIN, 20);
+    Font normalFont = new Font("Monospaced", Font.PLAIN, 19);
     Font smallFont = new Font("Monospaced", Font.PLAIN, 14);
     public JButton startButton, choice1, choice2, choice3, choice4, enterB, inventoryButton, characterButton, goBackButton;
     public JTextArea mainTextArea, characterStatsArea, characterEqArea;
@@ -70,9 +70,9 @@ public class UI {
         window.add(mainTextPanel);
 
         choiceButtonPanel = new JPanel();
-        choiceButtonPanel.setBounds(100, 400, 600, 120);
+        choiceButtonPanel.setBounds(100, 380, 600, 150);
         choiceButtonPanel.setBackground(Color.black);
-        choiceButtonPanel.setLayout(new GridLayout(4,1));
+        choiceButtonPanel.setLayout(new GridLayout(4,1,7,7));
 
         choice1 = new JButton("Choice 1");
         choice1.setBackground(Color.black);
@@ -124,7 +124,7 @@ public class UI {
         playerPanel = new JPanel();
         playerPanel.setBounds(100, 15, 600, 50);
         playerPanel.setBackground(Color.black);
-        playerPanel.setLayout(new GridLayout(1,4));
+        playerPanel.setLayout(new GridLayout(1,4,15,15));
 
         hpLabel = new JLabel("HP:");
         hpLabel.setFont(normalFont);
@@ -209,7 +209,7 @@ public class UI {
         inventoryPanel = new JPanel();
         inventoryPanel.setBounds(100, 90, 600, 420);
         inventoryPanel.setBackground(Color.black);
-        inventoryPanel.setLayout(new GridLayout(6,2));
+        inventoryPanel.setLayout(new GridLayout(6,2, 15,15));
 
         inventoryChoiceButtons = new JButton[12];
         for (int i = 0; i < inventoryChoiceButtons.length; i++) {

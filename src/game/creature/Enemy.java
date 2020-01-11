@@ -13,6 +13,7 @@ public class Enemy extends Creature {
     protected String race = "";
     protected List<Item> possibleDrop = new ArrayList<Item>();
     static Random rand = new Random();
+    boolean sentient = false;
 
     public Enemy(){}
 
@@ -51,6 +52,9 @@ public class Enemy extends Creature {
         Item drop = this.possibleDrop.get(rand.nextInt(this.possibleDrop.size()));
         return drop;
     }
+
+    public boolean isSentient() { return sentient; }
+    public void setSentient(boolean sentient) { this.sentient = sentient; }
 
     @Override
     public String toString() {

@@ -4,6 +4,8 @@ import game.combat.Combat;
 import game.creature.Enemy;
 import game.generators.EnemyGenerator;
 import game.creature.Player;
+import game.item.*;
+import game.item.armor.*;
 import game.state.GameWorld;
 
 public class Mountains {
@@ -16,6 +18,7 @@ public class Mountains {
 
     Player player = gameworld.player;
     Enemy enemy = gameworld.currentEnemy;
+    Item drop;
 
     public void go() {
 
@@ -43,6 +46,7 @@ public class Mountains {
     public void fightChoose(){
 
         enemy = GameWorld.currentEnemy;
+        if (enemy.isSentient()) this.drop = enemy.getRandomDrop();
         gameworld.ui.mainTextArea.setText("The " + enemy.getRace().toUpperCase() + " looks nervous.\n" +
                 "What do you do now?");
 
@@ -92,26 +96,73 @@ public class Mountains {
             gameworld.nextPosition3 = "";
             gameworld.nextPosition4 = "";
         }
-        else if (enemy.getHp() < 1) {
-            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
-                    "The " + enemy.getRace().toUpperCase() + " is DEAD.\n" +
-                    "You WON the fight!");
+        else if (enemy.getHp() < 1) {    // DEAD ENEMY
+            String lvlUp = "";
+            String moneyOrItem = "You think you can sell parts from the DEAD " + enemy.getRace().toUpperCase() +
+                    " for about " + enemy.getMoney() + " GOLD COINS.\n\n";
 
-            if (!gameworld.fromInventory){
-                // dead enemy does not deal dmg
-                player.addHp(attack2);
+            float receivedExp = enemy.getExp()/20;
+            if (receivedExp + player.expWithoutLevel()>=1) lvlUp = "You feel more confident. You're pretty sure your THREAT RATING just went up!";
+            if (enemy.isSentient()) {
+                Item item = this.drop;
+                this.drop = item;
+                String plural = "s";
+                if (item.getName().endsWith("s")) plural = "";
+                moneyOrItem = "You think the DEAD " + enemy.getRace().toUpperCase() + "'S " +
+                        item.getName().toUpperCase() + " look"+ plural +" pretty serviceable.\n\n";
             }
 
-            gameworld.ui.choice1.setText("LOOK for more");
-            gameworld.ui.choice2.setText("Get BACK on the ROAD");
-            gameworld.ui.choice3.setText("");
-            gameworld.ui.choice4.setText("");
+            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
+                    "The " + enemy.getRace().toUpperCase() + " is DEAD.\n" +
+                    "You WON the fight!\n\n" +
+                    moneyOrItem +
+                    lvlUp);
 
-            gameworld.nextPosition1 = "MOUNTAINS";
-            gameworld.nextPosition2 = "FIGHT_CHOOSE";
-            gameworld.nextPosition3 = "";
-            gameworld.nextPosition4 = "";
-        }
+            player.addExp(receivedExp);
+
+            if (!enemy.isSentient()){  //NOT SENTIENT ENEMY
+                player.addMoney(enemy.getMoney());
+                if (!gameworld.fromInventory){
+                    // dead enemy does not deal dmg
+                    player.addHp(attack2);
+                }
+                if (gameworld.fromInventory){
+                    // no double rewards
+                    player.lowerExp(receivedExp);
+                    player.lowerMoney(enemy.getMoney());
+                }
+                gameworld.ui.choice1.setText("LOOK for MORE");
+                gameworld.ui.choice2.setText("Get BACK on the ROAD");
+                gameworld.ui.choice3.setText("");
+                gameworld.ui.choice4.setText("");
+
+                gameworld.nextPosition1 = "MOUNTAINS";
+                gameworld.nextPosition2 = "FIGHT_CHOOSE";
+                gameworld.nextPosition3 = "";
+                gameworld.nextPosition4 = "";
+            }
+            else{  //SENTIENT ENEMY
+
+                if (!gameworld.fromInventory){
+                    // dead enemy does not deal dmg
+                    player.addHp(attack2);
+                }
+                if (gameworld.fromInventory){
+                    // no double rewards
+                    player.lowerExp(receivedExp);
+                }
+                gameworld.ui.choice1.setText("LOOK for MORE");
+                gameworld.ui.choice2.setText("INSPECT the ITEM");
+                gameworld.ui.choice3.setText("Get BACK on the ROAD");
+                gameworld.ui.choice4.setText("");
+
+                gameworld.nextPosition1 = "MOUNTAINS";
+                gameworld.nextPosition2 = "MOUNTAINS_DROP";
+                gameworld.nextPosition3 = "FIGHT_CHOOSE";
+                gameworld.nextPosition4 = "";
+
+            }
+        }                                   //END DEAD ENEMY
         else {
             gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
                     "The "+ enemy.getName().toUpperCase() + " hurt you for " + attack2 + " DMG.\n" +
@@ -128,6 +179,86 @@ public class Mountains {
             gameworld.nextPosition4 = "";
         }
         gameworld.vm.updateCurrentHPLabel(player.getHp()); //UPDATE HP
+        player.updateMaxHp();
+    }
+    public void inspectDroppedItem() {
+        Item item = this.drop;
+        String tmpText;
+        tmpText = "You inspect the " + item.getName().toUpperCase() + ".";
+        if (item instanceof Weapon) {
+            gameworld.ui.mainTextArea.setText(tmpText +
+                    "\n\nAttack: +" + ((Weapon) item).getDamage() +
+                    "\nWorn weapon's attack: +" + gameworld.player.weapon.getDamage() +
+                    "\nWorth: " + item.getPrice() + " GOLD COINS"
+            );
+        }
+        if (item instanceof Armor){
+            Armor tmp = new Armor();
+            if (item instanceof Arms) tmp = gameworld.player.arms;
+            if (item instanceof Torso) tmp = gameworld.player.torso;
+            if (item instanceof Legs) tmp = gameworld.player.legs;
+            if (item instanceof Head) tmp = gameworld.player.head;
+
+            gameworld.ui.mainTextArea.setText(tmpText +
+                    "\n\nDefence: +" + ((Armor) item).getDefence() +
+                    "\nWorn armor's defence: +" + tmp.getDefence() +
+                    "\nWorth: " + item.getPrice() + " GOLD COINS"
+            );
+        }
+        if (item instanceof Healing) {
+            gameworld.ui.mainTextArea.setText(tmpText +
+                    "\n\nRestoration: " + ((Healing) item).getRestore() +
+                    "\nCurrent missing HP: " + (gameworld.player.getMaxhp()-gameworld.player.getHp()) +
+                    "\nWorth: " + item.getPrice() + " GOLD COINS"
+            );
+        }
+
+        gameworld.ui.choice1.setText("TAKE it");
+        gameworld.ui.choice2.setText("FORGET it and go look for MORE ENEMIES");
+        gameworld.ui.choice3.setText("Get BACK on the ROAD");
+        gameworld.ui.choice4.setText("");
+
+        gameworld.nextPosition1 = "MOUNTAINS_TAKE_DROP";
+        gameworld.nextPosition2 = "MOUNTAINS";
+        gameworld.nextPosition3 = "FIGHT_CHOOSE";
+        gameworld.nextPosition4 = "";
+
+        gameworld.vm.hideUselessChoiceButtons();
+    }
+    public void takeDroppedItem(){
+
+        Item item = this.drop;
+        if (player.howManyItemsInInv()==12) {
+            gameworld.ui.mainTextArea.setText("You're carrying TOO MANY ITEMS and can't fit the " +
+                    item.getName().toUpperCase() + " in your bag. Maybe if you THROW something OUT...?");
+
+            gameworld.ui.choice1.setText(">");
+            gameworld.ui.choice2.setText("");
+            gameworld.ui.choice3.setText("");
+            gameworld.ui.choice4.setText("");
+
+            gameworld.nextPosition1 = "MOUNTAINS_DROP";
+            gameworld.nextPosition2 = "";
+            gameworld.nextPosition3 = "";
+            gameworld.nextPosition4 = "";
+        }
+        else{
+            gameworld.ui.mainTextArea.setText("You manage to fit the " +
+                    item.getName().toUpperCase() + " in your bag. Nice!");
+
+            player.take(item);
+
+            gameworld.ui.choice1.setText(">");
+            gameworld.ui.choice2.setText("");
+            gameworld.ui.choice3.setText("");
+            gameworld.ui.choice4.setText("");
+
+            gameworld.nextPosition1 = "MOUNTAINS";
+            gameworld.nextPosition2 = "";
+            gameworld.nextPosition3 = "";
+            gameworld.nextPosition4 = "";
+        }
+
     }
 }
 

@@ -93,14 +93,27 @@ public class Plains {
             gameworld.nextPosition3 = "";
             gameworld.nextPosition4 = "";
         }
-        else if (enemy.getHp() < 1) {
+        else if (enemy.getHp() < 1) {    // DEAD ENEMY
+            String lvlUp = "";
+            float receivedExp = enemy.getExp()/20;
+            if (receivedExp + player.expWithoutLevel()>=1) lvlUp = "You feel more confident. You're pretty sure your THREAT RATING just went up!";
             gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
                     "The " + enemy.getRace().toUpperCase() + " is DEAD.\n" +
-                    "You WON the fight!");
+                    "You WON the fight!\n" +
+                    "\nYou think you can sell parts from the DEAD " + enemy.getRace().toUpperCase() +
+                    " for about " + enemy.getMoney() + " GOLD COINS.\n\n" +
+                    lvlUp);
+            player.addExp(receivedExp);
+            player.addMoney(enemy.getMoney());
 
             if (!gameworld.fromInventory){
                 // dead enemy does not deal dmg
                 player.addHp(attack2);
+            }
+            if (gameworld.fromInventory){
+                //no double rewards
+                player.lowerExp(receivedExp);
+                player.lowerMoney(enemy.getMoney());
             }
 
             gameworld.ui.choice1.setText("LOOK for MORE");
@@ -112,7 +125,7 @@ public class Plains {
             gameworld.nextPosition2 = "FIGHT_CHOOSE";
             gameworld.nextPosition3 = "";
             gameworld.nextPosition4 = "";
-        }
+        }                                   //END DEAD ENEMY
         else {
             gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
                     "The "+ enemy.getName().toUpperCase() + " hurt you for " + attack2 + " DMG.\n" +
@@ -129,6 +142,7 @@ public class Plains {
             gameworld.nextPosition4 = "";
         }
         gameworld.vm.updateCurrentHPLabel(player.getHp()); //UPDATE HP
+        player.updateMaxHp();
     }
 }
 

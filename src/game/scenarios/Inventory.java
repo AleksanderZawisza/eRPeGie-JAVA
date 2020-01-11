@@ -1,6 +1,5 @@
 package game.scenarios;
 
-import game.engine.Helper;
 import game.item.*;
 import game.item.armor.*;
 import game.state.GameWorld;
@@ -47,11 +46,12 @@ public class Inventory {
         gameworld.vm.showInventory();
         gameworld.vm.changeBackButtonToExit();
 
-        while (i < gameworld.player.inventory.size() ) {
+        while (i < gameworld.player.howManyItemsInInv() ) {
             gameworld.ui.inventoryChoiceButtons[i].setText((i+1) + ". " +
                     gameworld.player.getItemFromInv(i).getName().substring(0,1).toUpperCase() +
                     gameworld.player.getItemFromInv(i).getName().substring(1) );
             gameworld.ui.inventoryChoiceButtons[i].setActionCommand("I" + i);
+            gameworld.ui.inventoryChoiceButtons[i].setBorderPainted(true);
             i++;
         }
         while (i < 12 ) {
@@ -190,15 +190,15 @@ public class Inventory {
 
         gameworld.player.yeetItemFromInv(this.lastLooked);
 
-        gameworld.ui.choice1.setText(">");
+        gameworld.ui.choice1.setText("");
         gameworld.ui.choice2.setText("");
         gameworld.ui.choice3.setText("");
-        gameworld.ui.choice4.setText("");
+        gameworld.ui.choice4.setText(">");
 
-        gameworld.nextPosition1 = "INVENTORY";
+        gameworld.nextPosition1 = "";
         gameworld.nextPosition2 = "";
         gameworld.nextPosition3 = "";
-        gameworld.nextPosition4 = "";
+        gameworld.nextPosition4 = "INVENTORY";
     }
 
     public void lookNext(){
