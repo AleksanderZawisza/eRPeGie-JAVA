@@ -48,8 +48,10 @@ public class Inventory {
 
         while (i < gameworld.player.howManyItemsInInv() ) {
             gameworld.ui.inventoryChoiceButtons[i].setText((i+1) + ". " +
-                    gameworld.player.getItemFromInv(i).getName().substring(0,1).toUpperCase() +
-                    gameworld.player.getItemFromInv(i).getName().substring(1) );
+                     gameworld.player.getItemFromInv(i).getName().toUpperCase()
+                    //gameworld.player.getItemFromInv(i).getName().substring(0,1).toUpperCase()
+                    //+ gameworld.player.getItemFromInv(i).getName().substring(1)
+            );
             gameworld.ui.inventoryChoiceButtons[i].setActionCommand("I" + i);
             gameworld.ui.inventoryChoiceButtons[i].setBorderPainted(true);
             i++;
