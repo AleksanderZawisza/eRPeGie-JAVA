@@ -15,7 +15,7 @@ public class Tavern {
 
     public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
 
-        gameworld.ui.mainTextArea.setText("You manage to find the TAVERN. You see [RANDOM PERSON/GROUP] in the corner. The barmaid looks [EMOTION]. [OPTIONAL DESCRIPTION?].\n" +
+        gameworld.ui.mainTextArea.setText("You manage to find the TAVERN. You see [RANDOM PERSON/GROUP] in the corner. The barmaid looks [EMOTION]. [OPTIONAL DESCRIPTION?].<br>" +
                 "It's time to...");
 
         gameworld.ui.choice1.setText("Buy yourself a STIFF DRINK");
@@ -49,9 +49,9 @@ public class Tavern {
     public void rest(){ // save + generator opisów DO ZAIMPLEMENTOWANIA
 
         gameworld.ui.mainTextArea.setText("You rent a room and decide to TAKE A BREATHER for the rest of the day." +
-                "\nYou lie down and MAKE AN ENTRY in your JOURNAL.\n" + "Your bed is [DESCRIPTION].\n" +
-                "You hear [SOUND] in the background.\n" + "The pillows are [DESCRIPTION].\n" +
-                "...\n" + "Rise and shine! It's a NEW DAY. The SUN is UP and SO ARE YOU. You get up and GET OUT.\n");
+                "<br>You lie down and MAKE AN ENTRY in your JOURNAL.<br>" + "Your bed is [DESCRIPTION].<br>" +
+                "You hear [SOUND] in the background.<br>" + "The pillows are [DESCRIPTION].<br>" +
+                "...<br>" + "Rise and shine! It's a NEW DAY. The SUN is UP and SO ARE YOU. You get up and GET OUT.<br>");
 
         player.setHp(player.getMaxhp());    // HEALOWANIE I UPDATE HP
         gameworld.vm.updateCurrentHPLabel(player.getHp());

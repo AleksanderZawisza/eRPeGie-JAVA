@@ -19,24 +19,24 @@ public class Inventory {
         gameworld.vm.showCharacterSheet();
         gameworld.ui.characterStatsArea.setText(
                 "Current stats:" +
-                "\n\nAttack: " + gameworld.player.getAttack() +
-                "\nMax HP: " + gameworld.player.getMaxhp() +
-                "\nArmor: " + gameworld.player.getArmor() +
-                "\nTHREAT RATING: " + (int) gameworld.player.getExp() +
-                "\nGold coins: " + gameworld.player.getMoney() +
-                "\nKills today: " + "?" + //TODO
-                "\n\nCurrent goals:\n" +
-                "\nKill things." +
-                "\nDon't get killed." +
-                "\nHave fun! :)" //TODO
+                "<br><br>Attack: " + gameworld.player.getAttack() +
+                "<br>Max HP: " + gameworld.player.getMaxhp() +
+                "<br>Armor: " + gameworld.player.getArmor() +
+                "<br>THREAT RATING: " + (int) gameworld.player.getExp() +
+                "<br>Gold coins: " + gameworld.player.getMoney() +
+                "<br>Kills today: " + "?" + //TODO
+                "<br><br>Current goals:<br>" +
+                "<br>Kill things." +
+                "<br>Don't get killed." +
+                "<br>Have fun! (◦'⌣'◦)" //TODO
         );
         gameworld.ui.characterEqArea.setText(
                 "Equipped items:" +
-                "\n\nWeapon: " + gameworld.player.weapon.getName().toUpperCase() + " (+" +  gameworld.player.weapon.getDamage() + ")" +
-                "\n\nHead: " + gameworld.player.head.getName().toUpperCase() + " (+" +  gameworld.player.head.getDefence() + ")" +
-                "\n\nTorso: " + gameworld.player.torso.getName().toUpperCase() + " (+" +  gameworld.player.torso.getDefence() + ")" +
-                "\n\nArms: " + gameworld.player.arms.getName().toUpperCase() + " (+" +  gameworld.player.arms.getDefence() + ")" +
-                "\n\nLegs: " + gameworld.player.legs.getName().toUpperCase() + " (+" +  gameworld.player.legs.getDefence() + ")"
+                "<br><br>Weapon: " + gameworld.player.weapon.getName().toUpperCase() + " (+" +  gameworld.player.weapon.getDamage() + ")" +
+                "<br><br>Head: " + gameworld.player.head.getName().toUpperCase() + " (+" +  gameworld.player.head.getDefence() + ")" +
+                "<br><br>Torso: " + gameworld.player.torso.getName().toUpperCase() + " (+" +  gameworld.player.torso.getDefence() + ")" +
+                "<br><br>Arms: " + gameworld.player.arms.getName().toUpperCase() + " (+" +  gameworld.player.arms.getDefence() + ")" +
+                "<br><br>Legs: " + gameworld.player.legs.getName().toUpperCase() + " (+" +  gameworld.player.legs.getDefence() + ")"
 
         );
     }
@@ -71,9 +71,9 @@ public class Inventory {
 
         if (item instanceof Weapon) {
             gameworld.ui.mainTextArea.setText(tmpText +
-                    "\n\nAttack: +" + ((Weapon) item).getDamage() +
-                    "\nWorn weapon's attack: +" + gameworld.player.weapon.getDamage() +
-                    "\nWorth: " + item.getPrice() + " GOLD COINS"
+                    "<br><br>Attack: +" + ((Weapon) item).getDamage() +
+                    "<br>Worn weapon's attack: +" + gameworld.player.weapon.getDamage() +
+                    "<br>Worth: " + item.getPrice() + " GOLD COINS"
             );
         }
         if (item instanceof Armor){
@@ -84,17 +84,17 @@ public class Inventory {
             if (item instanceof Head) tmp = gameworld.player.head;
 
             gameworld.ui.mainTextArea.setText(tmpText +
-                    "\n\nDefence: +" + ((Armor) item).getDefence() +
-                    "\nWorn armor's defence: +" + tmp.getDefence() +
-                    "\nWorth: " + item.getPrice() + " GOLD COINS"
+                    "<br><br>Defence: +" + ((Armor) item).getDefence() +
+                    "<br>Worn armor's defence: +" + tmp.getDefence() +
+                    "<br>Worth: " + item.getPrice() + " GOLD COINS"
             );
         }
         if (item instanceof Healing) {
 
             gameworld.ui.mainTextArea.setText(tmpText +
-                    "\n\nRestoration: " + ((Healing) item).getRestore() +
-                    "\nCurrent missing HP: " + (gameworld.player.getMaxhp()-gameworld.player.getHp()) +
-                    "\nWorth: " + item.getPrice() + " GOLD COINS"
+                    "<br><br>Restoration: " + ((Healing) item).getRestore() +
+                    "<br>Current missing HP: " + (gameworld.player.getMaxhp()-gameworld.player.getHp()) +
+                    "<br>Worth: " + item.getPrice() + " GOLD COINS"
             );
         }
 

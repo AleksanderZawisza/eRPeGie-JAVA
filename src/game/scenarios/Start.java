@@ -1,6 +1,8 @@
 package game.scenarios;
 
 import game.creature.Player;
+import game.item.*;
+import game.item.armor.*;
 import game.state.GameWorld;
 
 
@@ -20,19 +22,20 @@ public class Start {
         gameworld.vm.updateCurrentHPLabel(player.getHp());
 
         /* EW DO IMPLEMENTACJI
-        System.out.print("\n" + savename + ", right? [Y/N]\n> ");
+        System.out.print("<br>" + savename + ", right? [Y/N]<br>> ");
         String answer = input.nextLine();
         answer = answer.toLowerCase();
         while (!answer.toLowerCase().startsWith("y")) {
-            System.out.print("\nWell then, what is it?\n> ");
+            System.out.print("<br>Well then, what is it?<br>> ");
             savename = input.nextLine();
             savename = savename.toUpperCase();
-            System.out.print("\n" + savename + "? [Y/N]\n> ");
+            System.out.print("<br>" + savename + "? [Y/N]<br>> ");
             answer = input.nextLine();
             answer = answer.toLowerCase();
         }  // savename - do wczytywania save'ow DO ZAIMPLEMENTOWANIA
         */
     }
+
 
     public void description() {
 
@@ -43,20 +46,30 @@ public class Start {
         player.setHp(player.getMaxhp());
         gameworld.vm.updateCurrentHPLabel(player.getHp());
 
+
         if (player.savename.equals("FARTMASTER")) {
+            player.inventory.add(new Weapon("poop on a stick", 1, 1));
             gameworld.ui.mainTextArea.setText("Fine then, be like that." +
-            "\nYour NAME now is " + player.savename + ", and that's the NAME you're going to have TILL YOU DIE." +
-            "\nGOOD LUCK on your adventure, " + player.savename + "!");
+            "<br>Your NAME now is " + player.savename + ", and that's the NAME you're going to have TILL YOU DIE." +
+            "<br>Have fun with that, dumbass.");
             gameworld.ui.choice1.setText("Uh oh");
+            if (player.fartmasterCount>=4){
+                gameworld.ui.mainTextArea.setText("<center>Why are you like this</center>");
+                gameworld.ui.choice1.setText("¯\\_(ツ)_/¯");
+            }
         }
+        else if (player.savename.equals("TESTMASTER")) {
+            player.inventory.add(new Weapon("ak-47", 9000, 420));
+            player.inventory.add(new Head("cool shades", 9000, 6969));
+            gameworld.ui.mainTextArea.setText("Sweet shades, bro." +
+                    "<br>Happy hunting " + player.savename + "!");
+            gameworld.ui.choice1.setText("Sure");
+        } //cheaty
         else {
             gameworld.ui.mainTextArea.setText("Your NAME now is " + player.savename + "." +
-                    "\nGOOD LUCK on your adventure, " + player.savename + "!");
+                    "<br>GOOD LUCK on your quest, " + player.savename + "!");
             gameworld.ui.choice1.setText("Yeah!");
         }
-        //It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].\n" +
-        //"You have a fondness for [HOBBY] and are an ASPIRING [JOB]. You like to [HOBBY] but are NOT VERY GOOD AT IT. \n" +
-          //      "You also enjoy KILLING THINGS sometimes.
 
         gameworld.ui.choice2.setText("");
         gameworld.ui.choice3.setText("");
@@ -67,6 +80,6 @@ public class Start {
         gameworld.nextPosition3 = "";
         gameworld.nextPosition4 = "";
 
-        gameworld.vm.showChoices();
+        gameworld.vm.showChoicesWithoutPlayerPanel();
 }
 }

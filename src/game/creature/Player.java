@@ -29,6 +29,7 @@ public class Player extends Creature {
     private int defaultExp = 0;
     private int defaultMoney = 0;
     private ArrayList<Item> defaultInventory = new ArrayList();
+    public int fartmasterCount;
 
 
     public Player(){
@@ -166,10 +167,7 @@ public class Player extends Creature {
         this.exp = defaultExp;
         this.money = defaultMoney;
         this.inventory.clear();
-        for (int i=0; i<5 ; i++) {inventory.add(ItemGenerator.newItem());}
-        for (int i=0; i<2 ; i++) {inventory.add(HealingGenerator.newHealing());}
-        inventory.add(new Weapon("AK-47", 9000,420));
-        inventory.add(new Head("cool shades", 9000, 69)); //cheaty dla cheaterów
+        this.inventory = defaultInventory;
     }
 
     public float expWithoutLevel(){

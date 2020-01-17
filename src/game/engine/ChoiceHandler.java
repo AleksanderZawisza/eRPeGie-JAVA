@@ -30,17 +30,19 @@ public class ChoiceHandler implements ActionListener{
                 if (text.equals("") || text.equals(" ") || text.equals("  ") || text.equals("   ") || text.equals("   ")) {
                     gameworld.ui.nameTextLabel.setText("...Could use a little more CREATIVITY.");
                     bullshitCount++;
-                    if (bullshitCount>=3) {
+                    if (bullshitCount>=2) {
                         gameworld.ui.nameTextLabel.setText("C'mon, I'm not asking for much here.");}
-                    if (bullshitCount>=9) {
+                    if (bullshitCount>=3) {
                         gameworld.ui.nameTextLabel.setText("Really now?");}
-                    if (bullshitCount>=16) {
+                    if (bullshitCount>=4) {
                         gameworld.ui.nameTextLabel.setText("So what's it gonne be, FARTMASTER?");
-                        gameworld.player.setSavename("fartmaster");
+                        gameworld.player.setSavename("FARTMASTER");
                         gameworld.selectPosition("DESCRIPTION");
                         }
+                    gameworld.player.fartmasterCount = bullshitCount;
                     break; }
                 gameworld.player.setSavename(text);
+                gameworld.player.fartmasterCount = bullshitCount;
                 gameworld.selectPosition("DESCRIPTION");
                 break;
 
@@ -86,6 +88,8 @@ public class ChoiceHandler implements ActionListener{
                 gameworld.fromInventory = true;
                 gameworld.vm.showChoices();
                 gameworld.selectPosition(gameworld.inventory.getLastPosition());
+                break;
+
         }
 
         if (choice.contains("I")) {

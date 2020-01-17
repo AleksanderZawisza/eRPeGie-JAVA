@@ -12,7 +12,10 @@ public class Town {
 
     public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
 
-        gameworld.ui.mainTextArea.setText("You are currently in TOWN. It is [WEATHER]. The poeple around seem [EMOTION]. [OPTIONAL DESCRIPTION?].");
+        gameworld.vm.showChoices();
+
+        gameworld.ui.mainTextArea.setText("You are currently in <font color='red'>TOWN</font>. It is [WEATHER]. " +
+                "The poeple around seem [EMOTION]. [OPTIONAL DESCRIPTION?].");
 
         gameworld.ui.choice1.setText("Find the TAVERN");
         gameworld.ui.choice2.setText("Go to the SHOP");
@@ -27,8 +30,8 @@ public class Town {
 
     public void contemplate() {
 
-        gameworld.ui.mainTextArea.setText("Your NAME is [NAME]. It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].\n"+
-                "You have a fondness for [HOBBY] and are an ASPIRING [JOB]. You like to [HOBBY] but are NOT VERY GOOD AT IT.\n" +
+        gameworld.ui.mainTextArea.setText("Your NAME is [NAME]. It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].<br>"+
+                "You have a fondness for [HOBBY] and are an ASPIRING [JOB]. You like to [HOBBY] but are NOT VERY GOOD AT IT.<br>" +
                 "You also enjoy KILLING THINGS sometimes.");
 
         gameworld.ui.choice1.setText("Get me THE HELL OUT OF HERE");

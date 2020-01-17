@@ -25,6 +25,23 @@ public class VisibilityManager {
         ui.goBackPanel.setVisible(false);
     }
 
+    public  void showChoicesWithoutPlayerPanel(){
+
+        ui.titleNamePanel.setVisible(false);
+        ui.startButtonPanel.setVisible(false);
+
+        ui.mainTextPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(true);
+        ui.playerPanel.setVisible(false);
+
+        ui.inputPanel.setVisible(false);
+        ui.nameTextPanel.setVisible(false);
+
+        ui.inventoryPanel.setVisible(false);
+        ui.characterPanel.setVisible(false);
+        ui.goBackPanel.setVisible(false);
+    }
+
     public  void showChoicesForLookingAtShit(){
 
         ui.titleNamePanel.setVisible(false);

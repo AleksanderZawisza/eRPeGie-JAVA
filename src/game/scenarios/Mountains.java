@@ -30,7 +30,7 @@ public class Mountains {
         }
         gameworld.ui.mainTextArea.setText("You are now in the MOUNTAINS. It is [WEATHER]. You see a " +
                 enemy.getName().toUpperCase() + "." +
-                "\nYou decide to:");
+                "<br>You decide to:");
 
         gameworld.ui.choice1.setText("GET CLOSER to this creature");
         gameworld.ui.choice2.setText("SEARCH for other enemies");
@@ -47,7 +47,7 @@ public class Mountains {
 
         enemy = GameWorld.currentEnemy;
         if (enemy.isSentient()) this.drop = enemy.getRandomDrop();
-        gameworld.ui.mainTextArea.setText("The " + enemy.getRace().toUpperCase() + " looks nervous.\n" +
+        gameworld.ui.mainTextArea.setText("The " + enemy.getRace().toUpperCase() + " looks nervous.<br>" +
                 "What do you do now?");
 
         gameworld.ui.choice1.setText("ATTACK");
@@ -82,8 +82,8 @@ public class Mountains {
         if (player.getHp() < 1) {
 
             gameworld.ui.mainTextArea.setText("The "+ enemy.getName().toUpperCase() + " hurt you for "
-                    + attack2 + " DMG.\n" +
-                    "You DIED.\n" +
+                    + attack2 + " DMG.<br><br>" +
+                    "You DIED.<br><br>" +
                     "GAME OVER");
 
             gameworld.ui.choice1.setText("Start a NEW GAME");
@@ -99,7 +99,7 @@ public class Mountains {
         else if (enemy.getHp() < 1) {    // DEAD ENEMY
             String lvlUp = "";
             String moneyOrItem = "You think you can sell parts from the DEAD " + enemy.getRace().toUpperCase() +
-                    " for about " + enemy.getMoney() + " GOLD COINS.\n\n";
+                    " for about " + enemy.getMoney() + " GOLD COINS.<br><br>";
 
             float receivedExp = enemy.getExp()/20;
             if (receivedExp + player.expWithoutLevel()>=1) lvlUp = "You feel more confident. You're pretty sure your THREAT RATING just went up!";
@@ -109,12 +109,12 @@ public class Mountains {
                 String plural = "s";
                 if (item.getName().endsWith("s")) plural = "";
                 moneyOrItem = "You think the DEAD " + enemy.getRace().toUpperCase() + "'S " +
-                        item.getName().toUpperCase() + " look"+ plural +" pretty serviceable.\n\n";
+                        item.getName().toUpperCase() + " look"+ plural +" pretty serviceable.<br><br>";
             }
 
-            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
-                    "The " + enemy.getRace().toUpperCase() + " is DEAD.\n" +
-                    "You WON the fight!\n\n" +
+            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.<br>" +
+                    "The " + enemy.getRace().toUpperCase() + " is DEAD.<br>" +
+                    "You WON the fight!<br><br>" +
                     moneyOrItem +
                     lvlUp);
 
@@ -164,8 +164,8 @@ public class Mountains {
             }
         }                                   //END DEAD ENEMY
         else {
-            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
-                    "The "+ enemy.getName().toUpperCase() + " hurt you for " + attack2 + " DMG.\n" +
+            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.<br>" +
+                    "The "+ enemy.getName().toUpperCase() + " hurt you for " + attack2 + " DMG.<br>" +
                     "This " + enemy.getRace().toUpperCase() + " has " + enemy.getHp() + " HP now.");
 
             gameworld.ui.choice1.setText("ATTACK");
@@ -187,9 +187,9 @@ public class Mountains {
         tmpText = "You inspect the " + item.getName().toUpperCase() + ".";
         if (item instanceof Weapon) {
             gameworld.ui.mainTextArea.setText(tmpText +
-                    "\n\nAttack: +" + ((Weapon) item).getDamage() +
-                    "\nWorn weapon's attack: +" + gameworld.player.weapon.getDamage() +
-                    "\nWorth: " + item.getPrice() + " GOLD COINS"
+                    "<br><br>Attack: +" + ((Weapon) item).getDamage() +
+                    "<br>Worn weapon's attack: +" + gameworld.player.weapon.getDamage() +
+                    "<br>Worth: " + item.getPrice() + " GOLD COINS"
             );
         }
         if (item instanceof Armor){
@@ -200,16 +200,16 @@ public class Mountains {
             if (item instanceof Head) tmp = gameworld.player.head;
 
             gameworld.ui.mainTextArea.setText(tmpText +
-                    "\n\nDefence: +" + ((Armor) item).getDefence() +
-                    "\nWorn armor's defence: +" + tmp.getDefence() +
-                    "\nWorth: " + item.getPrice() + " GOLD COINS"
+                    "<br><br>Defence: +" + ((Armor) item).getDefence() +
+                    "<br>Worn armor's defence: +" + tmp.getDefence() +
+                    "<br>Worth: " + item.getPrice() + " GOLD COINS"
             );
         }
         if (item instanceof Healing) {
             gameworld.ui.mainTextArea.setText(tmpText +
-                    "\n\nRestoration: " + ((Healing) item).getRestore() +
-                    "\nCurrent missing HP: " + (gameworld.player.getMaxhp()-gameworld.player.getHp()) +
-                    "\nWorth: " + item.getPrice() + " GOLD COINS"
+                    "<br><br>Restoration: " + ((Healing) item).getRestore() +
+                    "<br>Current missing HP: " + (gameworld.player.getMaxhp()-gameworld.player.getHp()) +
+                    "<br>Worth: " + item.getPrice() + " GOLD COINS"
             );
         }
 

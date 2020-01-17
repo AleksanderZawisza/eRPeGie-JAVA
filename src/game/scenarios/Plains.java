@@ -28,7 +28,7 @@ public class Plains {
 
         gameworld.ui.mainTextArea.setText("You are now in the PLAINS. It is [WEATHER]. You see a " +
                 enemy.getName().toUpperCase() + "." +
-                "\nYou decide to:");
+                "<br>You decide to:");
 
         gameworld.ui.choice1.setText("GET CLOSER to this creature");
         gameworld.ui.choice2.setText("SEARCH for other enemies");
@@ -44,7 +44,7 @@ public class Plains {
     public void fightChoose(){
 
         enemy = GameWorld.currentEnemy;
-        gameworld.ui.mainTextArea.setText("The " + enemy.getRace().toUpperCase() + " looks nervous.\n" +
+        gameworld.ui.mainTextArea.setText("The " + enemy.getRace().toUpperCase() + " looks nervous.<br>" +
                 "What do you do now?");
 
         gameworld.ui.choice1.setText("ATTACK");
@@ -79,8 +79,8 @@ public class Plains {
         if (player.getHp() < 1) {
 
             gameworld.ui.mainTextArea.setText("The "+ enemy.getName().toUpperCase() + " hurt you for "
-                    + attack2 + " DMG.\n" +
-                    "You DIED.\n" +
+                    + attack2 + " DMG.<br><br>" +
+                    "You DIED.<br><br>" +
                     "GAME OVER");
 
             gameworld.ui.choice1.setText("Start a NEW GAME");
@@ -97,11 +97,11 @@ public class Plains {
             String lvlUp = "";
             float receivedExp = enemy.getExp()/20;
             if (receivedExp + player.expWithoutLevel()>=1) lvlUp = "You feel more confident. You're pretty sure your THREAT RATING just went up!";
-            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
-                    "The " + enemy.getRace().toUpperCase() + " is DEAD.\n" +
-                    "You WON the fight!\n" +
-                    "\nYou think you can sell parts from the DEAD " + enemy.getRace().toUpperCase() +
-                    " for about " + enemy.getMoney() + " GOLD COINS.\n\n" +
+            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.<br>" +
+                    "The " + enemy.getRace().toUpperCase() + " is DEAD.<br>" +
+                    "You WON the fight!<br>" +
+                    "<br>You think you can sell parts from the DEAD " + enemy.getRace().toUpperCase() +
+                    " for about " + enemy.getMoney() + " GOLD COINS.<br><br>" +
                     lvlUp);
             player.addExp(receivedExp);
             player.addMoney(enemy.getMoney());
@@ -127,8 +127,8 @@ public class Plains {
             gameworld.nextPosition4 = "";
         }                                   //END DEAD ENEMY
         else {
-            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.\n" +
-                    "The "+ enemy.getName().toUpperCase() + " hurt you for " + attack2 + " DMG.\n" +
+            gameworld.ui.mainTextArea.setText("You dealt " + attack1 + " DMG.<br>" +
+                    "The "+ enemy.getName().toUpperCase() + " hurt you for " + attack2 + " DMG.<br>" +
                     "This " + enemy.getRace().toUpperCase() + " has " + enemy.getHp() + " HP now.");
 
             gameworld.ui.choice1.setText("ATTACK");

@@ -25,7 +25,7 @@ public class ItemGeneratorTest {
         System.out.println( testItem2 );
 
         //priceRange + has sword in its name
-        Item testItem3 = ItemGenerator.newItemPriceRangeAndName(0, 10, "sword");
+        Item testItem3 = ItemGenerator.newItemPriceRangeAndName(5, 10, "sword");
         System.out.println( testItem3 );
 
         //priceRange Armor

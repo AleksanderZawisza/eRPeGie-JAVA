@@ -63,37 +63,37 @@ public class EnemyGenerator {
         String[] desc2 = {"completely average", "typical", "female", "male", "boringly ordinary", "suspicious-looking"};
 
         enemy.setPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeArmor(0, enemy.getMoney()),
-                ItemGenerator.newItemPriceRangeArmor(0, enemy.getMoney()),
-                ItemGenerator.newItemPriceRangeArmor(0, enemy.getMoney()),
-                ItemGenerator.newItemPriceRangeArmor(0, enemy.getMoney()) ));
+                ItemGenerator.newItemPriceRangeArmor((int) enemy.getMoney()/2, enemy.getMoney()),
+                ItemGenerator.newItemPriceRangeArmor((int) enemy.getMoney()/2, enemy.getMoney()),
+                ItemGenerator.newItemPriceRangeArmor((int) enemy.getMoney()/2, enemy.getMoney()),
+                ItemGenerator.newItemPriceRangeArmor((int) enemy.getMoney()/2, enemy.getMoney()) ));
 
         String myDesc = desc[rand.nextInt(desc.length)];
         enemy.setName(enemy.getRace() + myDesc);
         switch(myDesc)
         {   case " ranger": enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney(), "dagger")  ));
+                ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney(), "dagger")  ));
                 enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1);    break;
             case " hunter": enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney(), "knife")  ));
+                ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney(), "knife")  ));
                 enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
             case " warrior": enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeWeapon(0, enemy.getMoney()*2)  ));
+                ItemGenerator.newItemPriceRangeWeapon((int) enemy.getMoney()/2, enemy.getMoney()*2)  ));
                 enemy.addAttack((int) enemy.getAttack()/5 +1); enemy.addExp(2); break;
             case " swordsman":  enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney(), "sword")  ));
+                ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney(), "sword")  ));
                 enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
             case " spearman":  enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney()+10, "spear")  ));
+                ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney()+10, "spear")  ));
                 enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
             case " axeman":  enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney()+5, "axe")  ));
+                ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney()+5, "axe")  ));
                 enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
             case " soldier":  enemy.addPossibleDrop(Arrays.asList(
-                    ItemGenerator.newItemPriceRangeAndName(0, enemy.getMoney()+15, "halberd")  ));
+                    ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney()+15, "halberd")  ));
                 enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
             default: enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeWeapon(0, enemy.getMoney()/2 + 5)  ));
+                ItemGenerator.newItemPriceRangeWeapon((int) enemy.getMoney()/8, enemy.getMoney()/2 + 5)  ));
                 enemy.setName(desc2[rand.nextInt(desc2.length)]+ " " + enemy.getRace()); break;
         }
         return enemy;
@@ -184,9 +184,10 @@ public class EnemyGenerator {
         forestSentients.add(new Enemy("black hobgoblin", 120,45,55,31,40));
         forestSentients.add(new Enemy("gnoll", 90,40,85,32,60));
         forestSentients.add(new Enemy("lizardman", 160,60,50,34,50));
-        forestSentients.add(new Enemy("green orc", 200,60,80,37,90));
+        forestSentients.add(new Enemy("green ogre", 200,60,80,37,90));
         forestSentients.add(new Enemy("wood elf", 180,40,120,40,100));
-        forestSentients.add(new Enemy("tauren", 280,100,100,48,100));
+        forestSentients.add(new Enemy("faun", 250,80,110,43,120));
+        forestSentients.add(new Enemy("werewolf", 300,100,130,48,150));
         return forestSentients;
     }
 
@@ -276,16 +277,16 @@ public class EnemyGenerator {
         ArrayList<Enemy> mountainSentients = new ArrayList<>();
         mountainSentients.add(new Enemy("mountain kobold", 100,40,45,30,40));
         mountainSentients.add(new Enemy("white gnoll", 140,50,85,38,70));
-        mountainSentients.add(new Enemy("half-dragon", 200,80,95,44,100));
+        mountainSentients.add(new Enemy("snow elf", 200,80,95,44,100));
         mountainSentients.add(new Enemy("mountain dwarf", 220,100,105,48,100));
-        mountainSentients.add(new Enemy("goliath", 300,130,145,53,120));
-        mountainSentients.add(new Enemy("troll", 400,150,155,57,150));
-        mountainSentients.add(new Enemy("firbolg", 550,160,170,62,200));
-        mountainSentients.add(new Enemy("ettin", 550,165,190,66,230));
-        mountainSentients.add(new Enemy("cloud giant", 650,180,200,70,280));
-        mountainSentients.add(new Enemy("mountain giant", 800,200,240,76,320));
+        mountainSentients.add(new Enemy("tauren", 300,130,145,53,120));
+        mountainSentients.add(new Enemy("frostling", 400,150,155,57,150));
+        mountainSentients.add(new Enemy("half-dragon", 500,160,170,62,200));
+        mountainSentients.add(new Enemy("goliath", 550,165,190,66,230));
+        mountainSentients.add(new Enemy("firbolg", 650,180,200,70,280));
+        mountainSentients.add(new Enemy("storm giant", 800,200,240,76,320));
         mountainSentients.add(new Enemy("frost titan", 1000,280,300,85,420));
-        mountainSentients.add(new Enemy("angel", 1200,400,440,92,800));
+        mountainSentients.add(new Enemy("nephilim", 1200,400,440,92,800));
         return mountainSentients;
     }
 

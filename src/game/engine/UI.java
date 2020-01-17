@@ -2,6 +2,8 @@ package game.engine;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class UI {
 
@@ -12,12 +14,36 @@ public class UI {
     Font titleFont = new Font("Monospaced", Font.PLAIN, 90);
     Font normalFont = new Font("Monospaced", Font.PLAIN, 19);
     Font smallFont = new Font("Monospaced", Font.PLAIN, 14);
-    public JButton startButton, choice1, choice2, choice3, choice4, enterB, inventoryButton, characterButton, goBackButton;
-    public JTextArea mainTextArea, characterStatsArea, characterEqArea;
+    Font smallMediumFont = new Font("Monospaced", Font.PLAIN, 17);
+    Font smallMediumPlusFont = new Font("Monospaced", Font.PLAIN, 18);
+    Font pixelFont, pixelFontS, pixelFontSM, pixelFontL, pixelFontSMPlus, pixelEndFont;
+    public JButton startButton, choice1, choice2, choice3, choice4, enterB, inventoryButton, characterButton, goBackButton, playerPaneMiddleButton;
+    public JTextPane mainTextArea, characterStatsArea, characterEqArea;
     public JTextField jtf;
     public JButton[] inventoryChoiceButtons;
 
     public void createUI(ChoiceHandler cHandler) {
+
+        try {
+            pixelFont = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(22f);
+            pixelFontS = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(16f);
+            pixelFontSM = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(20f);
+            pixelFontL = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(110f);
+            pixelFontSMPlus = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(21f);
+            pixelEndFont = Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")).deriveFont(18f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
+        }
+        catch (IOException | FontFormatException e){
+        }
+
+        //PIXEL FONT
+        normalFont = pixelFont;
+        smallFont = pixelFontS;
+        titleFont = pixelFontL;
+        smallMediumFont = pixelFontSM;
+        smallMediumPlusFont = pixelFontSMPlus;
+
 
         // WINDOW
         window = new JFrame();
@@ -32,7 +58,7 @@ public class UI {
         titleNamePanel = new JPanel();
         titleNamePanel.setBounds(100, 100, 600, 150);
         titleNamePanel.setBackground(Color.black);
-        titleNameLabel = new JLabel("RPG GAME");
+        titleNameLabel = new JLabel("<html><font color='red'>GOD</font>QUEST</html>");
         titleNameLabel.setFont(titleFont);
         titleNameLabel.setForeground(Color.white);
         titleNamePanel.add(titleNameLabel);
@@ -57,15 +83,17 @@ public class UI {
         mainTextPanel.setBounds(100, 100, 600, 250);
         mainTextPanel.setBackground(Color.black);
 
-        mainTextArea = new JTextArea("main text");
+        mainTextArea = new JTextPane();
         mainTextArea.setBounds(100, 100, 600, 250);
         mainTextArea.setBackground(Color.black);
         mainTextArea.setForeground(Color.white);
         mainTextArea.setFont(normalFont);
-        mainTextArea.setLineWrap(true);
-        mainTextArea.setWrapStyleWord(true);
         mainTextArea.setEditable(false);
+        mainTextArea.setContentType("text/html");
+        mainTextArea.setPreferredSize(new Dimension(600, 250));
+        mainTextArea.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
         mainTextPanel.add(mainTextArea);
+
 
         window.add(mainTextPanel);
 
@@ -77,7 +105,7 @@ public class UI {
         choice1 = new JButton("Choice 1");
         choice1.setBackground(Color.black);
         choice1.setForeground(Color.white);
-        choice1.setFont(normalFont);
+        choice1.setFont(smallMediumFont);
         choice1.setFocusPainted(false);
         choice1.setOpaque(false);
         choice1.addActionListener(cHandler);
@@ -87,7 +115,7 @@ public class UI {
         choice2 = new JButton("Choice 2");
         choice2.setBackground(Color.black);
         choice2.setForeground(Color.white);
-        choice2.setFont(normalFont);
+        choice2.setFont(smallMediumFont);
         choice2.setFocusPainted(false);
         choice2.setOpaque(false);
         choice2.addActionListener(cHandler);
@@ -97,7 +125,7 @@ public class UI {
         choice3 = new JButton("Choice 3");
         choice3.setBackground(Color.black);
         choice3.setForeground(Color.white);
-        choice3.setFont(normalFont);
+        choice3.setFont(smallMediumFont);
         choice3.setFocusPainted(false);
         choice3.setOpaque(false);
         choice3.addActionListener(cHandler);
@@ -107,7 +135,7 @@ public class UI {
         choice4 = new JButton("Choice 4");
         choice4.setBackground(Color.black);
         choice4.setForeground(Color.white);
-        choice4.setFont(normalFont);
+        choice4.setFont(smallMediumFont);
         choice4.setFocusPainted(false);
         choice4.setOpaque(false);
         choice4.addActionListener(cHandler);
@@ -122,9 +150,9 @@ public class UI {
         window.add(choiceButtonPanel);
 
         playerPanel = new JPanel();
-        playerPanel.setBounds(100, 15, 600, 50);
+        playerPanel.setBounds(100, 15, 600, 40);
         playerPanel.setBackground(Color.black);
-        playerPanel.setLayout(new GridLayout(1,4,15,15));
+        playerPanel.setLayout(new GridLayout(1,5,10,10));
 
         hpLabel = new JLabel("HP:");
         hpLabel.setFont(normalFont);
@@ -135,6 +163,18 @@ public class UI {
         hpNumberLabel.setFont(normalFont);
         hpNumberLabel.setForeground(Color.white);
         playerPanel.add(hpNumberLabel);
+
+        playerPaneMiddleButton = new JButton("END THIS");
+        playerPaneMiddleButton.setBackground(Color.black);
+        playerPaneMiddleButton.setForeground(Color.red);
+        playerPaneMiddleButton.setFont(pixelEndFont);
+        playerPaneMiddleButton.setFocusPainted(false);
+        playerPaneMiddleButton.setOpaque(false);
+        playerPaneMiddleButton.addActionListener(cHandler);
+        playerPaneMiddleButton.setActionCommand("end_this");
+        playerPanel.add(playerPaneMiddleButton);
+        playerPaneMiddleButton.setVisible(false);
+
 
         /**
         weaponLabel = new JLabel("Weapon:");
@@ -198,6 +238,7 @@ public class UI {
         enterB.setForeground(Color.white);
         enterB.setBackground(Color.black);
         enterB.addActionListener(cHandler);
+        enterB.setFont(smallFont);
         inputPanel.add(enterB);
 
         window.add(nameTextPanel);
@@ -209,7 +250,7 @@ public class UI {
         inventoryPanel = new JPanel();
         inventoryPanel.setBounds(100, 90, 600, 420);
         inventoryPanel.setBackground(Color.black);
-        inventoryPanel.setLayout(new GridLayout(6,2, 15,15));
+        inventoryPanel.setLayout(new GridLayout(6,2, 20,15));
 
         inventoryChoiceButtons = new JButton[12];
         for (int i = 0; i < inventoryChoiceButtons.length; i++) {
@@ -233,6 +274,7 @@ public class UI {
         goBackButton = new JButton("EXIT");
         goBackButton.setBackground(Color.black);
         goBackButton.setForeground(Color.white);
+        goBackButton.setFont(smallFont);
         goBackButton.setFocusPainted(false);
         goBackButton.setOpaque(false);
         goBackButton.addActionListener(cHandler);
@@ -250,21 +292,23 @@ public class UI {
         characterPanel.setBackground(Color.black);
         characterPanel.setLayout(new GridLayout(1,2));
 
-        characterStatsArea = new JTextArea("main text");
+        characterStatsArea = new JTextPane();
         characterStatsArea.setBackground(Color.black);
         characterStatsArea.setForeground(Color.white);
-        characterStatsArea.setFont(normalFont);
-        characterStatsArea.setLineWrap(true);
-        characterStatsArea.setWrapStyleWord(true);
+        characterStatsArea.setFont(smallMediumPlusFont);
         characterStatsArea.setEditable(false);
+        characterStatsArea.setContentType("text/html");
+        characterStatsArea.setPreferredSize(new Dimension(320, 510));
+        characterStatsArea.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
 
-        characterEqArea = new JTextArea("main text");
+        characterEqArea = new JTextPane();
         characterEqArea.setBackground(Color.black);
         characterEqArea.setForeground(Color.white);
-        characterEqArea.setFont(normalFont);
-        characterEqArea.setLineWrap(true);
-        characterEqArea.setWrapStyleWord(true);
+        characterEqArea.setFont(smallMediumPlusFont);
         characterEqArea.setEditable(false);
+        characterEqArea.setContentType("text/html");
+        characterEqArea.setPreferredSize(new Dimension(320, 510));
+        characterEqArea.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
 
 
         characterPanel.add(characterStatsArea);
