@@ -23,6 +23,9 @@ public class VisibilityManager {
         ui.inventoryPanel.setVisible(false);
         ui.characterPanel.setVisible(false);
         ui.goBackPanel.setVisible(false);
+
+        ui.shopPanel.setVisible(false);
+        ui.shopChoiceButtonsPanel.setVisible(false);
     }
 
     public  void showChoicesWithoutPlayerPanel(){
@@ -40,6 +43,9 @@ public class VisibilityManager {
         ui.inventoryPanel.setVisible(false);
         ui.characterPanel.setVisible(false);
         ui.goBackPanel.setVisible(false);
+
+        ui.shopPanel.setVisible(false);
+        ui.shopChoiceButtonsPanel.setVisible(false);
     }
 
     public  void showChoicesForLookingAtShit(){
@@ -57,6 +63,9 @@ public class VisibilityManager {
         ui.inventoryPanel.setVisible(false);
         ui.characterPanel.setVisible(false);
         ui.goBackPanel.setVisible(true);
+
+        ui.shopPanel.setVisible(false);
+        ui.shopChoiceButtonsPanel.setVisible(false);
     }
 
     public void showTitleScreen(){
@@ -74,6 +83,9 @@ public class VisibilityManager {
         ui.inventoryPanel.setVisible(false);
         ui.characterPanel.setVisible(false);
         ui.goBackPanel.setVisible(false);
+
+        ui.shopPanel.setVisible(false);
+        ui.shopChoiceButtonsPanel.setVisible(false);
     }
 
     public void toBegin(){
@@ -91,6 +103,9 @@ public class VisibilityManager {
         ui.inventoryPanel.setVisible(false);
         ui.characterPanel.setVisible(false);
         ui.goBackPanel.setVisible(false);
+
+        ui.shopPanel.setVisible(false);
+        ui.shopChoiceButtonsPanel.setVisible(false);
     }
 
     public void showInventory(){
@@ -108,6 +123,9 @@ public class VisibilityManager {
         ui.inventoryPanel.setVisible(true);
         ui.characterPanel.setVisible(false);
         ui.goBackPanel.setVisible(true);
+
+        ui.shopPanel.setVisible(false);
+        ui.shopChoiceButtonsPanel.setVisible(false);
     }
 
     public void showCharacterSheet(){
@@ -125,6 +143,29 @@ public class VisibilityManager {
         ui.inventoryPanel.setVisible(false);
         ui.characterPanel.setVisible(true);
         ui.goBackPanel.setVisible(true);
+
+        ui.shopPanel.setVisible(false);
+        ui.shopChoiceButtonsPanel.setVisible(false);
+    }
+
+    public void showShopScreen(){
+
+        ui.titleNamePanel.setVisible(false);
+        ui.startButtonPanel.setVisible(false);
+
+        ui.mainTextPanel.setVisible(false);
+        ui.choiceButtonPanel.setVisible(false);
+        ui.playerPanel.setVisible(false);
+
+        ui.inputPanel.setVisible(false);
+        ui.nameTextPanel.setVisible(false);
+
+        ui.inventoryPanel.setVisible(false);
+        ui.characterPanel.setVisible(false);
+        ui.goBackPanel.setVisible(true);
+
+        ui.shopPanel.setVisible(true);
+        ui.shopChoiceButtonsPanel.setVisible(true);
     }
 
     public void updateCurrentHPLabel(int currentHP) {
@@ -136,6 +177,11 @@ public class VisibilityManager {
     }
     public void changeExitButtonToGoBackFromLooking(){
         ui.goBackButton.setActionCommand("goBackFromLooking");
+        ui.goBackButton.setText("BACK");
+    }
+
+    public void changeExitButtonToGoBackFromShop(){
+        ui.goBackButton.setActionCommand("goBackFromShop");
         ui.goBackButton.setText("BACK");
     }
 

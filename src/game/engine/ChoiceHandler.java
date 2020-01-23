@@ -90,9 +90,14 @@ public class ChoiceHandler implements ActionListener{
                 gameworld.selectPosition(gameworld.inventory.getLastPosition());
                 break;
 
+            case "goBackFromShop":
+                gameworld.fromInventory = false;
+                gameworld.selectPosition("SHOP");
+                break;
+
         }
 
-        if (choice.contains("I")) {
+        if (choice.startsWith("I")) {
             int i = Integer.parseInt(choice.substring(1));
             gameworld.inventory.lookItem(gameworld.player.getItemFromInv(i));
             gameworld.inventory.setLastLooked(i);

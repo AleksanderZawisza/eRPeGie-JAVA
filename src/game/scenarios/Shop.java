@@ -15,7 +15,10 @@ public class Shop {
 
     public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
 
-        gameworld.ui.mainTextArea.setText("You go to the SHOP. The SHOPKEEPER seems [EMOTION] when he sees you. He asks if you're interested in BUYING or SELLING.<br>" +
+        gameworld.vm.showChoices();
+        gameworld.vm.changeBackButtonToExit();
+
+        gameworld.ui.mainTextArea.setText("You are in the SHOP. The SHOPKEEPER seems [EMOTION] when he sees you. He asks if you're interested in BUYING or SELLING.<br>" +
                 "You have " + player.getMoney() + " GOLD COINS on you.<br>" +
                 "You say that you want to...<br>");
 
@@ -31,33 +34,20 @@ public class Shop {
     }
     public void buy(){ // sklep kupowanie + generator opisów DO ZAIMPLEMENTOWANIA
 
-        gameworld.ui.mainTextArea.setText("You want to BUY SOMETHING. You can't do that because there is no SHOP in the GAME (yet).<br>" +
+        gameworld.ui.shopTextArea.setText("You want to BUY SOMETHING. You can't do that because there is no SHOP in the GAME (yet).<br>" +
                 "You have " + player.getMoney() + " GOLD COINS on you.<br>" );
 
-        gameworld.ui.choice1.setText("GET OUT of here.");
-        gameworld.ui.choice2.setText("");
-        gameworld.ui.choice3.setText("");
-        gameworld.ui.choice4.setText("");
-
-        gameworld.nextPosition1 = "TOWN";
-        gameworld.nextPosition2 = "";
-        gameworld.nextPosition3 = "";
-        gameworld.nextPosition4 = "";
+        gameworld.vm.showShopScreen();
+        gameworld.vm.changeExitButtonToGoBackFromShop();
     }
 
     public void sell(){ // sklep sprzedawanie + generator opisów DO ZAIMPLEMENTOWANIA
 
-        gameworld.ui.mainTextArea.setText("You want to SELL SOMETHING. You can't do that because there is no SHOP in the GAME (yet).<br>" +
+        gameworld.ui.shopTextArea.setText("You want to SELL SOMETHING. You can't do that because there is no SHOP in the GAME (yet).<br>" +
                 "You have " + player.getMoney() + " GOLD COINS on you.<br>" );
 
-        gameworld.ui.choice1.setText("GET OUT of here.");
-        gameworld.ui.choice2.setText("");
-        gameworld.ui.choice3.setText("");
-        gameworld.ui.choice4.setText("");
+        gameworld.vm.showShopScreen();
+        gameworld.vm.changeExitButtonToGoBackFromShop();
 
-        gameworld.nextPosition1 = "TOWN";
-        gameworld.nextPosition2 = "";
-        gameworld.nextPosition3 = "";
-        gameworld.nextPosition4 = "";
     }
 }

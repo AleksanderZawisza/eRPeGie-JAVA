@@ -9,7 +9,7 @@ public class UI {
 
     public JFrame window;
     public JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, inputPanel, nameTextPanel,
-                    inventoryPanel, goBackPanel, characterPanel;
+                    inventoryPanel, goBackPanel, characterPanel, shopPanel, shopChoiceButtonsPanel;
     public JLabel titleNameLabel, hpLabel, hpNumberLabel, weaponLabel, weaponNameLabel, nameTextLabel;
     Font titleFont = new Font("Monospaced", Font.PLAIN, 90);
     Font normalFont = new Font("Monospaced", Font.PLAIN, 19);
@@ -18,9 +18,9 @@ public class UI {
     Font smallMediumPlusFont = new Font("Monospaced", Font.PLAIN, 18);
     Font pixelFont, pixelFontS, pixelFontSM, pixelFontL, pixelFontSMPlus, pixelEndFont;
     public JButton startButton, choice1, choice2, choice3, choice4, enterB, inventoryButton, characterButton, goBackButton, playerPaneMiddleButton;
-    public JTextPane mainTextArea, characterStatsArea, characterEqArea;
+    public JTextPane mainTextArea, characterStatsArea, characterEqArea, shopTextArea;
     public JTextField jtf;
-    public JButton[] inventoryChoiceButtons;
+    public JButton[] inventoryChoiceButtons, shopChoiceButtons;
 
     public void createUI(ChoiceHandler cHandler) {
 
@@ -261,7 +261,7 @@ public class UI {
             inventoryChoiceButtons[i].setForeground(Color.white);
             inventoryChoiceButtons[i].setFont(smallFont);
             inventoryChoiceButtons[i].addActionListener(cHandler);
-            inventoryChoiceButtons[i].setActionCommand("i" + i);
+            inventoryChoiceButtons[i].setActionCommand("I" + i);
 
             inventoryPanel.add(inventoryChoiceButtons[i]);
         }
@@ -288,7 +288,7 @@ public class UI {
 
         // CHARACTER SCREEN
         characterPanel = new JPanel();
-        characterPanel.setBounds(80, 90, 640, 510);
+        characterPanel.setBounds(80, 90, 640, 500);
         characterPanel.setBackground(Color.black);
         characterPanel.setLayout(new GridLayout(1,2));
 
@@ -314,6 +314,50 @@ public class UI {
         characterPanel.add(characterStatsArea);
         characterPanel.add(characterEqArea);
         window.add(characterPanel);
+
+        //SHOP SCREEN
+        //shopPanel = new JPanel();
+        //shopPanel.setBounds(80, 90, 640, 420);
+        //shopPanel.setBackground(Color.black);
+        //shopPanel.setLayout(new GridLayout(1,2, 10, 0));
+
+        shopPanel = new JPanel();
+        shopPanel.setBounds(80,90,220,420);
+        shopPanel.setBackground(Color.black);
+        shopPanel.setLayout(new GridLayout(1,1));
+
+        shopTextArea = new JTextPane();
+        shopTextArea.setBackground(Color.black);
+        shopTextArea.setForeground(Color.white);
+        shopTextArea.setFont(smallMediumFont);
+        shopTextArea.setEditable(false);
+        shopTextArea.setContentType("text/html");
+        shopTextArea.setPreferredSize(new Dimension(220, 510));
+        shopTextArea.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
+        shopTextArea.setText("shop shop shop ");
+        shopPanel.add(shopTextArea);
+
+        shopChoiceButtonsPanel = new JPanel();
+        shopChoiceButtonsPanel.setBounds(320, 90, 420, 420);
+        shopChoiceButtonsPanel.setBackground(Color.black);
+        shopChoiceButtonsPanel.setLayout(new GridLayout(12,1,0,5));
+
+        shopChoiceButtons = new JButton[12];
+        for (int i = 0; i < inventoryChoiceButtons.length; i++) {
+            shopChoiceButtons[i] = new JButton("AMAZING POOP ON A STICK [+690](G4200) " + i);
+            shopChoiceButtons[i].setOpaque(true);
+            shopChoiceButtons[i].setFocusPainted(false);
+            shopChoiceButtons[i].setBackground(Color.black);
+            shopChoiceButtons[i].setForeground(Color.white);
+            shopChoiceButtons[i].setFont(smallFont);
+            shopChoiceButtons[i].addActionListener(cHandler);
+            shopChoiceButtons[i].setActionCommand("S" + i);
+
+            shopChoiceButtonsPanel.add(shopChoiceButtons[i]);
+        }
+
+        window.add(shopPanel);
+        window.add(shopChoiceButtonsPanel);
 
     }
 
