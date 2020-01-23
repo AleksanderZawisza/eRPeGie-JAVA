@@ -1,0 +1,16 @@
+try{
+            BufferedWriter bw = new BufferedWriter(new FileWriter(player.savename + ".txt"));
+            bw.write(player.getHp());
+            bw.write(player.getArmor());
+            bw.write(player.getAttack());
+            bw.write(player.getMoney());
+            bw.write(player.howManyItemsInInv());
+            for (int i =0; i < player.howManyItemsInInv(); i++){
+                bw.write(player.getItemFromInv(i).getName());
+                bw.write(String.valueOf(player.getItemFromInv(i).getClass()));
+            }
+
+        }
+        catch (Exception e){
+
+        }
