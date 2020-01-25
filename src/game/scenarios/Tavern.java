@@ -1,7 +1,13 @@
 package game.scenarios;
 
 import game.creature.Player;
+import game.item.Armor;
+import game.item.Healing;
+import game.item.Weapon;
 import game.state.GameWorld;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class Tavern {
 
@@ -58,6 +64,48 @@ public class Tavern {
 
         player.addOneDay(); //+1 do licznika dni i reset dailyKillCount
         player.resetDailyKillCount();
+
+        try{
+            BufferedWriter bw = new BufferedWriter(new FileWriter(player.savename + ".txt"));
+            bw.write(""+player.getHp()); bw.newLine();
+            bw.write(""+player.getArmor()); bw.newLine();
+            bw.write(""+player.getAttack()); bw.newLine();
+            bw.write(""+player.getMoney()); bw.newLine();
+            bw.write(""+player.getExp()); bw.newLine();
+            bw.write(""+player.howManyItemsInInv()); bw.newLine();
+            for (int i = 0; i < player.howManyItemsInInv(); i++){
+                String p = String.valueOf(player.getItemFromInv(i).getClass().getSimpleName());
+                bw.write(p); bw.newLine();
+                bw.write(player.getItemFromInv(i).getName()); bw.newLine();
+                bw.write(""+player.getItemFromInv(i).getStat()); bw.newLine();
+                bw.write(""+player.getItemFromInv(i).getPrice()); bw.newLine();
+            }
+            // equipped weapon
+            bw.write(player.getWeapon().getName()); bw.newLine();
+            bw.write(""+player.getWeapon().getStat()); bw.newLine();
+            bw.write(""+player.getWeapon().getPrice()); bw.newLine();
+            // equipped head
+            bw.write(player.getHead().getName()); bw.newLine();
+            bw.write(""+player.getHead().getStat()); bw.newLine();
+            bw.write(""+player.getHead().getPrice()); bw.newLine();
+            // equipped arms
+            bw.write(player.getArms().getName()); bw.newLine();
+            bw.write(""+player.getArms().getStat()); bw.newLine();
+            bw.write(""+player.getArms().getPrice()); bw.newLine();
+            // equipped torso
+            bw.write(player.getTorso().getName()); bw.newLine();
+            bw.write(""+player.getTorso().getStat()); bw.newLine();
+            bw.write(""+player.getTorso().getPrice()); bw.newLine();
+            // equipped legs
+            bw.write(player.getLegs().getName()); bw.newLine();
+            bw.write(""+player.getLegs().getStat()); bw.newLine();
+            bw.write(""+player.getLegs().getPrice()); bw.newLine();
+
+            bw.close();
+        }
+        catch (Exception e){
+            System.err.format("Exception: %s%n", e);
+        }
 
         gameworld.ui.choice1.setText("Start a NEW DAY");
         gameworld.ui.choice2.setText("");

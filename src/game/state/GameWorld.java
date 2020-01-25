@@ -5,6 +5,8 @@ import game.engine.UI;
 import game.engine.VisibilityManager;
 import game.scenarios.*;
 
+import java.io.IOException;
+
 
 public class GameWorld {
 
@@ -37,7 +39,7 @@ public class GameWorld {
     public Inventory inventory = new Inventory(this);
 
 
-    public void selectPosition(String nextPosition){
+    public void selectPosition(String nextPosition) throws IOException {
         if (!nextPosition.contains("INVENTORY") && nextPosition!="CHARACTER_SHEET") inventory.setLastPosition(nextPosition);
         switch(nextPosition){
             case "BEGIN": start.begin(); break;
@@ -76,4 +78,6 @@ public class GameWorld {
         this.trueLastState = nextPosition;
         vm.hideUselessChoiceButtons();
     }
+
+    //TODO getters and setters
 }

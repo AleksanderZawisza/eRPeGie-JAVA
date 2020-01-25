@@ -218,4 +218,36 @@ public class Player extends Creature {
     public int getDailyKillCount() { return dailyKillCount; }
     public void addDailyKillCount() { this.dailyKillCount += 1; }
     public void resetDailyKillCount() { this.dailyKillCount = 0; }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+    public Legs getLegs() {
+        return legs;
+    }
+    public Torso getTorso() {
+        return torso;
+    }
+    public Arms getArms() {
+        return arms;
+    }
+    public Head getHead() {
+        return head;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+    public void setLegs(Legs legs) {
+        this.legs = legs;
+    }
+    public void setTorso(Torso torso) {
+        this.torso = torso;
+    }
+    public void setArms(Arms arms) {
+        this.arms = arms;
+    }
+    public void setHead(Head head) {
+        this.head = head;
+    }
 }

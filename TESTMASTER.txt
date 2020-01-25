@@ -1,0 +1,41 @@
+100
+0
+2
+0
+0.0
+5
+Weapon
+ak-47
+9000
+420
+Head
+cool shades
+9000
+6969
+Healing
+yellow gatorade
+500
+1000
+Healing
+red gatorade
+1000
+5000
+Healing
+blue gatorade
+2000
+10000
+trusty stick
+0
+0
+old straw hat
+0
+0
+frayed friendship bracelet
+0
+0
+simple linen shirt
+0
+0
+patched linen pants
+0
+0
