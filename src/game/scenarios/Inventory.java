@@ -24,11 +24,11 @@ public class Inventory {
                 "<br>Armor: " + gameworld.player.getArmor() +
                 "<br>THREAT RATING: " + (int) gameworld.player.getExp() +
                 "<br>Gold coins: " + gameworld.player.getMoney() +
-                "<br>Kills today: " + "?" + //TODO
+                "<br>Kills today: " + gameworld.player.getDailyKillCount() +
                 "<br><br>Current goals:<br>" +
                 "<br>Kill things." +
                 "<br>Don't get killed." +
-                "<br>Have fun! (◦'⌣'◦)" //TODO
+                "<br>Have fun! ( <font color ='red'>'</font>⌣<font color ='red'>'</font> )" //TODO
         );
         gameworld.ui.characterEqArea.setText(
                 "Equipped items:" +
@@ -101,8 +101,8 @@ public class Inventory {
         }
 
         gameworld.ui.choice1.setText("USE this thing");
-        gameworld.ui.choice2.setText("Look at the NEXT item");
-        gameworld.ui.choice3.setText("Look at the PREVIOUS item");
+        gameworld.ui.choice2.setText("NEXT item");
+        gameworld.ui.choice3.setText("PREVIOUS item");
         gameworld.ui.choice4.setText("YEET it AWAY");
 
         gameworld.nextPosition1 = "INVENTORY_USE";

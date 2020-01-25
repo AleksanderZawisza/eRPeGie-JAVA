@@ -30,8 +30,10 @@ public class Player extends Creature {
     private int defaultMoney = 0;
     private ArrayList<Item> defaultInventory = new ArrayList();
     public int fartmasterCount;
-    public int dayCount;
-    public int lastShopRestock;
+    private int dayCount;
+    private int lastShopRestock;
+    private int killCount;
+    private int dailyKillCount;
 
 
     public Player(){
@@ -49,6 +51,8 @@ public class Player extends Creature {
         this.head = defaultHead;
         this.dayCount = 1;
         this.lastShopRestock = 1;
+        this.dayCount = 0;
+        this.lastShopRestock = 0;
     }
 
     public Player(int maxhp, int armor, int attack, int exp, int money) {
@@ -61,6 +65,8 @@ public class Player extends Creature {
         this.head = defaultHead;
         this.dayCount = 1;
         this.lastShopRestock = 1;
+        this.dayCount = 0;
+        this.lastShopRestock = 0;
     }
 
     public void setSavename(String savename) {
@@ -186,6 +192,8 @@ public class Player extends Creature {
         this.inventory = defaultInventory;
         this.dayCount = 1;
         this.lastShopRestock = 1;
+        this.killCount = 0;
+        this.dailyKillCount = 0;
     }
 
     public float expWithoutLevel(){
@@ -204,4 +212,10 @@ public class Player extends Creature {
     public int getLastShopRestock() { return lastShopRestock; }
     public void setLastShopRestock(int lastShopRestock) { this.lastShopRestock = lastShopRestock; }
 
+    public int getKillCount() { return killCount; }
+    public void addKillCount() { this.killCount += 1; }
+
+    public int getDailyKillCount() { return dailyKillCount; }
+    public void addDailyKillCount() { this.dailyKillCount += 1; }
+    public void resetDailyKillCount() { this.dailyKillCount = 0; }
 }

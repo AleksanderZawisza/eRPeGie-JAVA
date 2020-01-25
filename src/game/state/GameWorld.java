@@ -30,7 +30,7 @@ public class GameWorld {
     Town town = new Town(this);
     Tavern tavern = new Tavern(this);
     public Shop shop = new Shop(this);
-    FightChoose fightChoose = new FightChoose(this);
+    FightText fightText = new FightText(this);
     Plains plains = new Plains(this);
     Forest forest = new Forest(this);
     Mountains mountains = new Mountains(this);
@@ -50,7 +50,7 @@ public class GameWorld {
             case "SHOP": shop.go(); break;
             case "SELL": shop.sell(); break;
             case "BUY": shop.buy(); break;
-            case "FIGHT_CHOOSE": fightChoose.go(); break;
+            case "FIGHT_CHOOSE": fightText.go(); break;
             case "PLAINS": plains.go(); break;
             case "PLAINS_FIGHT_CHOOSE": plains.fightChoose(); break;
             case "PLAINS_FIGHT": plains.fight(); break;

@@ -56,7 +56,8 @@ public class Tavern {
         player.setHp(player.getMaxhp());    // HEALOWANIE I UPDATE HP
         gameworld.vm.updateCurrentHPLabel(player.getHp());
 
-        player.addOneDay(); //+1 do licznika dni
+        player.addOneDay(); //+1 do licznika dni i reset dailyKillCount
+        player.resetDailyKillCount();
 
         gameworld.ui.choice1.setText("Start a NEW DAY");
         gameworld.ui.choice2.setText("");

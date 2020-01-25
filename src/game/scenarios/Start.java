@@ -46,6 +46,7 @@ public class Start {
         player.setHp(player.getMaxhp());
         gameworld.vm.updateCurrentHPLabel(player.getHp());
         gameworld.vm.showChoicesWithoutPlayerPanel();
+        gameworld.shop.restockShopInventory();
 
         if (player.savename.equals("FARTMASTER")) {
             player.inventory.add(new Weapon("poop on a stick", 1, 1));

@@ -158,7 +158,7 @@ public class UI {
         playerPanel = new JPanel();
         playerPanel.setBounds(100, 15, 600, 40);
         playerPanel.setBackground(Color.black);
-        playerPanel.setLayout(new GridLayout(1,5,5,5));
+        playerPanel.setLayout(new GridLayout(1,5,5,0));
 
         hpLabel = new JLabel("HP:");
         hpLabel.setFont(normalFont);
@@ -260,7 +260,7 @@ public class UI {
         inventoryPanel = new JPanel();
         inventoryPanel.setBounds(100, 90, 600, 420);
         inventoryPanel.setBackground(Color.black);
-        inventoryPanel.setLayout(new GridLayout(6,2, 10,5));
+        inventoryPanel.setLayout(new GridLayout(6,2, 10,6));
 
         inventoryChoiceButtons = new JButton[12];
         for (int i = 0; i < inventoryChoiceButtons.length; i++) {
