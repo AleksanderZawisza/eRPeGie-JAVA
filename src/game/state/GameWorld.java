@@ -10,74 +10,218 @@ import java.io.IOException;
 
 public class GameWorld {
 
-    public static Player player = new Player();
-    public static Enemy currentEnemy = new Enemy();
-    public UI ui;
-    public Game game;
-    public VisibilityManager vm;
-    public Boolean fromInventory = false;
-    public int prevDmgTaken = 0;
-    public int prevDmgDealt = 0;
-    public String trueLastState;
+    private static Player player = new Player();
+    private static Enemy currentEnemy = new Enemy();
+    private UI ui;
+    private Game game;
+    private VisibilityManager vm;
+    private Boolean fromInventory = false;
+    private int prevDmgTaken = 0;
+    private int prevDmgDealt = 0;
+    private String trueLastState;
 
     public GameWorld(Game game, UI ui, VisibilityManager vm) {
-        this.game = game;
-        this.ui = ui;
-        this.vm = vm;
+        this.setGame(game);
+        this.setUi(ui);
+        this.setVm(vm);
     }
 
-    public String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
+    private String nextPosition1;
+    private String nextPosition2;
+    private String nextPosition3;
+    private String nextPosition4;
 
-    Start start = new Start(this);
-    Town town = new Town(this);
-    Tavern tavern = new Tavern(this);
-    public Shop shop = new Shop(this);
-    FightText fightText = new FightText(this);
-    Plains plains = new Plains(this);
-    Forest forest = new Forest(this);
-    Mountains mountains = new Mountains(this);
-    public Inventory inventory = new Inventory(this);
+    private Start start = new Start(this);
+    private Town town = new Town(this);
+    private Tavern tavern = new Tavern(this);
+    private Shop shop = new Shop(this);
+    private FightText fightText = new FightText(this);
+    private Plains plains = new Plains(this);
+    private Forest forest = new Forest(this);
+    private Mountains mountains = new Mountains(this);
+    private Inventory inventory = new Inventory(this);
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        GameWorld.player = player;
+    }
+
+    public static Enemy getCurrentEnemy() {
+        return currentEnemy;
+    }
+
+    public static void setCurrentEnemy(Enemy currentEnemy) {
+        GameWorld.currentEnemy = currentEnemy;
+    }
 
 
     public void selectPosition(String nextPosition) throws IOException {
-        if (!nextPosition.contains("INVENTORY") && nextPosition!="CHARACTER_SHEET") inventory.setLastPosition(nextPosition);
+        if (!nextPosition.contains("INVENTORY") && !nextPosition.equals("CHARACTER_SHEET")) {
+            getInventory().setLastPosition(nextPosition);
+        }
         switch(nextPosition){
-            case "BEGIN": start.begin(); break;
-            case "DESCRIPTION": start.description(); break;
-            case "CONTEMPLATE": town.contemplate(); break;
-            case "TOWN": town.go(); break;
-            case "TAVERN": tavern.go(); break;
-            case "DRINK": tavern.drink(); break;
-            case "REST": tavern.rest(); break;
-            case "SHOP": shop.go(); break;
-            case "SELL": shop.sell(); break;
-            case "BUY": shop.buy(); break;
-            case "FIGHT_CHOOSE": fightText.go(); break;
-            case "PLAINS": plains.go(); break;
-            case "PLAINS_FIGHT_CHOOSE": plains.fightChoose(); break;
-            case "PLAINS_FIGHT": plains.fight(); break;
-            case "FOREST": forest.go(); break;
-            case "FOREST_FIGHT_CHOOSE": forest.fightChoose(); break;
-            case "FOREST_FIGHT": forest.fight(); break;
-            case "FOREST_DROP": forest.inspectDroppedItem(); break;
-            case "FOREST_TAKE_DROP": forest.takeDroppedItem(); break;
-            case "MOUNTAINS": mountains.go(); break;
-            case "MOUNTAINS_FIGHT_CHOOSE": mountains.fightChoose(); break;
-            case "MOUNTAINS_FIGHT": mountains.fight(); break;
-            case "MOUNTAINS_DROP": mountains.inspectDroppedItem(); break;
-            case "MOUNTAINS_TAKE_DROP": mountains.takeDroppedItem(); break;
-            case "CHARACTER_SHEET": inventory.characterSheet(); break;
-            case "INVENTORY": inventory.manageInventory(); break;
-            case "INVENTORY_LOOK_NEXT": inventory.lookNext(); break;
-            case "INVENTORY_LOOK_PREV": inventory.lookPrev(); break;
-            case "INVENTORY_YEET": inventory.yeet(); break;
-            case "INVENTORY_AFTER_EQUIP": inventory.lookAfterSwapping(); break;
-            case "INVENTORY_USE": inventory.use(); break;
+            case "BEGIN": getStart().begin(); break;
+            case "DESCRIPTION": getStart().description(); break;
+            case "CONTEMPLATE": getTown().contemplate(); break;
+            case "TOWN": getTown().go(); break;
+            case "TAVERN": getTavern().go(); break;
+            case "DRINK": getTavern().drink(); break;
+            case "REST": getTavern().rest(); break;
+            case "SHOP": getShop().go(); break;
+            case "SELL": getShop().sell(); break;
+            case "BUY": getShop().buy(); break;
+            case "FIGHT_CHOOSE": getFightText().go(); break;
+            case "PLAINS": getPlains().go(); break;
+            case "PLAINS_FIGHT_CHOOSE": getPlains().fightChoose(); break;
+            case "PLAINS_FIGHT": getPlains().fight(); break;
+            case "FOREST": getForest().go(); break;
+            case "FOREST_FIGHT_CHOOSE": getForest().fightChoose(); break;
+            case "FOREST_FIGHT": getForest().fight(); break;
+            case "FOREST_DROP": getForest().inspectDroppedItem(); break;
+            case "FOREST_TAKE_DROP": getForest().takeDroppedItem(); break;
+            case "MOUNTAINS": getMountains().go(); break;
+            case "MOUNTAINS_FIGHT_CHOOSE": getMountains().fightChoose(); break;
+            case "MOUNTAINS_FIGHT": getMountains().fight(); break;
+            case "MOUNTAINS_DROP": getMountains().inspectDroppedItem(); break;
+            case "MOUNTAINS_TAKE_DROP": getMountains().takeDroppedItem(); break;
+            case "CHARACTER_SHEET": getInventory().characterSheet(); break;
+            case "INVENTORY": getInventory().manageInventory(); break;
+            case "INVENTORY_LOOK_NEXT": getInventory().lookNext(); break;
+            case "INVENTORY_LOOK_PREV": getInventory().lookPrev(); break;
+            case "INVENTORY_YEET": getInventory().yeet(); break;
+            case "INVENTORY_AFTER_EQUIP": getInventory().lookAfterSwapping(); break;
+            case "INVENTORY_USE": getInventory().use(); break;
             case "DEAD": break;
         }
-        this.trueLastState = nextPosition;
-        vm.hideUselessChoiceButtons();
+        this.setTrueLastState(nextPosition);
+        getVm().hideUselessChoiceButtons();
     }
 
-    //TODO getters and setters
+    public Boolean getFromInventory() {
+        return fromInventory;
+    }
+
+    public void setFromInventory(Boolean fromInventory) {
+        this.fromInventory = fromInventory;
+    }
+
+    public int getPrevDmgTaken() {
+        return prevDmgTaken;
+    }
+
+    public void setPrevDmgTaken(int prevDmgTaken) {
+        this.prevDmgTaken = prevDmgTaken;
+    }
+
+    public int getPrevDmgDealt() {
+        return prevDmgDealt;
+    }
+
+    public void setPrevDmgDealt(int prevDmgDealt) {
+        this.prevDmgDealt = prevDmgDealt;
+    }
+
+    public String getTrueLastState() {
+        return trueLastState;
+    }
+
+    public void setTrueLastState(String trueLastState) {
+        this.trueLastState = trueLastState;
+    }
+
+    public String getNextPosition1() {
+        return nextPosition1;
+    }
+
+    public void setNextPosition1(String nextPosition1) {
+        this.nextPosition1 = nextPosition1;
+    }
+
+    public String getNextPosition2() {
+        return nextPosition2;
+    }
+
+    public void setNextPosition2(String nextPosition2) {
+        this.nextPosition2 = nextPosition2;
+    }
+
+    public String getNextPosition3() {
+        return nextPosition3;
+    }
+
+    public void setNextPosition3(String nextPosition3) {
+        this.nextPosition3 = nextPosition3;
+    }
+
+    public String getNextPosition4() {
+        return nextPosition4;
+    }
+
+    public void setNextPosition4(String nextPosition4) {
+        this.nextPosition4 = nextPosition4;
+    }
+
+    public UI getUi() {
+        return ui;
+    }
+
+    public void setUi(UI ui) {
+        this.ui = ui;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public VisibilityManager getVm() {
+        return vm;
+    }
+
+    public void setVm(VisibilityManager vm) {
+        this.vm = vm;
+    }
+
+    public Start getStart() {
+        return start;
+    }
+
+    public Town getTown() {
+        return town;
+    }
+
+    public Tavern getTavern() {
+        return tavern;
+    }
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public FightText getFightText() {
+        return fightText;
+    }
+
+    public Plains getPlains() {
+        return plains;
+    }
+
+    public Forest getForest() {
+        return forest;
+    }
+
+    public Mountains getMountains() {
+        return mountains;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
 }

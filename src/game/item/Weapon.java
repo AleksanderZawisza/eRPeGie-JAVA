@@ -19,9 +19,6 @@ public class Weapon extends Item {
     public void addDamage(int damage) {
         this.damage += damage;
     }
-    public void lowerDamage(int damage) {
-        this.damage -= damage;
-    }
 
     @Override
     public int getStat() { return getDamage(); }

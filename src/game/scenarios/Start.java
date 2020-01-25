@@ -16,12 +16,12 @@ public class Start {
         this.gameworld = gameworld;
     }
 
-    Player player = gameworld.player;
+    Player player = GameWorld.getPlayer();
 
     public void begin(){
 
-        gameworld.vm.toBegin();
-        gameworld.vm.updateCurrentHPLabel(player.getHp());
+        gameworld.getVm().toBegin();
+        gameworld.getVm().updateCurrentHPLabel(player.getHp());
 
         /* EW DO IMPLEMENTACJI
         System.out.print("<br>" + savename + ", right? [Y/N]<br>> ");
@@ -112,13 +112,13 @@ public class Start {
 
         if (player.savename.equals("FARTMASTER") && !file.exists()) {
             player.inventory.add(new Weapon("poop on a stick", 1, 1));
-            gameworld.ui.mainTextArea.setText("Fine then, be like that." +
+            gameworld.getUi().mainTextArea.setText("Fine then, be like that." +
             "<br>Your NAME now is " + player.savename + ", and that's the NAME you're going to have TILL YOU DIE." +
             "<br>Have fun with that, dumbass.");
-            gameworld.ui.choice1.setText("Uh oh");
+            gameworld.getUi().choice1.setText("Uh oh");
             if (player.fartmasterCount>=4){
-                gameworld.ui.mainTextArea.setText("<center>Why are you like this</center>");
-                gameworld.ui.choice1.setText("¯\\_(ツ)_/¯");
+                gameworld.getUi().mainTextArea.setText("<center>Why are you like this</center>");
+                gameworld.getUi().choice1.setText("¯\\_(ツ)_/¯");
             }
         }
         else if (player.savename.equals("TESTMASTER")) {
@@ -127,28 +127,28 @@ public class Start {
             player.inventory.add(new Healing("yellow gatorade", 500, 1000));
             player.inventory.add(new Healing("red gatorade", 1000, 5000));
             player.inventory.add(new Healing("blue gatorade", 2000, 10000));
-            gameworld.ui.mainTextArea.setText("Sweet shades, bro." +
+            gameworld.getUi().mainTextArea.setText("Sweet shades, bro." +
                     "<br>Happy hunting " + player.savename + "!");
-            gameworld.ui.choice1.setText("Sure");
+            gameworld.getUi().choice1.setText("Sure");
         } //cheaty
         else {
-            gameworld.ui.mainTextArea.setText(loaded+"Your NAME now is " + player.savename + "." +
+            gameworld.getUi().mainTextArea.setText(loaded+"Your NAME now is " + player.savename + "." +
                     "<br>GOOD LUCK on your quest, " + player.savename + "!");
-            gameworld.ui.choice1.setText("Yeah!");
+            gameworld.getUi().choice1.setText("Yeah!");
         }
 
-        gameworld.vm.updateCurrentHPLabel(player.getHp());
-        gameworld.vm.showChoicesWithoutPlayerPanel();
-        gameworld.shop.restockShopInventory();
+        gameworld.getVm().updateCurrentHPLabel(player.getHp());
+        gameworld.getVm().showChoicesWithoutPlayerPanel();
+        gameworld.getShop().restockShopInventory();
 
-        gameworld.ui.choice2.setText("");
-        gameworld.ui.choice3.setText("");
-        gameworld.ui.choice4.setText("");
+        gameworld.getUi().choice2.setText("");
+        gameworld.getUi().choice3.setText("");
+        gameworld.getUi().choice4.setText("");
 
-        gameworld.nextPosition1 = "TOWN";
-        gameworld.nextPosition2 = "";
-        gameworld.nextPosition3 = "";
-        gameworld.nextPosition4 = "";
+        gameworld.setNextPosition1("TOWN");
+        gameworld.setNextPosition2("");
+        gameworld.setNextPosition3("");
+        gameworld.setNextPosition4("");
 
 
 }

@@ -85,14 +85,14 @@ public class ItemGenerator {
                 weapon.setDamage((int) (weapon.getDamage()*1.5 +5));
                 weapon.setPrice((int) (weapon.getPrice()*1.5 +5)); break;
             case "steel": quality = setWeaponQ(weapon);
-                weapon.setDamage((int) (weapon.getDamage()*2 +10));
-                weapon.setPrice((int) (weapon.getPrice()*2 +10)); break;
+                weapon.setDamage(weapon.getDamage()*2 +10);
+                weapon.setPrice(weapon.getPrice()*2 +10); break;
             case "emerald": quality = setWeaponQ(weapon);
-                weapon.setDamage((int) (weapon.getDamage()*3 +20));
-                weapon.setPrice((int) (weapon.getPrice()*3 +20)); break;
+                weapon.setDamage(weapon.getDamage()*3 +20);
+                weapon.setPrice(weapon.getPrice()*3 +20); break;
             case "obsidian": quality = setWeaponQ(weapon);
-                weapon.setDamage((int) (weapon.getDamage()*5 +50));
-                weapon.setPrice((int) (weapon.getPrice()*5 +50)); break;
+                weapon.setDamage(weapon.getDamage()*5 +50);
+                weapon.setPrice(weapon.getPrice()*5 +50); break;
             default: break;
         }
 
@@ -138,14 +138,14 @@ public class ItemGenerator {
                 weapon.setDamage((int) (weapon.getDamage()*2.5 +10));
                 weapon.setPrice((int) (weapon.getPrice()*2.5 +10)); break;
             case "enchanted":
-                weapon.setDamage((int) (weapon.getDamage()*3 +20));
-                weapon.setPrice((int) (weapon.getPrice()*3 +20)); break;
+                weapon.setDamage(weapon.getDamage()*3 +20);
+                weapon.setPrice(weapon.getPrice()*3 +20); break;
             case "epic":
-                weapon.setDamage((int) (weapon.getDamage()*5 +30));
-                weapon.setPrice((int) (weapon.getPrice()*5 +30)); break;
+                weapon.setDamage(weapon.getDamage()*5 +30);
+                weapon.setPrice(weapon.getPrice()*5 +30); break;
             case "legendary":
-                weapon.setDamage((int) (weapon.getDamage()*10 +50));
-                weapon.setPrice((int) (weapon.getPrice()*10 +100)); break;
+                weapon.setDamage(weapon.getDamage()*10 +50);
+                weapon.setPrice(weapon.getPrice()*10 +100); break;
             default: break;
         }
         return quality;
@@ -169,14 +169,14 @@ public class ItemGenerator {
                 armor.setDefence((int) (armor.getDefence()*1.5 +5));
                 armor.setPrice((int) (armor.getPrice()*1.5 +5)); break;
             case "steel": quality = setArmorQ(armor);
-                armor.setDefence((int) (armor.getDefence()*2 +10));
-                armor.setPrice((int) (armor.getPrice()*2 +10)); break;
+                armor.setDefence(armor.getDefence()*2 +10);
+                armor.setPrice(armor.getPrice()*2 +10); break;
             case "emerald": quality = setArmorQ(armor);
-                armor.setDefence((int) (armor.getDefence()*3 +20));
-                armor.setPrice((int) (armor.getPrice()*3 +20)); break;
+                armor.setDefence(armor.getDefence()*3 +20);
+                armor.setPrice(armor.getPrice()*3 +20); break;
             case "obsidian": quality = setArmorQ(armor);
-                armor.setDefence((int) (armor.getDefence()*5 +50));
-                armor.setPrice((int) (armor.getPrice()*5 +50)); break;
+                armor.setDefence(armor.getDefence()*5 +50);
+                armor.setPrice(armor.getPrice()*5 +50); break;
             default: break;
         }
 
@@ -222,14 +222,14 @@ public class ItemGenerator {
                 armor.setDefence((int) (armor.getDefence()*2.5 +10));
                 armor.setPrice((int) (armor.getPrice()*2.5 +10)); break;
             case "enchanted":
-                armor.setDefence((int) (armor.getDefence()*3 +20));
-                armor.setPrice((int) (armor.getPrice()*3 +20)); break;
+                armor.setDefence(armor.getDefence()*3 +20);
+                armor.setPrice(armor.getPrice()*3 +20); break;
             case "epic":
-                armor.setDefence((int) (armor.getDefence()*5 +30));
-                armor.setPrice((int) (armor.getPrice()*5 +30)); break;
+                armor.setDefence(armor.getDefence()*5 +30);
+                armor.setPrice(armor.getPrice()*5 +30); break;
             case "legendary":
-                armor.setDefence((int) (armor.getDefence()*10 +50));
-                armor.setPrice((int) (armor.getPrice()*10 +100)); break;
+                armor.setDefence(armor.getDefence()*10 +50);
+                armor.setPrice(armor.getPrice()*10 +100); break;
             default: break;
         }
         return quality;

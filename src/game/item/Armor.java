@@ -1,9 +1,5 @@
 package game.item;
 
-import game.item.Item;
-
-import java.util.Objects;
-
 public class Armor extends Item {
 
     private int defence;
@@ -25,9 +21,6 @@ public class Armor extends Item {
 
     public void addDefence(int defence) {
         this.defence += defence;
-    }
-    public void lowerDefence(int defence) {
-        this.defence -= defence;
     }
 
     @Override

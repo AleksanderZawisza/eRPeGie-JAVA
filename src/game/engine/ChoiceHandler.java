@@ -1,5 +1,6 @@
 package game.engine;
 
+import game.creature.Player;
 import game.state.GameWorld;
 
 import java.awt.event.ActionEvent;
@@ -17,6 +18,8 @@ public class ChoiceHandler implements ActionListener{
         this.gameworld = gameworld;
     }
 
+    Player player = GameWorld.getPlayer();
+
     public void actionPerformed(ActionEvent event){
 
         String choice = event.getActionCommand();
@@ -24,30 +27,30 @@ public class ChoiceHandler implements ActionListener{
         switch(choice) {
 
             case "input":
-                gameworld.fromInventory = false;
-                String text = gameworld.ui.jtf.getText();
-                gameworld.ui.nameTextLabel.setText("Hi there. What's your NAME?");
+                gameworld.setFromInventory(false);
+                String text = gameworld.getUi().jtf.getText();
+                gameworld.getUi().nameTextLabel.setText("Hi there. What's your NAME?");
 
-                if (text.equals("") || text.equals(" ") || text.equals("  ") || text.equals("   ") || text.equals("   ")) {
-                    gameworld.ui.nameTextLabel.setText("...Could use a little more CREATIVITY.");
+                if (text.equals("") || text.equals(" ") || text.equals("  ") || text.equals("   ") || text.equals("    ")) {
+                    gameworld.getUi().nameTextLabel.setText("...Could use a little more CREATIVITY.");
                     bullshitCount++;
                     if (bullshitCount>=2) {
-                        gameworld.ui.nameTextLabel.setText("C'mon, I'm not asking for much here.");}
+                        gameworld.getUi().nameTextLabel.setText("C'mon, I'm not asking for much here.");}
                     if (bullshitCount>=3) {
-                        gameworld.ui.nameTextLabel.setText("Really now?");}
+                        gameworld.getUi().nameTextLabel.setText("Really now?");}
                     if (bullshitCount>=4) {
-                        gameworld.ui.nameTextLabel.setText("So what's it gonne be, FARTMASTER?");
-                        gameworld.player.setSavename("FARTMASTER");
+                        gameworld.getUi().nameTextLabel.setText("So what's it gonne be, FARTMASTER?");
+                        player.setSavename("FARTMASTER");
                         try {
                             gameworld.selectPosition("DESCRIPTION");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
-                    gameworld.player.fartmasterCount = bullshitCount;
+                    player.fartmasterCount = bullshitCount;
                     break; }
-                gameworld.player.setSavename(text);
-                gameworld.player.fartmasterCount = bullshitCount;
+                player.setSavename(text);
+                player.fartmasterCount = bullshitCount;
                 try {
                     gameworld.selectPosition("DESCRIPTION");
                 } catch (IOException e) {
@@ -56,7 +59,7 @@ public class ChoiceHandler implements ActionListener{
                 break;
 
             case "start":
-                gameworld.fromInventory = false;
+                gameworld.setFromInventory(false);
                 try {
                     gameworld.selectPosition("BEGIN");
                 } catch (IOException e) {
@@ -65,46 +68,46 @@ public class ChoiceHandler implements ActionListener{
                 break;
 
             case "c1":
-                gameworld.fromInventory = false;
+                gameworld.setFromInventory(false);
                 try {
-                    gameworld.selectPosition(gameworld.nextPosition1);
+                    gameworld.selectPosition(gameworld.getNextPosition1());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
 
             case "c2":
-                gameworld.fromInventory = false;
+                gameworld.setFromInventory(false);
                 try {
-                    gameworld.selectPosition(gameworld.nextPosition2);
+                    gameworld.selectPosition(gameworld.getNextPosition2());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
 
             case "c3":
-                gameworld.fromInventory = false;
+                gameworld.setFromInventory(false);
                 try {
-                    gameworld.selectPosition(gameworld.nextPosition3);
+                    gameworld.selectPosition(gameworld.getNextPosition3());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
 
             case "c4":
-                gameworld.fromInventory = false;
+                gameworld.setFromInventory(false);
                 try {
-                    gameworld.selectPosition(gameworld.nextPosition4);
+                    gameworld.selectPosition(gameworld.getNextPosition4());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
 
             case "goBackFromLooking":
-                gameworld.vm.changeBackButtonToExit();
+                gameworld.getVm().changeBackButtonToExit();
 
             case "inventory":
-                gameworld.fromInventory = true;
+                gameworld.setFromInventory(true);
                 try {
                     gameworld.selectPosition("INVENTORY");
                 } catch (IOException e) {
@@ -113,7 +116,7 @@ public class ChoiceHandler implements ActionListener{
                 break;
 
             case "characterSheet":
-                gameworld.fromInventory = true;
+                gameworld.setFromInventory(true);
                 try {
                     gameworld.selectPosition("CHARACTER_SHEET");
                 } catch (IOException e) {
@@ -122,17 +125,17 @@ public class ChoiceHandler implements ActionListener{
                 break;
 
             case "exit":
-                gameworld.fromInventory = true;
-                gameworld.vm.showChoices();
+                gameworld.setFromInventory(true);
+                gameworld.getVm().showChoices();
                 try {
-                    gameworld.selectPosition(gameworld.inventory.getLastPosition());
+                    gameworld.selectPosition(gameworld.getInventory().getLastPosition());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
 
             case "goBackFromShop":
-                gameworld.fromInventory = false;
+                gameworld.setFromInventory(false);
                 try {
                     gameworld.selectPosition("SHOP");
                 } catch (IOException e) {
@@ -144,18 +147,18 @@ public class ChoiceHandler implements ActionListener{
 
         if (choice.startsWith("I")) {
             int i = Integer.parseInt(choice.substring(1));
-            gameworld.inventory.lookItem(gameworld.player.getItemFromInv(i));
-            gameworld.inventory.setLastLooked(i);
+            gameworld.getInventory().lookItem(player.getItemFromInv(i));
+            gameworld.getInventory().setLastLooked(i);
         }
 
         if (choice.startsWith("S")) {
             int i = Integer.parseInt(choice.substring(1));
-            gameworld.shop.sellAThing(i);
+            gameworld.getShop().sellAThing(i);
         }
 
         if (choice.startsWith("B")) {
             int i = Integer.parseInt(choice.substring(1));
-            gameworld.shop.buyAThing(i);
+            gameworld.getShop().buyAThing(i);
         }
 
     }

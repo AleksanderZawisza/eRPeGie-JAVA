@@ -39,14 +39,6 @@ public class Item {
         return type;
     }
 
-    public void equip() {
-        this.isEquipped = true;
-    }
-
-    public void unequip() {
-        this.isEquipped = false;
-    }
-
     public int getStat() { return 0; }
 
     @Override

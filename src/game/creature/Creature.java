@@ -20,16 +20,6 @@ public class Creature {
         this.money = money;
     }
 
-    public Creature(String name, int maxhp, int armor, int attack, float exp, int money) {
-        this.name = name;
-        this.hp = maxhp;
-        this.maxhp = maxhp;
-        this.armor = armor;
-        this.attack = attack;
-        this.exp = exp;
-        this.money = money;
-    }
-
     public int getArmor() {
         return this.armor;
     }
@@ -39,7 +29,6 @@ public class Creature {
     public void addArmor(int armor) {
         this.armor += armor;
     }
-    public void lowerArmor (int attack) { this.armor -= armor; }
 
     public int getAttack() {
         return attack;
@@ -78,12 +67,6 @@ public class Creature {
         return maxhp;
     }
     public void setMaxhp(int maxhp) { this.maxhp = maxhp; }
-    public void addMaxhp(int maxhp) {
-        this.maxhp += maxhp;
-    }
-    public void lowerMaxhp(int maxhp) {
-        this.maxhp -= maxhp;
-    }
 
     public int getHp() {
         return hp;

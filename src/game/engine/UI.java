@@ -10,7 +10,10 @@ public class UI {
     public JFrame window;
     public JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, inputPanel, nameTextPanel,
                     inventoryPanel, goBackPanel, characterPanel, shopPanel, shopChoiceButtonsPanel;
-    public JLabel titleNameLabel, hpLabel, hpNumberLabel, weaponLabel, weaponNameLabel, nameTextLabel;
+    public JLabel titleNameLabel;
+    public JLabel hpLabel;
+    public JLabel hpNumberLabel;
+    public JLabel nameTextLabel;
     Font titleFont = new Font("Monospaced", Font.PLAIN, 90);
     Font normalFont = new Font("Monospaced", Font.PLAIN, 19);
     Font smallFont = new Font("Monospaced", Font.PLAIN, 14);
@@ -34,7 +37,7 @@ public class UI {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PixelMplus10-Regular.ttf")));
         }
-        catch (IOException | FontFormatException e){
+        catch (IOException | FontFormatException ignored){
         }
 
         //PIXEL FONT
@@ -180,19 +183,6 @@ public class UI {
         playerPaneMiddleButton.setActionCommand("end_this");
         playerPanel.add(playerPaneMiddleButton);
         playerPaneMiddleButton.setVisible(false);
-
-
-        /**
-        weaponLabel = new JLabel("Weapon:");
-        weaponLabel.setFont(normalFont);
-        weaponLabel.setForeground(Color.white);
-        playerPanel.add(weaponLabel);
-
-        weaponNameLabel = new JLabel();
-        weaponNameLabel.setFont(normalFont);
-        weaponNameLabel.setForeground(Color.white);
-        playerPanel.add(weaponNameLabel);
-         **/
 
         inventoryButton = new JButton("Inventory");
         inventoryButton.setBackground(Color.black);

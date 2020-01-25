@@ -15,136 +15,132 @@ public class Forest {
         this.gameworld = gameworld;
     }
 
-    Player player = gameworld.player;
-    Enemy enemy = gameworld.currentEnemy;
+    Player player = GameWorld.getPlayer();
+    Enemy enemy = GameWorld.getCurrentEnemy();
     Item drop;
-    FightText fightText = new FightText(gameworld);
 
     public void go() {
 
-        enemy = gameworld.currentEnemy;
+        enemy = GameWorld.getCurrentEnemy();
 
-        if (!gameworld.fromInventory){
+        if (!gameworld.getFromInventory()){
             enemy = EnemyGenerator.forestEnemy();
-            gameworld.currentEnemy = enemy;
+            GameWorld.setCurrentEnemy(enemy);
         }
 
-        fightText.lookingAround("FOREST", enemy, gameworld);
+        FightText.lookingAround("FOREST", enemy, gameworld);
 
-        gameworld.nextPosition1 = "FOREST_FIGHT_CHOOSE";
-        gameworld.nextPosition2 = "FOREST";
-        gameworld.nextPosition3 = "FIGHT_CHOOSE";
-        gameworld.nextPosition4 = "";
+        gameworld.setNextPosition1("FOREST_FIGHT_CHOOSE");
+        gameworld.setNextPosition2("FOREST");
+        gameworld.setNextPosition3("FIGHT_CHOOSE");
+        gameworld.setNextPosition4("");
     }
 
     public void fightChoose(){
 
-        enemy = GameWorld.currentEnemy;
+        enemy = GameWorld.getCurrentEnemy();
         if (enemy.isSentient()) this.drop = enemy.getRandomDrop();
 
-        fightText.whatNow(enemy, gameworld);
+        FightText.whatNow(enemy, gameworld);
 
-        gameworld.nextPosition1 = "FOREST_FIGHT";
-        gameworld.nextPosition2 = "FOREST"; //FIGHT CHOOSE ? szukanie nowego przeciwnika
-        gameworld.nextPosition3 = "";
-        gameworld.nextPosition4 = "";
+        gameworld.setNextPosition1("FOREST_FIGHT");
+        gameworld.setNextPosition2("FOREST"); //FIGHT CHOOSE ? szukanie nowego przeciwnika
+        gameworld.setNextPosition3("");
+        gameworld.setNextPosition4("");
     }
 
     public void fight(){
 
-        int attack1 = 0;
-        int attack2 = 0;
+        int attack1;
+        int attack2;
 
-        if(!gameworld.fromInventory){
-            enemy = GameWorld.currentEnemy;
+        if(!gameworld.getFromInventory()){
+            enemy = GameWorld.getCurrentEnemy();
             attack1 = Combat.attack(player, enemy);
             attack2 = Combat.attack(enemy, player);
 
-            gameworld.prevDmgDealt = attack1;
-            gameworld.prevDmgTaken = attack2;
+            gameworld.setPrevDmgDealt(attack1);
+            gameworld.setPrevDmgTaken(attack2);
         }
         else {
-            attack1 = gameworld.prevDmgDealt;
-            attack2 = gameworld.prevDmgTaken;
+            attack1 = gameworld.getPrevDmgDealt();
+            attack2 = gameworld.getPrevDmgTaken();
         }
 
         if (player.getHp() < 1) {
-            fightText.youDied(attack2, enemy, gameworld);
+            FightText.youDied(attack2, enemy, gameworld);
 
-            gameworld.nextPosition1 = "BEGIN";
-            gameworld.nextPosition2 = "";
-            gameworld.nextPosition3 = "";
-            gameworld.nextPosition4 = "";
+            gameworld.setNextPosition1("BEGIN");
+            gameworld.setNextPosition2("");
+            gameworld.setNextPosition3("");
+            gameworld.setNextPosition4("");
         }
         else if (enemy.getHp() < 1) {    // DEAD ENEMY
 
-            fightText.animalEnemyDead(enemy, attack1, attack2, gameworld);
+            FightText.animalEnemyDead(enemy, attack1, attack2, gameworld);
 
             if (enemy.isSentient()) {
                 Item item = this.drop;
                 this.drop = item;
-                fightText.sentientEnemyDead(enemy, attack1, attack2, item, gameworld);
+                FightText.sentientEnemyDead(enemy, attack1, attack2, item, gameworld);
             }
 
             if (!enemy.isSentient()){  //NOT SENTIENT ENEMY
 
-                gameworld.nextPosition1 = "FOREST";
-                gameworld.nextPosition2 = "FIGHT_CHOOSE";
-                gameworld.nextPosition3 = "";
-                gameworld.nextPosition4 = "";
+                gameworld.setNextPosition1("FOREST");
+                gameworld.setNextPosition2("FIGHT_CHOOSE");
+                gameworld.setNextPosition3("");
+                gameworld.setNextPosition4("");
             }
             else{  //SENTIENT ENEMY
 
-                gameworld.nextPosition1 = "FOREST";
-                gameworld.nextPosition2 = "FOREST_DROP";
-                gameworld.nextPosition3 = "FIGHT_CHOOSE";
-                gameworld.nextPosition4 = "";
+                gameworld.setNextPosition1("FOREST");
+                gameworld.setNextPosition2("FOREST_DROP");
+                gameworld.setNextPosition3("FIGHT_CHOOSE");
+                gameworld.setNextPosition4("");
 
             }
         }                                   //END DEAD ENEMY
         else {
-            fightText.enemyStillNotDead(attack1, attack2, enemy, gameworld);
+            FightText.enemyStillNotDead(attack1, attack2, enemy, gameworld);
 
-            gameworld.nextPosition1 = "FOREST_FIGHT";
-            gameworld.nextPosition2 = "FOREST";
-            gameworld.nextPosition3 = "";
-            gameworld.nextPosition4 = "";
+            gameworld.setNextPosition1("FOREST_FIGHT");
+            gameworld.setNextPosition2("FOREST");
+            gameworld.setNextPosition3("");
+            gameworld.setNextPosition4("");
         }
-        gameworld.vm.updateCurrentHPLabel(player.getHp()); //UPDATE HP
+        gameworld.getVm().updateCurrentHPLabel(player.getHp()); //UPDATE HP
         player.updateMaxHp();
     }
 
     public void inspectDroppedItem() {
         Item item = this.drop;
-        fightText.inspectDropText(item, gameworld);
+        FightText.inspectDropText(item, gameworld);
 
-        gameworld.nextPosition1 = "FOREST_TAKE_DROP";
-        gameworld.nextPosition2 = "FOREST";
-        gameworld.nextPosition3 = "FIGHT_CHOOSE";
-        gameworld.nextPosition4 = "";
+        gameworld.setNextPosition1("FOREST_TAKE_DROP");
+        gameworld.setNextPosition2("FOREST");
+        gameworld.setNextPosition3("FIGHT_CHOOSE");
+        gameworld.setNextPosition4("");
 
-        gameworld.vm.hideUselessChoiceButtons();
+        gameworld.getVm().hideUselessChoiceButtons();
     }
     public void takeDroppedItem(){
 
         Item item = this.drop;
         if (player.howManyItemsInInv()==12) {
-            fightText.cantPickUpDrop(item, gameworld);
+            FightText.cantPickUpDrop(item, gameworld);
 
-            gameworld.nextPosition1 = "FOREST_DROP";
-            gameworld.nextPosition2 = "";
-            gameworld.nextPosition3 = "";
-            gameworld.nextPosition4 = "";
+            gameworld.setNextPosition1("FOREST_DROP");
         }
         else{
-            fightText.pickUpDrop(item, gameworld);
+            FightText.pickUpDrop(item, gameworld);
             player.take(item);
 
-            gameworld.nextPosition1 = "FOREST";
-            gameworld.nextPosition2 = "";
-            gameworld.nextPosition3 = "";
-            gameworld.nextPosition4 = "";
+            gameworld.setNextPosition1("FOREST");
         }
+        gameworld.setNextPosition2("");
+        gameworld.setNextPosition3("");
+        gameworld.setNextPosition4("");
 
     }
 }

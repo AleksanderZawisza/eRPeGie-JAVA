@@ -70,8 +70,8 @@ public class HealingGenerator {
                 healing.setRestore((int) (healing.getRestore()*2.5 +20));
                 healing.setPrice((int) (healing.getPrice()*2.5 +20)); break;
             case "perfect":
-                healing.setRestore((int) (healing.getRestore()*4 +50));
-                healing.setPrice((int) (healing.getPrice()*4 +50)); break;
+                healing.setRestore(healing.getRestore()*4 +50);
+                healing.setPrice(healing.getPrice()*4 +50); break;
             default: break;
         }
 

@@ -10,10 +10,10 @@ import java.util.Random;
 public class EnemyGeneratorTest {
     public static void main (String[]args) {
         Random rand = new Random();
-        ArrayList testEnemies = EnemyGenerator.plains();
+        ArrayList<Enemy> testEnemies = EnemyGenerator.plains();
         Enemy testenemy = EnemyGenerator.plains().get(rand.nextInt(EnemyGenerator.plains().size()));
         System.out.println( testenemy.toString() );
-        testenemy = EnemyGenerator.descriptor(testenemy);
+        EnemyGenerator.descriptor(testenemy);
         System.out.println(testenemy );
 
         //fin plains
@@ -31,6 +31,5 @@ public class EnemyGeneratorTest {
         //mountain
         Enemy testEnemy4 = EnemyGenerator.mountainEnemyName("titanic");
         System.out.println( testEnemy4 );
-
     }
 }

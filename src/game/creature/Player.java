@@ -1,7 +1,5 @@
 package game.creature;
 
-import game.generators.HealingGenerator;
-import game.generators.ItemGenerator;
 import game.item.*;
 import game.item.armor.Arms;
 import game.item.armor.Head;
@@ -28,7 +26,7 @@ public class Player extends Creature {
     private int defaultAttack = 2;
     private int defaultExp = 0;
     private int defaultMoney = 0;
-    private ArrayList<Item> defaultInventory = new ArrayList();
+    private ArrayList<Item> defaultInventory = new ArrayList<>();
     public int fartmasterCount;
     private int dayCount;
     private int lastShopRestock;
@@ -76,7 +74,6 @@ public class Player extends Creature {
     public void take(Item item){
         if(inventory.size() < 12){
             inventory.add(item);
-            return;
         }
     }
 
@@ -113,40 +110,6 @@ public class Player extends Creature {
         }
     }
 
-    public void unequip(Item item){
-        if (item instanceof Weapon) {
-            if (item.equals(weapon)) {
-                this.setAttack(this.getAttack() - weapon.getDamage());
-                weapon = defaultWeapon;
-            }
-        }
-        else if (item instanceof Legs) {
-            if (item.equals(legs)) {
-                this.setArmor(this.getArmor() - legs.getDefence());
-                legs = defaultLegs;
-            }
-        }
-        else if (item instanceof Torso) {
-            if (item.equals(torso)) {
-                this.setArmor(this.getArmor() - torso.getDefence());
-                torso = defaultTorso;
-            }
-        }
-        else if (item instanceof Arms) {
-            if (item.equals(arms)) {
-                this.setArmor(this.getArmor() - arms.getDefence());
-                arms = defaultArms;
-            }
-        }
-        else if (item instanceof Head) {
-            if (item.equals(head)) {
-                this.setArmor(this.getArmor() - head.getDefence());
-                head = defaultHead;
-            }
-        }
-        else {}
-    }
-
     public int howManyItemsInInv(){
         return this.inventory.size();
     }
@@ -158,12 +121,10 @@ public class Player extends Creature {
 
     public void removeItemFromInv(int i) {
         if (i<howManyItemsInInv()) this.inventory.remove(i);
-        return;
     }
 
     public void addItemToInv(Item item) {
         if (howManyItemsInInv()<12) this.inventory.add(item);
-        return;
     }
 
     public void replaceItemInInvWith(int i, Item item) {
@@ -198,10 +159,6 @@ public class Player extends Creature {
 
     public float expWithoutLevel(){
         return (this.exp - (int) this.exp);
-    }
-
-    public float expTillNextLevel(){
-        return (1 - (this.exp - (int) this.exp));
     }
 
     public void updateMaxHp() {this.maxhp = defaultMaxHp + 10* (int) getExp();}

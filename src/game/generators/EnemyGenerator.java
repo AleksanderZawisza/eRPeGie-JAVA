@@ -29,19 +29,19 @@ public class EnemyGenerator {
 
         String myDesc = desc[rand.nextInt(desc.length)];
         switch(myDesc)
-        {   case "wounded": enemy.lowerHp((int) enemy.getMaxhp()/10 +2); enemy.lowerExp(1); break;
-            case "small": enemy.lowerAttack((int) enemy.getAttack()/10 +1); enemy.lowerExp(1); break;
-            case "diseased": enemy.lowerHp((int) enemy.getMaxhp()/10 +2);
-                enemy.lowerAttack((int) enemy.getAttack()/10  +1); enemy.lowerExp(1); break;
-            case "shaggy": enemy.lowerMoney((int) enemy.getMoney()/5 +1); break;
-            case "rare": enemy.addMoney((int) enemy.getMoney()/5 +10); break;
-            case "huge": enemy.addHp((int) enemy.getMaxhp()/10 +2); enemy.addExp(1);
-                enemy.addArmor((int) enemy.getArmor()/10); break;
-            case "ferocious": enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
-            case "frenzied": enemy.addHp((int) enemy.getMaxhp()/10 +2);
-                enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
-            case "massive": enemy.addHp((int) enemy.getMaxhp()/5 +2); enemy.addArmor(1);
-                enemy.addMoney((int) enemy.getMoney()/5 +5); enemy.addAttack((int) enemy.getAttack()/5 +1);
+        {   case "wounded": enemy.lowerHp(enemy.getMaxhp() /10 +2); enemy.lowerExp(1); break;
+            case "small": enemy.lowerAttack(enemy.getAttack() /10 +1); enemy.lowerExp(1); break;
+            case "diseased": enemy.lowerHp(enemy.getMaxhp() /10 +2);
+                enemy.lowerAttack(enemy.getAttack() /10  +1); enemy.lowerExp(1); break;
+            case "shaggy": enemy.lowerMoney(enemy.getMoney() /5 +1); break;
+            case "rare": enemy.addMoney(enemy.getMoney() /5 +10); break;
+            case "huge": enemy.addHp(enemy.getMaxhp() /10 +2); enemy.addExp(1);
+                enemy.addArmor(enemy.getArmor() /10); break;
+            case "ferocious": enemy.addAttack(enemy.getAttack() /10 +1); enemy.addExp(1); break;
+            case "frenzied": enemy.addHp(enemy.getMaxhp() /10 +2);
+                enemy.addAttack(enemy.getAttack() /10 +1); enemy.addExp(1); break;
+            case "massive": enemy.addHp(enemy.getMaxhp() /5 +2); enemy.addArmor(1);
+                enemy.addMoney(enemy.getMoney() /5 +5); enemy.addAttack(enemy.getAttack() /5 +1);
                 enemy.addExp(2); break;
             default: break;
         }
@@ -63,37 +63,37 @@ public class EnemyGenerator {
         String[] desc2 = {"completely average", "typical", "female", "male", "boringly ordinary", "suspicious-looking"};
 
         enemy.setPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeArmor((int) enemy.getMoney()/2, enemy.getMoney()),
-                ItemGenerator.newItemPriceRangeArmor((int) enemy.getMoney()/2, enemy.getMoney()),
-                ItemGenerator.newItemPriceRangeArmor((int) enemy.getMoney()/2, enemy.getMoney()),
-                ItemGenerator.newItemPriceRangeArmor((int) enemy.getMoney()/2, enemy.getMoney()) ));
+                ItemGenerator.newItemPriceRangeArmor(enemy.getMoney() /2, enemy.getMoney()),
+                ItemGenerator.newItemPriceRangeArmor(enemy.getMoney() /2, enemy.getMoney()),
+                ItemGenerator.newItemPriceRangeArmor(enemy.getMoney() /2, enemy.getMoney()),
+                ItemGenerator.newItemPriceRangeArmor(enemy.getMoney() /2, enemy.getMoney()) ));
 
         String myDesc = desc[rand.nextInt(desc.length)];
         enemy.setName(enemy.getRace() + myDesc);
         switch(myDesc)
         {   case " ranger": enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney(), "dagger")  ));
-                enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1);    break;
+                ItemGenerator.newItemPriceRangeAndName(enemy.getMoney() /2, enemy.getMoney(), "dagger")  ));
+                enemy.addAttack(enemy.getAttack() /10 +1); enemy.addExp(1);    break;
             case " hunter": enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney(), "knife")  ));
-                enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
+                ItemGenerator.newItemPriceRangeAndName(enemy.getMoney() /2, enemy.getMoney(), "knife")  ));
+                enemy.addAttack(enemy.getAttack() /10 +1); enemy.addExp(1); break;
             case " warrior": enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeWeapon((int) enemy.getMoney()/2, enemy.getMoney()*2)  ));
-                enemy.addAttack((int) enemy.getAttack()/5 +1); enemy.addExp(2); break;
+                ItemGenerator.newItemPriceRangeWeapon(enemy.getMoney() /2, enemy.getMoney()*2)  ));
+                enemy.addAttack(enemy.getAttack() /5 +1); enemy.addExp(2); break;
             case " swordsman":  enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney(), "sword")  ));
-                enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
+                ItemGenerator.newItemPriceRangeAndName(enemy.getMoney() /2, enemy.getMoney(), "sword")  ));
+                enemy.addAttack(enemy.getAttack() /10 +1); enemy.addExp(1); break;
             case " spearman":  enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney()+10, "spear")  ));
-                enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
+                ItemGenerator.newItemPriceRangeAndName(enemy.getMoney() /2, enemy.getMoney()+10, "spear")  ));
+                enemy.addAttack(enemy.getAttack() /10 +1); enemy.addExp(1); break;
             case " axeman":  enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney()+5, "axe")  ));
-                enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
+                ItemGenerator.newItemPriceRangeAndName(enemy.getMoney() /2, enemy.getMoney()+5, "axe")  ));
+                enemy.addAttack(enemy.getAttack() /10 +1); enemy.addExp(1); break;
             case " soldier":  enemy.addPossibleDrop(Arrays.asList(
-                    ItemGenerator.newItemPriceRangeAndName((int) enemy.getMoney()/2, enemy.getMoney()+15, "halberd")  ));
-                enemy.addAttack((int) enemy.getAttack()/10 +1); enemy.addExp(1); break;
+                    ItemGenerator.newItemPriceRangeAndName(enemy.getMoney() /2, enemy.getMoney()+15, "halberd")  ));
+                enemy.addAttack(enemy.getAttack() /10 +1); enemy.addExp(1); break;
             default: enemy.addPossibleDrop(Arrays.asList(
-                ItemGenerator.newItemPriceRangeWeapon((int) enemy.getMoney()/8, enemy.getMoney()/2 + 5)  ));
+                ItemGenerator.newItemPriceRangeWeapon(enemy.getMoney() /8, enemy.getMoney()/2 + 5)  ));
                 enemy.setName(desc2[rand.nextInt(desc2.length)]+ " " + enemy.getRace()); break;
         }
         return enemy;
