@@ -29,7 +29,7 @@ public class GameWorld {
     Start start = new Start(this);
     Town town = new Town(this);
     Tavern tavern = new Tavern(this);
-    Shop shop = new Shop(this);
+    public Shop shop = new Shop(this);
     FightChoose fightChoose = new FightChoose(this);
     Plains plains = new Plains(this);
     Forest forest = new Forest(this);

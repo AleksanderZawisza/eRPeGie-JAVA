@@ -98,6 +98,18 @@ public class HealingGenerator {
         return healing;
     }
 
+    public static Healing newHealingNotPotion() {
+        Healing healing = newHealing();
+        int i = 0;
+        while(healing.getName().contains("potion"))
+        { healing = newHealing(); i++;
+            if(i==10000) {
+                System.out.println("uwaga: prawdopodobnie nieskonczona petla w newPotion");
+                break; }
+        }
+        return healing;
+    }
+
 
     public static Healing newHealingPriceRange(int begin, int end) {
         Healing healing = newHealing();

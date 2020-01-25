@@ -103,7 +103,15 @@ public class ChoiceHandler implements ActionListener{
             gameworld.inventory.setLastLooked(i);
         }
 
+        if (choice.startsWith("S")) {
+            int i = Integer.parseInt(choice.substring(1));
+            gameworld.shop.sellAThing(i);
+        }
 
+        if (choice.startsWith("B")) {
+            int i = Integer.parseInt(choice.substring(1));
+            gameworld.shop.buyAThing(i);
+        }
 
     }
 

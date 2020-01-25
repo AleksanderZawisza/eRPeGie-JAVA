@@ -31,6 +31,9 @@ public class Armor extends Item {
     }
 
     @Override
+    public int getStat() { return getDefence(); }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Armor)) return false;

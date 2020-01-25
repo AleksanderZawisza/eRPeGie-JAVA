@@ -30,6 +30,8 @@ public class Player extends Creature {
     private int defaultMoney = 0;
     private ArrayList<Item> defaultInventory = new ArrayList();
     public int fartmasterCount;
+    public int dayCount;
+    public int lastShopRestock;
 
 
     public Player(){
@@ -45,6 +47,8 @@ public class Player extends Creature {
         this.torso = defaultTorso;
         this.arms = defaultArms;
         this.head = defaultHead;
+        this.dayCount = 1;
+        this.lastShopRestock = 1;
     }
 
     public Player(int maxhp, int armor, int attack, int exp, int money) {
@@ -55,6 +59,8 @@ public class Player extends Creature {
         this.torso = defaultTorso;
         this.arms = defaultArms;
         this.head = defaultHead;
+        this.dayCount = 1;
+        this.lastShopRestock = 1;
     }
 
     public void setSavename(String savename) {
@@ -144,6 +150,16 @@ public class Player extends Creature {
         return null;
     }
 
+    public void removeItemFromInv(int i) {
+        if (i<howManyItemsInInv()) this.inventory.remove(i);
+        return;
+    }
+
+    public void addItemToInv(Item item) {
+        if (howManyItemsInInv()<12) this.inventory.add(item);
+        return;
+    }
+
     public void replaceItemInInvWith(int i, Item item) {
         if (i<howManyItemsInInv()) {
             this.inventory.set(i, item);
@@ -168,6 +184,8 @@ public class Player extends Creature {
         this.money = defaultMoney;
         this.inventory.clear();
         this.inventory = defaultInventory;
+        this.dayCount = 1;
+        this.lastShopRestock = 1;
     }
 
     public float expWithoutLevel(){
@@ -179,5 +197,11 @@ public class Player extends Creature {
     }
 
     public void updateMaxHp() {this.maxhp = defaultMaxHp + 10* (int) getExp();}
+
+    public int getDayCount() { return dayCount; }
+    public void addOneDay() { this.dayCount += 1; }
+
+    public int getLastShopRestock() { return lastShopRestock; }
+    public void setLastShopRestock(int lastShopRestock) { this.lastShopRestock = lastShopRestock; }
 
 }

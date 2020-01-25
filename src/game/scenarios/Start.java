@@ -45,7 +45,7 @@ public class Start {
         player.setEverythingToDefault(); // tu do zmiany jak ładowanie postaci
         player.setHp(player.getMaxhp());
         gameworld.vm.updateCurrentHPLabel(player.getHp());
-
+        gameworld.vm.showChoicesWithoutPlayerPanel();
 
         if (player.savename.equals("FARTMASTER")) {
             player.inventory.add(new Weapon("poop on a stick", 1, 1));
@@ -61,6 +61,9 @@ public class Start {
         else if (player.savename.equals("TESTMASTER")) {
             player.inventory.add(new Weapon("ak-47", 9000, 420));
             player.inventory.add(new Head("cool shades", 9000, 6969));
+            player.inventory.add(new Healing("yellow gatorade", 500, 1000));
+            player.inventory.add(new Healing("red gatorade", 1000, 5000));
+            player.inventory.add(new Healing("blue gatorade", 2000, 10000));
             gameworld.ui.mainTextArea.setText("Sweet shades, bro." +
                     "<br>Happy hunting " + player.savename + "!");
             gameworld.ui.choice1.setText("Sure");
@@ -80,6 +83,6 @@ public class Start {
         gameworld.nextPosition3 = "";
         gameworld.nextPosition4 = "";
 
-        gameworld.vm.showChoicesWithoutPlayerPanel();
+
 }
 }

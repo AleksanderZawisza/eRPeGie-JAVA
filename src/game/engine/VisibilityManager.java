@@ -182,7 +182,7 @@ public class VisibilityManager {
 
     public void changeExitButtonToGoBackFromShop(){
         ui.goBackButton.setActionCommand("goBackFromShop");
-        ui.goBackButton.setText("BACK");
+        ui.goBackButton.setText("DONE");
     }
 
     public void hideUselessChoiceButtons(){

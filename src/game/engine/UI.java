@@ -75,6 +75,9 @@ public class UI {
         startButton.setActionCommand("start");
         startButtonPanel.add(startButton);
 
+        titleNamePanel.setVisible(false);
+        startButtonPanel.setVisible(false);
+
         window.add(titleNamePanel);
         window.add(startButtonPanel);
 
@@ -94,9 +97,10 @@ public class UI {
         mainTextArea.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
         mainTextPanel.add(mainTextArea);
 
-
+        mainTextPanel.setVisible(false);
         window.add(mainTextPanel);
 
+        // CHOICES
         choiceButtonPanel = new JPanel();
         choiceButtonPanel.setBounds(100, 380, 600, 150);
         choiceButtonPanel.setBackground(Color.black);
@@ -147,12 +151,14 @@ public class UI {
         choice3.setBorderPainted(true);
         choice4.setBorderPainted(true);
 
+        choiceButtonPanel.setVisible(false);
         window.add(choiceButtonPanel);
 
+        // PLAYER PANEL
         playerPanel = new JPanel();
         playerPanel.setBounds(100, 15, 600, 40);
         playerPanel.setBackground(Color.black);
-        playerPanel.setLayout(new GridLayout(1,5,10,10));
+        playerPanel.setLayout(new GridLayout(1,5,5,5));
 
         hpLabel = new JLabel("HP:");
         hpLabel.setFont(normalFont);
@@ -210,6 +216,7 @@ public class UI {
         playerPanel.add(characterButton);
         playerPanel.add(inventoryButton);
 
+        playerPanel.setVisible(false);
         window.add(playerPanel);
 
         // INPUT PANEL
@@ -241,6 +248,9 @@ public class UI {
         enterB.setFont(smallFont);
         inputPanel.add(enterB);
 
+        nameTextPanel.setVisible(false);
+        inputPanel.setVisible(false);
+
         window.add(nameTextPanel);
         window.add(inputPanel);
 
@@ -250,7 +260,7 @@ public class UI {
         inventoryPanel = new JPanel();
         inventoryPanel.setBounds(100, 90, 600, 420);
         inventoryPanel.setBackground(Color.black);
-        inventoryPanel.setLayout(new GridLayout(6,2, 20,15));
+        inventoryPanel.setLayout(new GridLayout(6,2, 10,5));
 
         inventoryChoiceButtons = new JButton[12];
         for (int i = 0; i < inventoryChoiceButtons.length; i++) {
@@ -282,9 +292,11 @@ public class UI {
 
         goBackPanel.add(goBackButton);
 
+        goBackPanel.setVisible(false);
+        inventoryPanel.setVisible(false);
+
         window.add(goBackPanel);
         window.add(inventoryPanel);
-        window.setVisible(true);
 
         // CHARACTER SCREEN
         characterPanel = new JPanel();
@@ -313,6 +325,8 @@ public class UI {
 
         characterPanel.add(characterStatsArea);
         characterPanel.add(characterEqArea);
+
+        characterPanel.setVisible(false);
         window.add(characterPanel);
 
         //SHOP SCREEN
@@ -322,7 +336,7 @@ public class UI {
         //shopPanel.setLayout(new GridLayout(1,2, 10, 0));
 
         shopPanel = new JPanel();
-        shopPanel.setBounds(80,90,220,420);
+        shopPanel.setBounds(80,100,220,420);
         shopPanel.setBackground(Color.black);
         shopPanel.setLayout(new GridLayout(1,1));
 
@@ -338,7 +352,7 @@ public class UI {
         shopPanel.add(shopTextArea);
 
         shopChoiceButtonsPanel = new JPanel();
-        shopChoiceButtonsPanel.setBounds(320, 90, 420, 420);
+        shopChoiceButtonsPanel.setBounds(320, 100, 420, 420);
         shopChoiceButtonsPanel.setBackground(Color.black);
         shopChoiceButtonsPanel.setLayout(new GridLayout(12,1,0,5));
 
@@ -355,6 +369,9 @@ public class UI {
 
             shopChoiceButtonsPanel.add(shopChoiceButtons[i]);
         }
+
+        shopPanel.setVisible(false);
+        shopChoiceButtonsPanel.setVisible(false);
 
         window.add(shopPanel);
         window.add(shopChoiceButtonsPanel);

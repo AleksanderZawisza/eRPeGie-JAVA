@@ -17,6 +17,9 @@ public class Healing extends Item {
     }
 
     @Override
+    public int getStat() { return getRestore(); }
+
+    @Override
     public String toString() {
         return "Healing{" +
                 "restore=" + restore +
