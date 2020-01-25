@@ -65,7 +65,7 @@ public class Inventory {
     }
 
     public void lookItem(Item item){
-        gameworld.vm.showChoicesForLookingAtShit();
+        gameworld.vm.showChoicesForLookingAtItem();
         gameworld.vm.changeExitButtonToGoBackFromLooking();
         String tmpText;
         tmpText = item.getName().toUpperCase();

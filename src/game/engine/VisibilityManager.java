@@ -48,7 +48,7 @@ public class VisibilityManager {
         ui.shopChoiceButtonsPanel.setVisible(false);
     }
 
-    public  void showChoicesForLookingAtShit(){
+    public  void showChoicesForLookingAtItem(){
 
         ui.titleNamePanel.setVisible(false);
         ui.startButtonPanel.setVisible(false);
