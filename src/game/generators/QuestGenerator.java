@@ -1,0 +1,27 @@
+package game.generators;
+
+import game.creature.Player;
+
+import java.util.Random;
+
+public class QuestGenerator {
+
+    public static String newQuest(Player player) {
+        int exp = (int) Math.floor(player.getExp());
+        String name;
+        if (exp < 20) {
+            name = EnemyGenerator.plainsEnemyExpRange(exp / 2, exp + 2).getRace();
+        } else if (exp < 50) {
+            name = EnemyGenerator.forestEnemyExpRange(exp / 2, exp + 2).getRace();
+        } else {
+            name = EnemyGenerator.mountainEnemyExpRange(exp / 2, exp + 2).getRace();
+        }
+        Random random = new Random();
+        int howMany = random.nextInt(11) + 5; // 5-15
+        player.setCurrentQuest(name);
+        player.resetQuestCount();
+        player.setMaxQuestCount(howMany);
+        return name;
+    }
+
+}

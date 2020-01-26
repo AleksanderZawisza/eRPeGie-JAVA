@@ -58,6 +58,9 @@ public class Start {
             player.setAttack(Integer.parseInt(br.readLine()));
             player.setMoney(Integer.parseInt(br.readLine()));
             player.setExp((float) Double.parseDouble(br.readLine()));
+            player.setCurrentQuest(br.readLine());
+            player.setQuestCount(Integer.parseInt(br.readLine()));
+            player.setMaxQuestCount(Integer.parseInt(br.readLine()));
             int num = Integer.parseInt(br.readLine());
             for (int i = 0; i < num; i++){
                 String clazzName = br.readLine();

@@ -20,6 +20,18 @@ public class Inventory {
 
     public void characterSheet(){
 
+        String questDesc;
+
+        if (player.getCurrentQuest().equals("") | player.getCurrentQuest().equals(" ") | player.getCurrentQuest().equals("  ")){
+            questDesc = "<br>Kill things." +
+                    "<br>Don't get killed." +
+                    "<br>Have fun! ( <font color ='red'>'</font>⌣<font color ='red'>'</font> )";
+        } else {
+            questDesc = "<br>Kill " + player.getCurrentQuest()  + "<br> [ "
+                    + player.getQuestCount() + " / " + player.getMaxQuestCount() + " ]";
+        }
+
+
         gameworld.getVm().showCharacterSheet();
         gameworld.getUi().characterStatsArea.setText(
                 "Current stats:" +
@@ -30,9 +42,7 @@ public class Inventory {
                 "<br>Gold coins: " + player.getMoney() +
                 "<br>Kills today: " + player.getDailyKillCount() +
                 "<br><br>Current goals:<br>" +
-                "<br>Kill things." +
-                "<br>Don't get killed." +
-                "<br>Have fun! ( <font color ='red'>'</font>⌣<font color ='red'>'</font> )" //TODO
+                questDesc
         );
         gameworld.getUi().characterEqArea.setText(
                 "Equipped items:" +

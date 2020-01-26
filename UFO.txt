@@ -1,41 +1,44 @@
 123
 123
 123
-123
-2.5
+10000
+0.0
+
+4
+12
 5
 Weapon
 ak-47
-123
-123
+9000
+420
 Head
 cool shades
-123
-123
+9000
+6969
 Healing
 yellow gatorade
-123
-123
+500
+1000
 Healing
 red gatorade
-123
-123
+1000
+5000
 Healing
 blue gatorade
-123
-123
+2000
+10000
 trusty stick
-123
-123
+0
+0
 old straw hat
-123
-123
+0
+0
 frayed friendship bracelet
-123
-123
+0
+0
 simple linen shirt
-123
-123
+0
+0
 patched linen pants
-123
-123
+0
+0

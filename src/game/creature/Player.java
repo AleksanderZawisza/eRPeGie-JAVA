@@ -16,6 +16,9 @@ public class Player extends Creature {
     public Torso torso;
     public Arms arms;
     public Head head;
+    private String currentQuest = "";
+    private int questCount = 0;
+    private int maxQuestCount = 0;
     private Weapon defaultWeapon = new Weapon("trusty stick",0,0);
     private Legs defaultLegs = new Legs("patched linen pants",0,0);
     private Torso defaultTorso = new Torso("simple linen shirt",0,0);
@@ -187,6 +190,29 @@ public class Player extends Creature {
     public int getDailyKillCount() { return dailyKillCount; }
     public void addDailyKillCount() { this.dailyKillCount += 1; }
     public void resetDailyKillCount() { this.dailyKillCount = 0; }
+
+    public String getCurrentQuest() {
+        return currentQuest;
+    }
+    public void setCurrentQuest(String currentQuest) {
+        this.currentQuest = currentQuest;
+    }
+
+    public int getQuestCount() {
+        return questCount;
+    }
+    public void setQuestCount(int questCount) {
+        this.questCount = questCount;
+    }
+    public void addQuestCount(){ this.questCount += 1; }
+    public void resetQuestCount(){ this.questCount = 0; }
+
+    public void setMaxQuestCount(int maxQuestCount) {
+        this.maxQuestCount = maxQuestCount;
+    }
+    public int getMaxQuestCount() {
+        return maxQuestCount;
+    }
 
     public Weapon getWeapon() {
         return weapon;

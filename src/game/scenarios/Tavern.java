@@ -1,6 +1,8 @@
 package game.scenarios;
 
 import game.creature.Player;
+import game.engine.Helper;
+import game.generators.QuestGenerator;
 import game.state.GameWorld;
 
 import java.io.BufferedWriter;
@@ -10,6 +12,7 @@ public class Tavern {
 
     GameWorld gameworld;
     Player player;
+    private int cost = 2;
 
     public Tavern(GameWorld gameworld) {
         this.gameworld = gameworld;
@@ -21,7 +24,14 @@ public class Tavern {
         gameworld.getUi().mainTextArea.setText("You manage to find the TAVERN. You see [RANDOM PERSON/GROUP] in the corner. The barmaid looks [EMOTION]. [OPTIONAL DESCRIPTION?].<br>" +
                 "It's time to...");
 
-        gameworld.getUi().choice1.setText("Buy yourself a STIFF DRINK");
+        if( gameworld.getTrueLastState().equals("DRINK") | gameworld.getTrueLastState().equals("TAVERN") |
+                (gameworld.getInventory().lastPosition.equals("DRINK") & gameworld.getFromInventory()) |
+                (gameworld.getInventory().lastPosition.equals("TAVERN") & gameworld.getFromInventory()) ) {
+            gameworld.getUi().mainTextArea.setText("You don't have ENOUGH MONEY to buy this DRINK. <br>" +
+                    "What are you gonna do now?");
+        }
+
+        gameworld.getUi().choice1.setText("Buy yourself a STIFF DRINK" + " ( " + cost + "G )");
         gameworld.getUi().choice2.setText("Get a room and HIT THE HAY");
         gameworld.getUi().choice3.setText("Get OUT OF here");
         gameworld.getUi().choice4.setText("");
@@ -30,15 +40,38 @@ public class Tavern {
         gameworld.setNextPosition2("REST");
         gameworld.setNextPosition3("TOWN");
         gameworld.setNextPosition4("");
+
+        if (player.getMoney() < cost){
+            gameworld.setNextPosition1("TAVERN");
+        }
     }
 
-    public void drink() { // questy/potrzeba pieniedzy do kupowania alko + generator opisów DO ZAIMPLEMENTOWANIA
+    public void drink() { //generator opisów DO ZAIMPLEMENTOWANIA
         String tmp = "a ";
-        if(gameworld.getTrueLastState().equals("DRINK")) tmp = "another STIFF DRINK. It's a ";
+        if (!gameworld.getFromInventory()){
+            player.lowerMoney(cost);
+            cost += 1;
+        }
+        if(gameworld.getTrueLastState().equals("DRINK")) {
+            tmp = "another STIFF DRINK. It's a ";
+        }
 
-        gameworld.getUi().mainTextArea.setText("You get yourself " + tmp + "[DRINK]. It tastes [TASTE]. [GENERAL OPINION]. ");
+        String quest = player.getCurrentQuest();
+        if (!gameworld.getFromInventory()){
+            quest = QuestGenerator.newQuest(player);
+        }
 
-        gameworld.getUi().choice1.setText("Buy yourself ANOTHER STIFF DRINK");
+        String pre = " ";
+        if (Helper.startsWithVowel(quest)){ pre = " an "; }
+        else { pre = " a "; }
+
+        quest = "<br>You fill the strong desire to kill " + pre + quest + " today.<br>" +
+                "Wait, actually " + player.getMaxQuestCount() + " of those.<br>" +
+                "It can make you EVEN MORE POWERFUL!";
+
+        gameworld.getUi().mainTextArea.setText("You get yourself " + tmp + "[DRINK]. It tastes [TASTE]. [GENERAL OPINION]. "+ quest);
+
+        gameworld.getUi().choice1.setText("Buy yourself ANOTHER STIFF DRINK" + " ( " + cost + "G )");
         gameworld.getUi().choice2.setText("Get a room and HIT THE HAY");
         gameworld.getUi().choice3.setText("Get OUT OF here");
         gameworld.getUi().choice4.setText("");
@@ -47,6 +80,10 @@ public class Tavern {
         gameworld.setNextPosition2("REST");
         gameworld.setNextPosition3("TOWN");
         gameworld.setNextPosition4("");
+
+        if (player.getMoney() < cost){
+            gameworld.setNextPosition1("TAVERN");
+        }
     }
 
     public void rest(){ // save + generator opisów DO ZAIMPLEMENTOWANIA
@@ -57,6 +94,9 @@ public class Tavern {
                 "...<br>" + "Rise and shine! It's a NEW DAY. The SUN is UP and SO ARE YOU. You get up and GET OUT.<br>");
 
         player.setHp(player.getMaxhp());    // HEALOWANIE I UPDATE HP
+        player.resetQuestCount();
+        player.setCurrentQuest("");
+        player.setMaxQuestCount(0);
         gameworld.getVm().updateCurrentHPLabel(player.getHp());
 
         player.addOneDay(); //+1 do licznika dni i reset dailyKillCount
@@ -69,6 +109,9 @@ public class Tavern {
             bw.write(""+player.getAttack()); bw.newLine();
             bw.write(""+player.getMoney()); bw.newLine();
             bw.write(""+player.getExp()); bw.newLine();
+            bw.write(player.getCurrentQuest()); bw.newLine();
+            bw.write(""+player.getQuestCount()); bw.newLine();
+            bw.write(""+player.getMaxQuestCount()); bw.newLine();
             bw.write(""+player.howManyItemsInInv()); bw.newLine();
             for (int i = 0; i < player.howManyItemsInInv(); i++){
                 String p = String.valueOf(player.getItemFromInv(i).getClass().getSimpleName());
@@ -113,5 +156,9 @@ public class Tavern {
         gameworld.setNextPosition2("");
         gameworld.setNextPosition3("");
         gameworld.setNextPosition4("");
+    }
+
+    public void resetCost(){
+        this.cost = 2;
     }
 }
