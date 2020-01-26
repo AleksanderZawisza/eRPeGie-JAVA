@@ -20,8 +20,10 @@ public class Start {
 
     public void begin(){
 
+        gameworld.getVm().setEverythingWhite();
         gameworld.getVm().toBegin();
         gameworld.getVm().updateCurrentHPLabel(player.getHp());
+
 
         /* EW DO IMPLEMENTACJI
         System.out.print("<br>" + savename + ", right? [Y/N]<br>> ");

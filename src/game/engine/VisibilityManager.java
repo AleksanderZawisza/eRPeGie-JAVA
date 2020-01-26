@@ -1,5 +1,7 @@
 package game.engine;
 
+import java.awt.*;
+
 public class VisibilityManager {
 
     UI ui;
@@ -195,4 +197,74 @@ public class VisibilityManager {
         if (ui.choice3.getText().equals("")) ui.choice3.setBorderPainted(false);
         if (ui.choice4.getText().equals("")) ui.choice4.setBorderPainted(false);
     }
+
+    public void setEverythingGray(){
+        ui.titleNameLabel.setForeground(Color.gray);
+        ui.hpLabel.setForeground(Color.gray);
+        ui.hpNumberLabel.setForeground(Color.gray);
+        ui.nameTextLabel.setForeground(Color.gray);
+
+        ui.startButton.setForeground(Color.gray);
+
+        ui.choice1.setForeground(Color.gray);
+        ui.choice2.setForeground(Color.gray);
+        ui.choice3.setForeground(Color.gray);
+        ui.choice4.setForeground(Color.gray);
+
+        ui.enterB.setForeground(Color.gray);
+        ui.jtf.setForeground(Color.gray);
+
+        ui.inventoryButton.setForeground(Color.gray);
+        ui.characterButton.setForeground(Color.gray);
+        ui.goBackButton.setForeground(Color.gray);
+        ui.playerPaneMiddleButton.setForeground(Color.gray);
+
+        ui.mainTextArea.setForeground(Color.gray);
+
+        ui.characterStatsArea.setForeground(Color.gray);
+        ui.characterEqArea.setForeground(Color.gray);
+        ui.shopTextArea.setForeground(Color.gray);
+        int i = 0;
+        while(i<12) {
+            ui.inventoryChoiceButtons[i].setForeground(Color.gray);
+            ui.shopChoiceButtons[i].setForeground(Color.gray);
+            i++;
+        }
+    }
+
+    public void setEverythingWhite() {
+        ui.titleNameLabel.setForeground(Color.white);
+        ui.hpLabel.setForeground(Color.white);
+        ui.hpNumberLabel.setForeground(Color.white);
+        ui.nameTextLabel.setForeground(Color.white);
+
+        ui.startButton.setForeground(Color.white);
+
+        ui.choice1.setForeground(Color.white);
+        ui.choice2.setForeground(Color.white);
+        ui.choice3.setForeground(Color.white);
+        ui.choice4.setForeground(Color.white);
+
+        ui.enterB.setForeground(Color.white);
+        ui.jtf.setForeground(Color.white);
+
+        ui.inventoryButton.setForeground(Color.white);
+        ui.characterButton.setForeground(Color.white);
+        ui.goBackButton.setForeground(Color.white);
+        ui.playerPaneMiddleButton.setForeground(Color.white);
+
+        ui.mainTextArea.setForeground(Color.white);
+
+        ui.characterStatsArea.setForeground(Color.white);
+        ui.characterEqArea.setForeground(Color.white);
+        ui.shopTextArea.setForeground(Color.white);
+        int i = 0;
+        while (i < 12) {
+            ui.inventoryChoiceButtons[i].setForeground(Color.white);
+            ui.shopChoiceButtons[i].setForeground(Color.white);
+            i++;
+        }
+    }
+
+
 }
