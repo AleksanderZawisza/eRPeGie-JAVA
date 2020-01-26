@@ -10,6 +10,7 @@ import game.state.GameWorld;
 public class Forest {
 
     GameWorld gameworld;
+    String where = "FOREST";
 
     public Forest(GameWorld gameworld) {
         this.gameworld = gameworld;

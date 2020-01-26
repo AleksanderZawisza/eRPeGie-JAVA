@@ -26,7 +26,7 @@ public class ItemGeneratorTest {
         System.out.println( testItem3 );
 
         //priceRange Armor
-        Item testItem4 = ItemGenerator.newItemPriceRangeArmor(0, 100);
+        Item testItem4 = ItemGenerator.newItemPriceRangeWeapon(1000, 10000);
         System.out.println( testItem4 );
 
 

@@ -1,6 +1,8 @@
 package game.generators;
 
 import game.creature.Enemy;
+import game.item.*;
+import game.item.armor.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -340,6 +342,31 @@ public class EnemyGenerator {
                 System.out.println("uwaga: prawdopodobnie nieskonczona petla w forestEnemyExpRange");
                 break; }
         }
+        return enemy;
+    }
+
+    public static Enemy areaBoss(String where){
+        Enemy enemy = new Enemy();
+        ArrayList<Item> drop = new ArrayList<Item>();
+
+        if(where.equalsIgnoreCase("plains")){
+            enemy = new Enemy("the great devourer", 400,200,80,50,500);
+            drop.add(new Weapon("devourer's fang", 800, 500));
+            enemy.setPossibleDrop(drop);
+        }
+        if(where.equalsIgnoreCase("forest")){
+            enemy = new Enemy("the leshy", 4000,2000,300,110,0);
+            drop.add(new Torso("forest protector's robe", 2000, 1000));
+            drop.add(new Arms("leshy's claws", 2000, 1000));
+            drop.add(new Legs("leshy's hooves", 2000, 1000));
+            enemy.setPossibleDrop(drop);
+        }
+        if(where.equalsIgnoreCase("mountains")){
+            enemy = new Enemy("the lord of the mountain", 10000,6000,1000,1000,0);
+            drop.add(new Head("forgotten god's skull", 9000, 0));
+            enemy.setPossibleDrop(drop);
+        }
+
         return enemy;
     }
 

@@ -32,6 +32,9 @@ public class Player extends Creature {
     private int lastShopRestock;
     private int killCount;
     private int dailyKillCount;
+    private boolean killedPlainsBoss;
+    private boolean killedForestBoss;
+    private boolean killedMountainsBoss;
 
 
     public Player(){
@@ -51,6 +54,9 @@ public class Player extends Creature {
         this.lastShopRestock = 1;
         this.dayCount = 0;
         this.lastShopRestock = 0;
+        this.killedPlainsBoss = false;
+        this.killedForestBoss = false;
+        this. killedMountainsBoss = false;
     }
 
     public Player(int maxhp, int armor, int attack, int exp, int money) {
@@ -65,6 +71,9 @@ public class Player extends Creature {
         this.lastShopRestock = 1;
         this.dayCount = 0;
         this.lastShopRestock = 0;
+        this.killedPlainsBoss = false;
+        this.killedForestBoss = false;
+        this. killedMountainsBoss = false;
     }
 
     public void setSavename(String savename) {
@@ -155,6 +164,9 @@ public class Player extends Creature {
         this.lastShopRestock = 1;
         this.killCount = 0;
         this.dailyKillCount = 0;
+        this.killedPlainsBoss = false;
+        this.killedForestBoss = false;
+        this. killedMountainsBoss = false;
     }
 
     public float expWithoutLevel(){
@@ -207,4 +219,13 @@ public class Player extends Creature {
     public void setHead(Head head) {
         this.head = head;
     }
+
+    public boolean killedPlainsBoss() { return killedPlainsBoss; }
+    public void setKilledPlainsBoss(boolean killedPlainsBoss) { this.killedPlainsBoss = killedPlainsBoss; }
+
+    public boolean killedForestBoss() { return killedForestBoss; }
+    public void setKilledForestBoss(boolean killedForestBoss) { this.killedForestBoss = killedForestBoss; }
+
+    public boolean killedMountainsBoss() { return killedMountainsBoss; }
+    public void setKilledMountainsBoss(boolean killedMountainsBoss) { this.killedMountainsBoss = killedMountainsBoss; }
 }

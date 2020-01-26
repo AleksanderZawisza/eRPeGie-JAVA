@@ -50,7 +50,7 @@ public class Start {
         String loaded = "";
 
         if (file.exists() && !savename.equals("TESTMASTER")){
-            loaded = "Welcome back! ";
+            loaded = "Welcome back!<br>";
             BufferedReader br = new BufferedReader(new FileReader(file));
             player.setMaxhp(Integer.parseInt(br.readLine()));
             player.setHp(player.getMaxhp());

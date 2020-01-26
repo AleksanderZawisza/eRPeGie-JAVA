@@ -10,6 +10,7 @@ import game.state.GameWorld;
 public class Plains {
 
     GameWorld gameworld;
+    String where = "PLAINS";
 
     public Plains(GameWorld gameworld) {
         this.gameworld = gameworld;
