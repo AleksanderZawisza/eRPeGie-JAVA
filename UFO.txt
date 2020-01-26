@@ -1,20 +1,12 @@
 123
-123
-123
-10000
-0.0
+9444
+9123
+9021
+14
 
-4
-12
-5
-Weapon
-ak-47
-9000
-420
-Head
-cool shades
-9000
-6969
+0
+0
+3
 Healing
 yellow gatorade
 500
@@ -27,18 +19,18 @@ Healing
 blue gatorade
 2000
 10000
-trusty stick
-0
-0
-old straw hat
-0
-0
-frayed friendship bracelet
-0
-0
-simple linen shirt
-0
-0
-patched linen pants
-0
-0
+ak-47
+9000
+420
+cool shades
+9000
+6969
+legendary leather gauntlets
+104
+299
+plain iron breastplate
+137
+500
+great steel shorts
+80
+180

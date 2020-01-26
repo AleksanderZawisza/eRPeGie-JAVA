@@ -142,17 +142,31 @@ public class FightText {
 
     public static void animalEnemyDead(Enemy enemy, int attack1, int attack2, GameWorld gameworld){
         String lvlUp = "";
+        String doneQuest = "";
         Player player = GameWorld.getPlayer();
 
         float receivedExp = enemy.getExp()/20;
-        if (receivedExp + player.expWithoutLevel()>=1) lvlUp = "You feel more confident. You're pretty sure your THREAT RATING just went up!";
+        if (enemy.getRace().equals(player.getCurrentQuest()) & !gameworld.getFromInventory()){
+            player.addQuestCount();
+        }
+        if (player.getQuestCount() >= player.getMaxQuestCount() & !gameworld.getFromInventory()){
+            doneQuest = "You have fulfilled your desire. <br> ";
+            player.setCurrentQuest("");
+            player.addExp(enemy.getExp()*player.getMaxQuestCount()/60);
+            receivedExp += (enemy.getExp()*player.getMaxQuestCount()/60);
+            player.setQuestCount(0);
+            player.setMaxQuestCount(0);
+        }
+        if (receivedExp + player.expWithoutLevel()>=1) {
+            lvlUp = "Your THREAT RATING just went up!";
+        }
 
         gameworld.getUi().mainTextArea.setText("You dealt " + attack1 + " DMG.<br>" +
                 "The " + enemy.getRace().toUpperCase() + " is DEAD.<br>" +
                 "You WON the fight!<br><br>" +
                 "You think you can sell parts from the DEAD " + enemy.getRace().toUpperCase() +
                 " for about " + enemy.getMoney() + " GOLD COINS.<br><br>" +
-                lvlUp);
+                doneQuest + lvlUp);
 
         gameworld.getUi().choice1.setText("LOOK for MORE");
         gameworld.getUi().choice2.setText("Get BACK on the ROAD");
@@ -173,17 +187,31 @@ public class FightText {
 
     public static void sentientEnemyDead(Enemy enemy, int attack1, int attack2, Item item, GameWorld gameworld){
         String lvlUp = "";
+        String doneQuest = "";
         Player player = GameWorld.getPlayer();
 
         float receivedExp = enemy.getExp()/20;
-        if (receivedExp + player.expWithoutLevel()>=1) lvlUp = "You feel more confident. You're pretty sure your THREAT RATING just went up!";
+        if (enemy.getRace().equals(player.getCurrentQuest()) & !gameworld.getFromInventory()){
+            player.addQuestCount();
+        }
+        if (player.getQuestCount() >= player.getMaxQuestCount() & !gameworld.getFromInventory()){
+            doneQuest = "You have fulfilled your desire. <br>";
+            player.setCurrentQuest("");
+            player.addExp(enemy.getExp()*player.getMaxQuestCount()/60);
+            receivedExp += (enemy.getExp()*player.getMaxQuestCount()/60);
+            player.setQuestCount(0);
+            player.setMaxQuestCount(0);
+        }
+        if (receivedExp + player.expWithoutLevel()>=1) {
+            lvlUp = "Your THREAT RATING just went up!";
+        }
 
         gameworld.getUi().mainTextArea.setText("You dealt " + attack1 + " DMG.<br>" +
                 "The " + enemy.getRace().toUpperCase() + " is DEAD.<br>" +
                 "You WON the fight!<br><br>" +
                 "You eye the DEAD " + enemy.getRace().toUpperCase() + "'S " +
                 item.getName().toUpperCase() + ".<br><br>" +
-                lvlUp);
+                doneQuest + lvlUp );
 
         gameworld.getUi().choice1.setText("LOOK for MORE");
         gameworld.getUi().choice2.setText("INSPECT the ITEM");
