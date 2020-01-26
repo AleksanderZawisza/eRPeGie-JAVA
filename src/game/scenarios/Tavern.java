@@ -65,13 +65,13 @@ public class Tavern {
         if (Helper.startsWithVowel(quest)){ pre = " an "; }
         else { pre = " a "; }
 
-        quest = "<br>You fill the strong desire to kill " + pre + quest + " today.<br>" +
-                "Wait, actually " + player.getMaxQuestCount() + " of those.<br>" +
-                "It can make you EVEN MORE POWERFUL!";
+        quest = "<br>You feel a strong desire to kill " + pre + quest.toUpperCase() + " today.<br>" +
+                "Wait, actually, more like " + player.getMaxQuestCount() + " of those.<br>" +
+                "It would make you EVEN MORE POWERFUL!";
 
         gameworld.getUi().mainTextArea.setText("You get yourself " + tmp + "[DRINK]. It tastes [TASTE]. [GENERAL OPINION]. "+ quest);
 
-        gameworld.getUi().choice1.setText("Buy yourself ANOTHER STIFF DRINK" + " ( " + cost + "G )");
+        gameworld.getUi().choice1.setText("Buy yourself ANOTHER STIFF DRINK" + " {" + cost + " G}");
         gameworld.getUi().choice2.setText("Get a room and HIT THE HAY");
         gameworld.getUi().choice3.setText("Get OUT OF here");
         gameworld.getUi().choice4.setText("");

@@ -79,9 +79,8 @@ public class Player extends Creature {
         this. killedMountainsBoss = false;
     }
 
-    public void setSavename(String savename) {
-        this.savename = savename;
-    }
+    public void setSavename(String savename) { this.savename = savename; }
+    public String getSavename() { return savename; }
 
     public void take(Item item){
         if(inventory.size() < 12){

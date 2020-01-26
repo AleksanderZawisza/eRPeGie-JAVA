@@ -152,10 +152,10 @@ public class Shop {
     public void updateBuyList(){
         int i = 0;
         while (i < howManyItemsInShop() && i < 12 ) {
-            gameworld.getUi().shopChoiceButtons[i].setText(
+            gameworld.getUi().shopChoiceButtons[i].setText("<html>" +
                     this.shopStock.get(i).getName().toUpperCase() +
                     " [+" + this.shopStock.get(i).getStat() + "] {" +
-                    this.shopStock.get(i).getPrice() + " G}"
+                    this.shopStock.get(i).getPrice() + " G}" + "</html>"
             );
             gameworld.getUi().shopChoiceButtons[i].setActionCommand("B" + i);
             gameworld.getUi().shopChoiceButtons[i].setBorderPainted(true);
@@ -172,10 +172,10 @@ public class Shop {
     public void updateSellList(){
         int i = 0;
         while (i < player.howManyItemsInInv() ) {
-            gameworld.getUi().shopChoiceButtons[i].setText(
+            gameworld.getUi().shopChoiceButtons[i].setText("<html>" +
                     player.getItemFromInv(i).getName().toUpperCase() +
                     " [+" + player.getItemFromInv(i).getStat() + "] {" +
-                    player.getItemFromInv(i).getPrice() + " G}"
+                    player.getItemFromInv(i).getPrice() + " G}" + "</html>"
             );
             gameworld.getUi().shopChoiceButtons[i].setActionCommand("S" + i);
             gameworld.getUi().shopChoiceButtons[i].setBorderPainted(true);

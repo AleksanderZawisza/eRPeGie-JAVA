@@ -177,14 +177,12 @@ public class FightText {
 
         float receivedExp = enemy.getExp()/20;
         if (receivedExp + player.expWithoutLevel()>=1) lvlUp = "You feel more confident. You're pretty sure your THREAT RATING just went up!";
-        String plural = "s";
-        if (item.getName().endsWith("s")) plural = "";
 
         gameworld.getUi().mainTextArea.setText("You dealt " + attack1 + " DMG.<br>" +
                 "The " + enemy.getRace().toUpperCase() + " is DEAD.<br>" +
                 "You WON the fight!<br><br>" +
-                "You think the DEAD " + enemy.getRace().toUpperCase() + "'S " +
-                item.getName().toUpperCase() + " look"+ plural +" pretty serviceable.<br><br>" +
+                "You eye the DEAD " + enemy.getRace().toUpperCase() + "'S " +
+                item.getName().toUpperCase() + ".<br><br>" +
                 lvlUp);
 
         gameworld.getUi().choice1.setText("LOOK for MORE");
@@ -198,6 +196,9 @@ public class FightText {
             player.addExp(receivedExp);
             player.addDailyKillCount();
             player.addKillCount();
+            if (enemy.getRace().contains("great devourer")) player.setKilledPlainsBoss(true);
+            if (enemy.getRace().contains("leshy")) player.setKilledForestBoss(true);
+            if (enemy.getRace().contains("mountain god")) player.setKilledMountainsBoss(true);
         }
 
     }

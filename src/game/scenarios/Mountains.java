@@ -35,6 +35,9 @@ public class Mountains {
         gameworld.setNextPosition2("MOUNTAINS");
         gameworld.setNextPosition3("FIGHT_CHOOSE");
         gameworld.setNextPosition4("");
+
+        if (player.getDailyKillCount()>=16 & player.getExp()>=100 & player.killedForestBoss()) gameworld.getBoss().mountainsBoss1(); //BOSS
+        if (player.killedMountainsBoss()) gameworld.getBoss().mountainsBossKilled(); //AFTER BOSS
     }
 
     public void fightChoose(){
@@ -77,7 +80,7 @@ public class Mountains {
             gameworld.setNextPosition4("");
         }
         else if (enemy.getHp() < 1) {    // DEAD ENEMY
-
+            if (!enemy.isSentient())
             FightText.animalEnemyDead(enemy, attack1, attack2, gameworld);
 
             if (enemy.isSentient()) {
@@ -106,7 +109,7 @@ public class Mountains {
             FightText.enemyStillNotDead(attack1, attack2, enemy, gameworld);
 
             gameworld.setNextPosition1("MOUNTAINS_FIGHT");
-            gameworld.setNextPosition2("MOUNTAINS");
+            gameworld.setNextPosition2("FIGHT_CHOOSE");
             gameworld.setNextPosition3("");
             gameworld.setNextPosition4("");
         }

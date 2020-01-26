@@ -35,6 +35,9 @@ public class Forest {
         gameworld.setNextPosition2("FOREST");
         gameworld.setNextPosition3("FIGHT_CHOOSE");
         gameworld.setNextPosition4("");
+
+        if (player.getDailyKillCount()>=12 & player.getExp()>=50 & player.killedPlainsBoss()) gameworld.getBoss().forestBoss1(); //BOSS
+        if (player.killedForestBoss()) gameworld.getBoss().forestBossKilled(); //AFTER BOSS
     }
 
     public void fightChoose(){
@@ -77,7 +80,7 @@ public class Forest {
             gameworld.setNextPosition4("");
         }
         else if (enemy.getHp() < 1) {    // DEAD ENEMY
-
+            if (!enemy.isSentient())
             FightText.animalEnemyDead(enemy, attack1, attack2, gameworld);
 
             if (enemy.isSentient()) {
@@ -106,7 +109,7 @@ public class Forest {
             FightText.enemyStillNotDead(attack1, attack2, enemy, gameworld);
 
             gameworld.setNextPosition1("FOREST_FIGHT");
-            gameworld.setNextPosition2("FOREST");
+            gameworld.setNextPosition2("FIGHT_CHOOSE");
             gameworld.setNextPosition3("");
             gameworld.setNextPosition4("");
         }

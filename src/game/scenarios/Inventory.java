@@ -61,10 +61,11 @@ public class Inventory {
         gameworld.getVm().changeBackButtonToExit();
 
         while (i < player.howManyItemsInInv() ) {
-            gameworld.getUi().inventoryChoiceButtons[i].setText((i+1) + ". " +
-                     player.getItemFromInv(i).getName().toUpperCase()
+            gameworld.getUi().inventoryChoiceButtons[i].setText("<html>" + (i+1) + ". " +
+                    player.getItemFromInv(i).getName().toUpperCase()
                     //player.getItemFromInv(i).getName().substring(0,1).toUpperCase()
                     //+ player.getItemFromInv(i).getName().substring(1)
+                    + "</html>"
             );
             gameworld.getUi().inventoryChoiceButtons[i].setActionCommand("I" + i);
             gameworld.getUi().inventoryChoiceButtons[i].setBorderPainted(true);

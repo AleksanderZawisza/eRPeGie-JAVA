@@ -35,6 +35,9 @@ public class Plains {
         gameworld.setNextPosition2("PLAINS");
         gameworld.setNextPosition3("FIGHT_CHOOSE");
         gameworld.setNextPosition4("");
+
+        if (player.getDailyKillCount()>=8 & player.getExp()>=20) gameworld.getBoss().plainsBoss1(); //BOSS
+        if (player.killedPlainsBoss()) gameworld.getBoss().plainsBossKilled(); //AFTER BOSS
     }
 
     public void fightChoose(){
@@ -77,7 +80,7 @@ public class Plains {
             gameworld.setNextPosition4("");
         }
         else if (enemy.getHp() < 1) {    // DEAD ENEMY
-
+            if (!enemy.isSentient())
             FightText.animalEnemyDead(enemy, attack1, attack2, gameworld);
 
             if (enemy.isSentient()) {
@@ -106,7 +109,7 @@ public class Plains {
             FightText.enemyStillNotDead(attack1, attack2, enemy, gameworld);
 
             gameworld.setNextPosition1("PLAINS_FIGHT");
-            gameworld.setNextPosition2("PLAINS");
+            gameworld.setNextPosition2("FIGHT_CHOOSE");
             gameworld.setNextPosition3("");
             gameworld.setNextPosition4("");
         }

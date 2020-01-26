@@ -350,23 +350,24 @@ public class EnemyGenerator {
         ArrayList<Item> drop = new ArrayList<Item>();
 
         if(where.equalsIgnoreCase("plains")){
-            enemy = new Enemy("the great devourer", 400,200,80,50,500);
-            drop.add(new Weapon("devourer's fang", 800, 500));
+            enemy = new Enemy("great devourer", 400,200,80,50,0);
+            drop.add(new Weapon("<font color='red'>serrated fang</font>", 800, 500));
             enemy.setPossibleDrop(drop);
+            enemy.setName("ravenous wyrm");
         }
         if(where.equalsIgnoreCase("forest")){
-            enemy = new Enemy("the leshy", 4000,2000,300,110,0);
-            drop.add(new Torso("forest protector's robe", 2000, 1000));
-            drop.add(new Arms("leshy's claws", 2000, 1000));
-            drop.add(new Legs("leshy's hooves", 2000, 1000));
+            enemy = new Enemy("leshy", 4000,2000,300,110,0);
+            drop.add(new Torso("<font color='red'>forest protector's robe</font>", 2000, 1000));
             enemy.setPossibleDrop(drop);
+            enemy.setName("forest protector");
         }
         if(where.equalsIgnoreCase("mountains")){
-            enemy = new Enemy("the lord of the mountain", 10000,6000,1000,1000,0);
-            drop.add(new Head("forgotten god's skull", 9000, 0));
+            enemy = new Enemy("mountain god", 10000,6000,1000,1000,0);
+            drop.add(new Head("<font color='red'>antlered skull</font>", 9000, 0));
             enemy.setPossibleDrop(drop);
+            enemy.setName("lord of the mountain");
         }
-
+        enemy.setSentient(true);
         return enemy;
     }
 

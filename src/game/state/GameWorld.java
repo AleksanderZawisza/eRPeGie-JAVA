@@ -40,6 +40,7 @@ public class GameWorld {
     private Forest forest = new Forest(this);
     private Mountains mountains = new Mountains(this);
     private Inventory inventory = new Inventory(this);
+    private Boss boss = new Boss(this);
 
     public static Player getPlayer() {
         return player;
@@ -77,6 +78,8 @@ public class GameWorld {
             case "PLAINS": getPlains().go(); break;
             case "PLAINS_FIGHT_CHOOSE": getPlains().fightChoose(); break;
             case "PLAINS_FIGHT": getPlains().fight(); break;
+            case "PLAINS_DROP": getPlains().inspectDroppedItem(); break;
+            case "PLAINS_TAKE_DROP": getPlains().takeDroppedItem(); break;
             case "FOREST": getForest().go(); break;
             case "FOREST_FIGHT_CHOOSE": getForest().fightChoose(); break;
             case "FOREST_FIGHT": getForest().fight(); break;
@@ -94,6 +97,16 @@ public class GameWorld {
             case "INVENTORY_YEET": getInventory().yeet(); break;
             case "INVENTORY_AFTER_EQUIP": getInventory().lookAfterSwapping(); break;
             case "INVENTORY_USE": getInventory().use(); break;
+            case "PLAINS_BOSS_2": getBoss().plainsBoss2(); break;
+            case "PLAINS_BOSS_3": getBoss().plainsBoss3(); break;
+            case "PLAINS_BOSS_FIGHT": getBoss().plainsBossFight(); break;
+            case "FOREST_BOSS_2": getBoss().forestBoss2(); break;
+            case "FOREST_BOSS_3": getBoss().forestBoss3(); break;
+            case "FOREST_BOSS_FIGHT": getBoss().forestBossFight(); break;
+            case "MOUNTAINS_BOSS_2": getBoss().mountainsBoss2(); break;
+            case "MOUNTAINS_BOSS_3": getBoss().mountainsBoss3(); break;
+            case "MOUNTAINS_BOSS_4": getBoss().mountainsBoss4(); break;
+            case "MOUNTAINS_BOSS_FIGHT": getBoss().mountainsBossFight(); break;
             case "DEAD": break;
         }
         this.setTrueLastState(nextPosition);
@@ -224,4 +237,7 @@ public class GameWorld {
         return inventory;
     }
 
+    public Boss getBoss() { return boss; }
+
+    public void setBoss(Boss boss) { this.boss = boss; }
 }
