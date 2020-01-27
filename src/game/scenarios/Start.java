@@ -19,7 +19,6 @@ public class Start {
     Player player = GameWorld.getPlayer();
 
     public void begin(){
-        gameworld.getVm().setEverythingWhite();
         gameworld.getVm().toBegin();
         gameworld.getVm().updateCurrentHPLabel(player.getHp());
     }

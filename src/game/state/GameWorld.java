@@ -124,6 +124,7 @@ public class GameWorld {
             }
         }
         if (player.killedMountainsBoss()) vm.setEverythingGray();
+        if (nextPosition.equals("BEGIN")) vm.setEverythingWhite();
         this.setTrueLastState(nextPosition);
         getVm().hideUselessChoiceButtons();
     }
