@@ -32,7 +32,7 @@ public class FightText {
     }
 
     public static void lookingAround(String where, Enemy enemy, GameWorld gameworld) {
-        gameworld.getUi().mainTextArea.setText("You are now in the "+where+". It is "+ TextGenerator.weather() +". You see a " +
+        gameworld.getUi().mainTextArea.setText("You are now in the <font color='red'>"+where+"</font>. It is "+ TextGenerator.weather() +". You see a " +
                 enemy.getName().toUpperCase() + "." +
                 "<br>You decide to:");
 

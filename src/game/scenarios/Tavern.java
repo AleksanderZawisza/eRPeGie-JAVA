@@ -23,7 +23,7 @@ public class Tavern {
 
     public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
 
-        gameworld.getUi().mainTextArea.setText("You manage to find the TAVERN. You see "+TextGenerator.randomPersonSlashGroup()
+        gameworld.getUi().mainTextArea.setText("You manage to find the <font color='red'>TAVERN</font>. You see "+TextGenerator.randomPersonSlashGroup()
                 +" sitting in the corner. The barmaid looks "+TextGenerator.emotion(player.killedPlainsBoss(), player.killedForestBoss()) +"." +
                 "<br>It's time to...");
 

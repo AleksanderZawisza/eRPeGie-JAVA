@@ -43,6 +43,7 @@ public class Mountains {
         }
 
         if (player.getDailyKillCount()>=16 & player.getExp()>=100 & player.killedForestBoss()) gameworld.getBoss().mountainsBoss1(); //BOSS
+        if (player.triggeredMountainBoss()) gameworld.getBoss().mountainsBoss1();
         if (player.killedMountainsBoss()) gameworld.getBoss().mountainsBossKilled(); //AFTER BOSS
     }
 

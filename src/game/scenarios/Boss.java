@@ -198,7 +198,7 @@ public class Boss {
         gameworld.getUi().mainTextArea.setText("<center><font color ='gray'>Traveller, I wish I could say that there is still time to stop this. " +
                 "I wish I could say it and mean it, but it is too late now. Far too late. You killed everything there was to kill. " +
                 "This land is barren. The people dead or gone. The settlements abandoned. Was it hate or ambition that drove you to this, "
-                + GameWorld.getPlayer().getSavename() +"? Or just plain boredom?</font></center>");
+                + GameWorld.getPlayer().getSavename() +"? Or maybe just plain boredom?</font></center>");
 
         gameworld.getUi().choice1.setText("<html><font color='red'>...</font></html>");
         gameworld.getUi().choice2.setText("");
@@ -230,6 +230,7 @@ public class Boss {
     public void mountainsBossFight() {
         GameWorld.setCurrentEnemy(EnemyGenerator.areaBoss("MOUNTAINS"));
         gameworld.getMountains().drop = EnemyGenerator.areaBoss("MOUNTAINS").getRandomDrop();
+        GameWorld.getPlayer().setTriggeredMountainBoss(true);
         gameworld.getMountains().fight();
     }
 

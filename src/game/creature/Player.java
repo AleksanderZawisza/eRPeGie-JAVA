@@ -304,7 +304,7 @@ public class Player extends Creature {
     public boolean killedMountainsBoss() { return killedMountainsBoss; }
     public void setKilledMountainsBoss(boolean killedMountainsBoss) { this.killedMountainsBoss = killedMountainsBoss; }
 
-    public boolean isTriggeredMountainBoss() { return triggeredMountainBoss; }
+    public boolean triggeredMountainBoss() { return triggeredMountainBoss; }
     public void setTriggeredMountainBoss(boolean triggeredMountainBoss) { this.triggeredMountainBoss = triggeredMountainBoss; }
 
     public String getTrait1() { return trait1; }

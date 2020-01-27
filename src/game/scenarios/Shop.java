@@ -34,7 +34,7 @@ public class Shop {
             player.setLastShopRestock(player.getDayCount());
         }
 
-        gameworld.getUi().mainTextArea.setText("You are in the SHOP. The SHOPKEEPER seems "+
+        gameworld.getUi().mainTextArea.setText("You are in the <font color='red'>SHOP</font>. The SHOPKEEPER seems "+
                 TextGenerator.emotion(player.killedPlainsBoss(),player.killedForestBoss()) +
                 " when he sees you. He asks if you're interested in BUYING or SELLING.<br>" +
                 restock +
