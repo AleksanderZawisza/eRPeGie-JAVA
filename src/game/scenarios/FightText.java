@@ -157,11 +157,15 @@ public class FightText {
         }
         if (player.getQuestCount() >= player.getMaxQuestCount() & !gameworld.getFromInventory()){
             doneQuest = "You have fulfilled your desire. <br> ";
+            player.setDoneQuest(player.getCurrentQuest());
             player.setCurrentQuest("");
             player.addExp(enemy.getExp()*player.getMaxQuestCount()/60);
             receivedExp += (enemy.getExp()*player.getMaxQuestCount()/60);
             player.setQuestCount(0);
             player.setMaxQuestCount(0);
+        }
+        if (player.getQuestCount() >= player.getMaxQuestCount() & enemy.getRace().equals(player.getDoneQuest())){
+            doneQuest = "You have fulfilled your desire. <br>";
         }
         if (receivedExp + player.expWithoutLevel()>=1) {
             lvlUp = "Your THREAT RATING just went up!";
@@ -202,11 +206,15 @@ public class FightText {
         }
         if (player.getQuestCount() >= player.getMaxQuestCount() & !gameworld.getFromInventory()){
             doneQuest = "You have fulfilled your desire. <br>";
+            player.setDoneQuest(player.getCurrentQuest());
             player.setCurrentQuest("");
             player.addExp(enemy.getExp()*player.getMaxQuestCount()/60);
             receivedExp += (enemy.getExp()*player.getMaxQuestCount()/60);
             player.setQuestCount(0);
             player.setMaxQuestCount(0);
+        }
+        if (player.getQuestCount() >= player.getMaxQuestCount() & enemy.getRace().equals(player.getDoneQuest())){
+            doneQuest = "You have fulfilled your desire. <br>";
         }
         if (receivedExp + player.expWithoutLevel()>=1) {
             lvlUp = "Your THREAT RATING just went up!";
