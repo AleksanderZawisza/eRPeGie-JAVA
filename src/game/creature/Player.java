@@ -174,6 +174,7 @@ public class Player extends Creature {
     }
 
     public void setEverythingToDefault(){
+        this.ended = false;
         this.setWeapon(defaultWeapon);
         this.setLegs(defaultLegs);
         this.setTorso(defaultTorso);
