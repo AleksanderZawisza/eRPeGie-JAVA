@@ -142,6 +142,7 @@ public class ChoiceHandler implements ActionListener{
                     e.printStackTrace();
                 }
                 break;
+            case "end_this": System.exit(0);  break;
 
         }
 
