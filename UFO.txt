@@ -6,6 +6,9 @@
 
 0
 0
+false
+false
+false
 3
 Healing
 yellow gatorade

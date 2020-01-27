@@ -63,6 +63,9 @@ public class Start {
             player.setCurrentQuest(br.readLine());
             player.setQuestCount(Integer.parseInt(br.readLine()));
             player.setMaxQuestCount(Integer.parseInt(br.readLine()));
+            player.setKilledPlainsBoss(Boolean.parseBoolean(br.readLine()));
+            player.setKilledForestBoss(Boolean.parseBoolean(br.readLine()));
+            player.setKilledMountainsBoss(Boolean.parseBoolean(br.readLine()));
             int num = Integer.parseInt(br.readLine());
             for (int i = 0; i < num; i++){
                 String clazzName = br.readLine();

@@ -9,9 +9,9 @@ public class QuestGenerator {
     public static String newQuest(Player player) {
         int exp = (int) Math.floor(player.getExp());
         String name;
-        if (exp < 20) {
+        if (!player.killedPlainsBoss()) {
             name = EnemyGenerator.plainsEnemyExpRange(exp / 2, exp + 2).getRace();
-        } else if (exp < 50) {
+        } else if (!player.killedForestBoss()) {
             name = EnemyGenerator.forestEnemyExpRange(exp / 2, exp + 2).getRace();
         } else {
             name = EnemyGenerator.mountainEnemyExpRange(exp / 2, exp + 2).getRace();
