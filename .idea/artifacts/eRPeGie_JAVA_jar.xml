@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="eRPeGie-JAVA:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/eRPeGie_JAVA_jar</output-path>
+    <root id="archive" name="eRPeGie-JAVA.jar">
+      <element id="module-output" name="eRPeGie-JAVA" />
+    </root>
+  </artifact>
+</component>
