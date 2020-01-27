@@ -3,7 +3,9 @@ package game.scenarios;
 import game.creature.Player;
 import game.engine.Helper;
 import game.generators.QuestGenerator;
+import game.generators.TextGenerator;
 import game.state.GameWorld;
+import org.w3c.dom.Text;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -21,8 +23,9 @@ public class Tavern {
 
     public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
 
-        gameworld.getUi().mainTextArea.setText("You manage to find the TAVERN. You see [RANDOM PERSON/GROUP] in the corner. The barmaid looks [EMOTION]. [OPTIONAL DESCRIPTION?].<br>" +
-                "It's time to...");
+        gameworld.getUi().mainTextArea.setText("You manage to find the TAVERN. You see "+TextGenerator.randomPersonSlashGroup()
+                +" sitting in the corner. The barmaid looks "+TextGenerator.emotion(player.killedPlainsBoss(), player.killedForestBoss()) +"." +
+                "<br>It's time to...");
 
         if( gameworld.getTrueLastState().equals("DRINK") | gameworld.getTrueLastState().equals("TAVERN") |
                 (gameworld.getInventory().lastPosition.equals("DRINK") & gameworld.getFromInventory()) |
@@ -69,7 +72,8 @@ public class Tavern {
                 "Wait, actually, more like " + player.getMaxQuestCount() + " of those.<br>" +
                 "It would make you EVEN MORE POWERFUL!";
 
-        gameworld.getUi().mainTextArea.setText("You get yourself " + tmp + "[DRINK]. It tastes [TASTE]. [GENERAL OPINION]. "+ quest);
+        gameworld.getUi().mainTextArea.setText("You get yourself " + tmp + TextGenerator.drink()+". It tastes "+
+                TextGenerator.taste()+". "+ quest);
 
         gameworld.getUi().choice1.setText("Buy yourself ANOTHER STIFF DRINK" + " {" + cost + " G}");
         gameworld.getUi().choice2.setText("Get a room and HIT THE HAY");
@@ -89,8 +93,8 @@ public class Tavern {
     public void rest(){ // save + generator opisów DO ZAIMPLEMENTOWANIA
 
         gameworld.getUi().mainTextArea.setText("You rent a room and decide to TAKE A BREATHER for the rest of the day." +
-                "<br>You lie down and MAKE AN ENTRY in your JOURNAL.<br>" + "Your bed is [DESCRIPTION].<br>" +
-                "You hear [SOUND] in the background.<br>" + "The pillows are [DESCRIPTION].<br>" +
+                "<br>You lie down and MAKE AN ENTRY in your JOURNAL.<br>" + "Your bed is "+TextGenerator.bedOrPillowDescription()+".<br>" +
+                "You hear "+ TextGenerator.sound() +" in the background.<br>" + "The pillows are "+TextGenerator.bedOrPillowDescription()+".<br>" +
                 "...<br>" + "Rise and shine! It's a NEW DAY. The SUN is UP and SO ARE YOU. You get up and GET OUT.<br>");
 
         player.setHp(player.getMaxhp());    // HEALOWANIE I UPDATE HP

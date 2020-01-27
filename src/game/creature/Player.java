@@ -1,10 +1,12 @@
 package game.creature;
 
+import game.generators.TextGenerator;
 import game.item.*;
 import game.item.armor.Arms;
 import game.item.armor.Head;
 import game.item.armor.Legs;
 import game.item.armor.Torso;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -40,6 +42,14 @@ public class Player extends Creature {
     private boolean killedPlainsBoss;
     private boolean killedForestBoss;
     private boolean killedMountainsBoss;
+    private boolean triggeredMountainBoss;
+    private String trait1;
+    private String trait2;
+    private String age;
+    private String gender;
+    private String hobby1;
+    private String job;
+    private String hobby2;
 
 
     public Player(){
@@ -61,7 +71,15 @@ public class Player extends Creature {
         this.lastShopRestock = 0;
         this.killedPlainsBoss = false;
         this.killedForestBoss = false;
-        this. killedMountainsBoss = false;
+        this.killedMountainsBoss = false;
+        this.triggeredMountainBoss = false;
+        this.trait1 = TextGenerator.trait();
+        this.trait2 = TextGenerator.traitTwo();
+        this.age = TextGenerator.age();
+        this.gender = TextGenerator.gender();
+        this.hobby1 = TextGenerator.hobby();
+        this.hobby2 = TextGenerator.hobbyTwo();
+        this.job = TextGenerator.job();
     }
 
     public Player(int maxhp, int armor, int attack, int exp, int money) {
@@ -78,7 +96,15 @@ public class Player extends Creature {
         this.lastShopRestock = 0;
         this.killedPlainsBoss = false;
         this.killedForestBoss = false;
-        this. killedMountainsBoss = false;
+        this.killedMountainsBoss = false;
+        this.triggeredMountainBoss = false;
+        this.trait1 = TextGenerator.trait();
+        this.trait2 = TextGenerator.traitTwo();
+        this.age = TextGenerator.age();
+        this.gender = TextGenerator.gender();
+        this.hobby1 = TextGenerator.hobby();
+        this.hobby2 = TextGenerator.hobbyTwo();
+        this.job = TextGenerator.job();
     }
 
     public void setSavename(String savename) { this.savename = savename; }
@@ -170,7 +196,15 @@ public class Player extends Creature {
         this.dailyKillCount = 0;
         this.killedPlainsBoss = false;
         this.killedForestBoss = false;
-        this. killedMountainsBoss = false;
+        this.killedMountainsBoss = false;
+        this.triggeredMountainBoss = false;
+        this.trait1 = TextGenerator.trait();
+        this.trait2 = TextGenerator.traitTwo();
+        this.age = TextGenerator.age();
+        this.gender = TextGenerator.gender();
+        this.hobby1 = TextGenerator.hobby();
+        this.hobby2 = TextGenerator.hobbyTwo();
+        this.job = TextGenerator.job();
     }
 
     public float expWithoutLevel(){
@@ -269,4 +303,28 @@ public class Player extends Creature {
 
     public boolean killedMountainsBoss() { return killedMountainsBoss; }
     public void setKilledMountainsBoss(boolean killedMountainsBoss) { this.killedMountainsBoss = killedMountainsBoss; }
+
+    public boolean isTriggeredMountainBoss() { return triggeredMountainBoss; }
+    public void setTriggeredMountainBoss(boolean triggeredMountainBoss) { this.triggeredMountainBoss = triggeredMountainBoss; }
+
+    public String getTrait1() { return trait1; }
+    public void setTrait1(String trait1) { this.trait1 = trait1; }
+
+    public String getTrait2() { return trait2; }
+    public void setTrait2(String trait2) { this.trait2 = trait2; }
+
+    public String getAge() { return age; }
+    public void setAge(String age) { this.age = age; }
+
+    public String getGender() { return gender; }
+    public void setGender(String gender) { this.gender = gender; }
+
+    public String getHobby1() { return hobby1; }
+    public void setHobby1(String hobby1) { this.hobby1 = hobby1; }
+
+    public String getJob() { return job; }
+    public void setJob(String job) { this.job = job; }
+
+    public String getHobby2() { return hobby2; }
+    public void setHobby2(String hobby2) { this.hobby2 = hobby2; }
 }

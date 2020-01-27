@@ -2,6 +2,7 @@ package game.scenarios;
 
 import game.creature.Enemy;
 import game.creature.Player;
+import game.generators.TextGenerator;
 import game.item.*;
 import game.item.armor.*;
 import game.state.GameWorld;
@@ -16,7 +17,7 @@ public class FightText {
 
     public void go() { // generator opisów DO ZAIMPLEMENTOWANIA
 
-        gameworld.getUi().mainTextArea.setText("You are NEAR THE TOWN GATES. It is [WEATHER]. You see THREE PATHS.<br>" +
+        gameworld.getUi().mainTextArea.setText("You are NEAR THE TOWN GATES. It is "+ TextGenerator.weather() +". You see THREE PATHS.<br>" +
                 "You decide to:");
 
         gameworld.getUi().choice1.setText("Go EAST, towards the PLAINS");
@@ -31,7 +32,7 @@ public class FightText {
     }
 
     public static void lookingAround(String where, Enemy enemy, GameWorld gameworld) {
-        gameworld.getUi().mainTextArea.setText("You are now in the "+where+". It is [WEATHER]. You see a " +
+        gameworld.getUi().mainTextArea.setText("You are now in the "+where+". It is "+ TextGenerator.weather() +". You see a " +
                 enemy.getName().toUpperCase() + "." +
                 "<br>You decide to:");
 

@@ -3,6 +3,7 @@ package game.scenarios;
 import game.creature.Player;
 import game.generators.HealingGenerator;
 import game.generators.ItemGenerator;
+import game.generators.TextGenerator;
 import game.item.*;
 import game.state.GameWorld;
 
@@ -33,7 +34,9 @@ public class Shop {
             player.setLastShopRestock(player.getDayCount());
         }
 
-        gameworld.getUi().mainTextArea.setText("You are in the SHOP. The SHOPKEEPER seems [EMOTION] when he sees you. He asks if you're interested in BUYING or SELLING.<br>" +
+        gameworld.getUi().mainTextArea.setText("You are in the SHOP. The SHOPKEEPER seems "+
+                TextGenerator.emotion(player.killedPlainsBoss(),player.killedForestBoss()) +
+                " when he sees you. He asks if you're interested in BUYING or SELLING.<br>" +
                 restock +
                 "<br>You have " + player.getMoney() + " GOLD COINS on you.<br>" +
                 "<br>You say that you want to...<br>");

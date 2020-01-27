@@ -1,5 +1,6 @@
 package game.scenarios;
 
+import game.generators.TextGenerator;
 import game.state.GameWorld;
 
 public class Town {
@@ -14,8 +15,8 @@ public class Town {
 
         gameworld.getVm().showChoices();
 
-        gameworld.getUi().mainTextArea.setText("You are currently in <font color='red'>TOWN</font>. It is [WEATHER]. " +
-                "The poeple around seem [EMOTION]. [OPTIONAL DESCRIPTION?].");
+        gameworld.getUi().mainTextArea.setText("You are currently in <font color='red'>TOWN</font>. It is "+ TextGenerator.weather() +". " +
+                "The poeple around seem "+ TextGenerator.emotion(GameWorld.getPlayer().killedPlainsBoss(), GameWorld.getPlayer().killedForestBoss()) +".");
 
         gameworld.getUi().choice1.setText("Find the TAVERN");
         gameworld.getUi().choice2.setText("Go to the SHOP");
@@ -30,8 +31,11 @@ public class Town {
 
     public void contemplate() {
 
-        gameworld.getUi().mainTextArea.setText("Your NAME is [NAME]. It is currently [DAY/WEATHER]. You are a [TRAIT], [TRAIT] [AGE] [GENDER].<br>"+
-                "You have a fondness for [HOBBY] and are an ASPIRING [JOB]. You like to [HOBBY] but are NOT VERY GOOD AT IT.<br>" +
+        gameworld.getUi().mainTextArea.setText("Your NAME is "+GameWorld.getPlayer().getSavename()+". It is currently "+ TextGenerator.weather() +
+                ". You are a "+ GameWorld.getPlayer().getTrait1()+", "+GameWorld.getPlayer().getTrait2()+" "+
+                GameWorld.getPlayer().getAge()+" " + GameWorld.getPlayer().getGender()+".<br>"+
+                "You have a fondness for "+ GameWorld.getPlayer().getHobby1() +" and are an ASPIRING "+
+                GameWorld.getPlayer().getJob()+". You like "+GameWorld.getPlayer().getHobby2()+" but are NOT VERY GOOD AT IT.<br>" +
                 "You also enjoy KILLING THINGS sometimes.");
 
         gameworld.getUi().choice1.setText("Get me THE HELL OUT OF HERE");
