@@ -152,9 +152,9 @@ public class Start {
         gameworld.setNextPosition4("");
 
         if (player.getEnded()){
-            gameworld.getUi().mainTextArea.setText("There is nothing here!");
+            gameworld.getUi().mainTextArea.setText("<br><center><font color='gray'>There is nothing here.</font></center>");
             gameworld.setNextPosition1("BEGIN");
-            gameworld.getUi().choice1.setText("Oh no!");
+            gameworld.getUi().choice1.setText("<html><font color='red'>...</font></html>");
         }
     }
 }
