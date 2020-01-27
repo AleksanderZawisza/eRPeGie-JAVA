@@ -6,6 +6,8 @@ import game.state.GameWorld;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 
@@ -142,7 +144,66 @@ public class ChoiceHandler implements ActionListener{
                     e.printStackTrace();
                 }
                 break;
-            case "end_this": System.exit(0);  break;
+            case "end_this":
+                GameWorld.getPlayer().setEnded(true);
+                try{
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(player.getSaveName() + ".txt"));
+                    bw.write(""+player.getEnded()); bw.newLine();
+                    bw.write(""+player.getHp()); bw.newLine();
+                    bw.write(""+player.getArmor()); bw.newLine();
+                    bw.write(""+player.getAttack()); bw.newLine();
+                    bw.write(""+player.getMoney()); bw.newLine();
+                    bw.write(""+player.getExp()); bw.newLine();
+                    bw.write(player.getCurrentQuest()); bw.newLine();
+                    bw.write(""+player.getQuestCount()); bw.newLine();
+                    bw.write(""+player.getMaxQuestCount()); bw.newLine();
+                    bw.write(""+player.killedPlainsBoss()); bw.newLine();
+                    bw.write(""+player.killedForestBoss()); bw.newLine();
+                    bw.write(""+player.killedMountainsBoss()); bw.newLine();
+                    bw.write(""+player.triggeredMountainBoss()); bw.newLine();
+                    bw.write(player.getTrait1()); bw.newLine();
+                    bw.write(player.getTrait2()); bw.newLine();
+                    bw.write(player.getAge()); bw.newLine();
+                    bw.write(player.getGender()); bw.newLine();
+                    bw.write(player.getHobby1()); bw.newLine();
+                    bw.write(player.getHobby2()); bw.newLine();
+                    bw.write(player.getJob()); bw.newLine();
+                    bw.write(""+player.howManyItemsInInv()); bw.newLine();
+                    for (int i = 0; i < player.howManyItemsInInv(); i++){
+                        String p = String.valueOf(player.getItemFromInv(i).getClass().getSimpleName());
+                        bw.write(p); bw.newLine();
+                        bw.write(player.getItemFromInv(i).getName()); bw.newLine();
+                        bw.write(""+player.getItemFromInv(i).getStat()); bw.newLine();
+                        bw.write(""+player.getItemFromInv(i).getPrice()); bw.newLine();
+                    }
+                    // equipped weapon
+                    bw.write(player.getWeapon().getName()); bw.newLine();
+                    bw.write(""+player.getWeapon().getStat()); bw.newLine();
+                    bw.write(""+player.getWeapon().getPrice()); bw.newLine();
+                    // equipped head
+                    bw.write(player.getHead().getName()); bw.newLine();
+                    bw.write(""+player.getHead().getStat()); bw.newLine();
+                    bw.write(""+player.getHead().getPrice()); bw.newLine();
+                    // equipped arms
+                    bw.write(player.getArms().getName()); bw.newLine();
+                    bw.write(""+player.getArms().getStat()); bw.newLine();
+                    bw.write(""+player.getArms().getPrice()); bw.newLine();
+                    // equipped torso
+                    bw.write(player.getTorso().getName()); bw.newLine();
+                    bw.write(""+player.getTorso().getStat()); bw.newLine();
+                    bw.write(""+player.getTorso().getPrice()); bw.newLine();
+                    // equipped legs
+                    bw.write(player.getLegs().getName()); bw.newLine();
+                    bw.write(""+player.getLegs().getStat()); bw.newLine();
+                    bw.write(""+player.getLegs().getPrice()); bw.newLine();
+
+                    bw.close();
+                }
+                catch (Exception e){
+                    System.err.format("Exception: %s%n", e);
+                }
+                System.exit(0);
+                break;
 
         }
 

@@ -240,7 +240,6 @@ public class Boss {
                 "<br>The air smells like <font color='red'>BLOOD</font> and <font color='red'>DEATH</font>." +
                 "<br><br><font color='red'>It's peaceful.</font>");
 
-        GameWorld.getPlayer().setEnded(true);
         gameworld.getVm().showEndButton();
         gameworld.getUi().choice1.setText("<html><font color='red'>...</font></html>");
         gameworld.getUi().choice2.setText("");

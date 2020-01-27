@@ -1,16 +1,16 @@
-false
-123
+true
+541
 9000
 9002
-10000
-0.0
+18586
+152.1
 
 0
 0
 true
 true
-false
-false
+true
+true
 CHEERFUL
 YOUTHFUL
 OLD
