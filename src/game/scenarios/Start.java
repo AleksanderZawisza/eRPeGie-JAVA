@@ -150,6 +150,10 @@ public class Start {
         gameworld.setNextPosition3("");
         gameworld.setNextPosition4("");
 
+        if (player.killedMountainsBoss()){
+            gameworld.getVm().showEndButton();
+        }
+
         if (player.getEnded()){
             gameworld.getUi().mainTextArea.setText("<br><center><font color='gray'>There is nothing here.</font></center>");
             gameworld.setNextPosition1("BEGIN");
