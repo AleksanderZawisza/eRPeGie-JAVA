@@ -173,7 +173,7 @@ public class UI {
         hpNumberLabel.setForeground(Color.white);
         playerPanel.add(hpNumberLabel);
 
-        playerPaneMiddleButton = new JButton("END THIS");
+        playerPaneMiddleButton = new JButton("<html><font color='red'>END THIS</font></html>");
         playerPaneMiddleButton.setBackground(Color.black);
         playerPaneMiddleButton.setForeground(Color.red);
         playerPaneMiddleButton.setFont(pixelEndFont);
