@@ -155,7 +155,8 @@ public class FightText {
         if (enemy.getRace().equals(player.getCurrentQuest()) & !gameworld.getFromInventory()){
             player.addQuestCount();
         }
-        if (player.getQuestCount() >= player.getMaxQuestCount() & !gameworld.getFromInventory()){
+        if (player.getQuestCount() >= player.getMaxQuestCount() & !gameworld.getFromInventory()
+                & player.getCurrentQuest().equals(enemy.getRace())){
             doneQuest = "You have fulfilled your desire. <br> ";
             player.setDoneQuest(player.getCurrentQuest());
             player.setCurrentQuest("");
@@ -204,7 +205,8 @@ public class FightText {
         if (enemy.getRace().equals(player.getCurrentQuest()) & !gameworld.getFromInventory()){
             player.addQuestCount();
         }
-        if (player.getQuestCount() >= player.getMaxQuestCount() & !gameworld.getFromInventory()){
+        if (player.getQuestCount() >= player.getMaxQuestCount() & !gameworld.getFromInventory()
+                & player.getCurrentQuest().equals(enemy.getRace())){
             doneQuest = "You have fulfilled your desire. <br>";
             player.setDoneQuest(player.getCurrentQuest());
             player.setCurrentQuest("");
