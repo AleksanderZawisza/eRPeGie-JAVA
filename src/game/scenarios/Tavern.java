@@ -113,10 +113,10 @@ public class Tavern {
             bw.write(player.getCurrentQuest()); bw.newLine();
             bw.write(""+player.getQuestCount()); bw.newLine();
             bw.write(""+player.getMaxQuestCount()); bw.newLine();
+            bw.write(""+player.killedPlainsBoss()); bw.newLine();
+            bw.write(""+player.killedForestBoss()); bw.newLine();
+            bw.write(""+player.killedMountainsBoss()); bw.newLine();
             bw.write(""+player.howManyItemsInInv()); bw.newLine();
-            bw.write(""+player.killedPlainsBoss());
-            bw.write(""+player.killedForestBoss());
-            bw.write(""+player.killedMountainsBoss());
             for (int i = 0; i < player.howManyItemsInInv(); i++){
                 String p = String.valueOf(player.getItemFromInv(i).getClass().getSimpleName());
                 bw.write(p); bw.newLine();
