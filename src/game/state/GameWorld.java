@@ -64,7 +64,6 @@ public class GameWorld {
         if (!nextPosition.contains("INVENTORY") && !nextPosition.equals("CHARACTER_SHEET")) {
             getInventory().setLastPosition(nextPosition);
         }
-        if (player.killedMountainsBoss()) vm.setEverythingGray();
         switch(nextPosition){
             case "BEGIN": getStart().begin(); break;
             case "DESCRIPTION": getStart().description(); break;
@@ -124,6 +123,7 @@ public class GameWorld {
                 case "FIGHT_CHOOSE": getGhostTown().fightChoose(); break;
             }
         }
+        if (player.killedMountainsBoss()) vm.setEverythingGray();
         this.setTrueLastState(nextPosition);
         getVm().hideUselessChoiceButtons();
     }
