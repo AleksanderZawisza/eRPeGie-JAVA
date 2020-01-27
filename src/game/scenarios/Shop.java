@@ -55,11 +55,11 @@ public class Shop {
 
         gameworld.getUi().shopTextArea.setText("You want to BUY SOMETHING. You start BROWSING AROUND." +
                 "<br><br>Current worn items:" +
-                "<br><br>Weapon ATT: " + player.weapon.getStat() +
-                "<br>Head DEF: " + player.head.getStat() +
-                "<br>Torso DEF: " + player.torso.getStat() +
-                "<br>Arm DEF: " + player.arms.getStat() +
-                "<br>Leg DEF: " + player.legs.getStat() +
+                "<br><br>Weapon ATT: " + player.getWeapon().getStat() +
+                "<br>Head DEF: " + player.getHead().getStat() +
+                "<br>Torso DEF: " + player.getTorso().getStat() +
+                "<br>Arm DEF: " + player.getArms().getStat() +
+                "<br>Leg DEF: " + player.getLegs().getStat() +
                 "<br><br>You have " + player.getMoney() + " GOLD COINS on you.<br>" );
 
         updateBuyList();
@@ -72,11 +72,11 @@ public class Shop {
 
         gameworld.getUi().shopTextArea.setText("You want to SELL SOMETHING. Now you just have to decide what, exactly, you want to GET RID OF." +
                 "<br><br>Current worn items:" +
-                "<br><br>Weapon ATT: " + player.weapon.getStat() +
-                "<br>Head DEF: " + player.head.getStat() +
-                "<br>Torso DEF: " + player.torso.getStat() +
-                "<br>Arm DEF: " + player.arms.getStat() +
-                "<br>Leg DEF: " + player.legs.getStat() +
+                "<br><br>Weapon ATT: " + player.getWeapon().getStat() +
+                "<br>Head DEF: " + player.getHead().getStat() +
+                "<br>Torso DEF: " + player.getTorso().getStat() +
+                "<br>Arm DEF: " + player.getArms().getStat() +
+                "<br>Leg DEF: " + player.getLegs().getStat() +
                 "<br><br>You have " + player.getMoney() + " GOLD COINS on you.<br>" );
 
         updateSellList();
@@ -103,21 +103,21 @@ public class Shop {
         if (player.howManyItemsInInv()==12){
             gameworld.getUi().shopTextArea.setText("You sigh wistfully. You really wanna BUY THIS THING but you CAN'T because there's NO SPACE left in your BAG!" +
                     "<br><br>Current worn items:" +
-                    "<br><br>Weapon ATT: " + player.weapon.getStat() +
-                    "<br>Head DEF: " + player.head.getStat() +
-                    "<br>Torso DEF: " + player.torso.getStat() +
-                    "<br>Arm DEF: " + player.arms.getStat() +
-                    "<br>Leg DEF: " + player.legs.getStat() +
+                    "<br><br>Weapon ATT: " + player.getWeapon().getStat() +
+                    "<br>Head DEF: " + player.getHead().getStat() +
+                    "<br>Torso DEF: " + player.getTorso().getStat() +
+                    "<br>Arm DEF: " + player.getArms().getStat() +
+                    "<br>Leg DEF: " + player.getLegs().getStat() +
                     "<br><br>You have " + player.getMoney() + " GOLD COINS on you.<br>" ); //update text
         }
         else if (player.getMoney()<this.shopStock.get(numberOfThing).getPrice()){
             gameworld.getUi().shopTextArea.setText("You sigh wistfully. You really wanna BUY THIS THING but you CAN'T because you're TOO BROKE!" +
                     "<br><br>Current worn items:" +
-                    "<br><br>Weapon ATT: " + player.weapon.getStat() +
-                    "<br>Head DEF: " + player.head.getStat() +
-                    "<br>Torso DEF: " + player.torso.getStat() +
-                    "<br>Arm DEF: " + player.arms.getStat() +
-                    "<br>Leg DEF: " + player.legs.getStat() +
+                    "<br><br>Weapon ATT: " + player.getWeapon().getStat() +
+                    "<br>Head DEF: " + player.getHead().getStat() +
+                    "<br>Torso DEF: " + player.getTorso().getStat() +
+                    "<br>Arm DEF: " + player.getArms().getStat() +
+                    "<br>Leg DEF: " + player.getLegs().getStat() +
                     "<br><br>You have " + player.getMoney() + " GOLD COINS on you.<br>" ); //update text
         }
         else{
@@ -125,11 +125,11 @@ public class Shop {
             player.addItemToInv(shopStock.get(numberOfThing));
             shopStock.remove(numberOfThing);
             gameworld.getUi().shopTextArea.setText("Wonder of wonders, you had enough GOLD COINS so THE THING is now YOURS. Nice!" +
-                    "<br><br>Weapon ATT: " + player.weapon.getStat() +
-                    "<br>Head DEF: " + player.head.getStat() +
-                    "<br>Torso DEF: " + player.torso.getStat() +
-                    "<br>Arm DEF: " + player.arms.getStat() +
-                    "<br>Leg DEF: " + player.legs.getStat() +
+                    "<br><br>Weapon ATT: " + player.getWeapon().getStat() +
+                    "<br>Head DEF: " + player.getHead().getStat() +
+                    "<br>Torso DEF: " + player.getTorso().getStat() +
+                    "<br>Arm DEF: " + player.getArms().getStat() +
+                    "<br>Leg DEF: " + player.getLegs().getStat() +
                     "<br><br>You have " + player.getMoney() + " GOLD COINS on you.<br>" ); //update text
             updateBuyList();
         }
@@ -142,11 +142,11 @@ public class Shop {
 
         gameworld.getUi().shopTextArea.setText("GOOD RIDDANCE. Anything else?" +
                 "<br><br>Current worn items:" +
-                "<br><br>Weapon ATT: " + player.weapon.getStat() +
-                "<br>Head DEF: " + player.head.getStat() +
-                "<br>Torso DEF: " + player.torso.getStat() +
-                "<br>Arm DEF: " + player.arms.getStat() +
-                "<br>Leg DEF: " + player.legs.getStat() +
+                "<br><br>Weapon ATT: " + player.getWeapon().getStat() +
+                "<br>Head DEF: " + player.getHead().getStat() +
+                "<br>Torso DEF: " + player.getTorso().getStat() +
+                "<br>Arm DEF: " + player.getArms().getStat() +
+                "<br>Leg DEF: " + player.getLegs().getStat() +
                 "<br><br>You have " + player.getMoney() + " GOLD COINS on you.<br>" ); //update text
 
         updateSellList();

@@ -6,18 +6,18 @@ import game.item.armor.Arms;
 import game.item.armor.Head;
 import game.item.armor.Legs;
 import game.item.armor.Torso;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class Player extends Creature {
-    public String savename = "";
-    public ArrayList<Item> inventory;
-    public Weapon weapon;
-    public Legs legs;
-    public Torso torso;
-    public Arms arms;
-    public Head head;
+    private String saveName = "";
+    private ArrayList<Item> inventory;
+    private Weapon weapon;
+    private Legs legs;
+    private Torso torso;
+    private Arms arms;
+    private Head head;
+    private boolean ended = false;
     private String currentQuest = "";
     private int questCount = 0;
     private int maxQuestCount = 0;
@@ -59,12 +59,12 @@ public class Player extends Creature {
         this.attack = defaultAttack;
         this.exp = defaultExp;
         this.money = defaultMoney;
-        this.inventory = defaultInventory;
-        this.weapon = defaultWeapon;
-        this.legs = defaultLegs;
-        this.torso = defaultTorso;
-        this.arms = defaultArms;
-        this.head = defaultHead;
+        this.setInventory(defaultInventory);
+        this.setWeapon(defaultWeapon);
+        this.setLegs(defaultLegs);
+        this.setTorso(defaultTorso);
+        this.setArms(defaultArms);
+        this.setHead(defaultHead);
         this.dayCount = 1;
         this.lastShopRestock = 1;
         this.dayCount = 0;
@@ -84,12 +84,12 @@ public class Player extends Creature {
 
     public Player(int maxhp, int armor, int attack, int exp, int money) {
         super(maxhp, armor, attack, exp, money);
-        this.inventory = defaultInventory;
-        this.weapon = defaultWeapon;
-        this.legs = defaultLegs;
-        this.torso = defaultTorso;
-        this.arms = defaultArms;
-        this.head = defaultHead;
+        this.setInventory(defaultInventory);
+        this.setWeapon(defaultWeapon);
+        this.setLegs(defaultLegs);
+        this.setTorso(defaultTorso);
+        this.setArms(defaultArms);
+        this.setHead(defaultHead);
         this.dayCount = 1;
         this.lastShopRestock = 1;
         this.dayCount = 0;
@@ -107,42 +107,39 @@ public class Player extends Creature {
         this.job = TextGenerator.job();
     }
 
-    public void setSavename(String savename) { this.savename = savename; }
-    public String getSavename() { return savename; }
-
     public void take(Item item){
-        if(inventory.size() < 12){
-            inventory.add(item);
+        if(getInventory().size() < 12){
+            getInventory().add(item);
         }
     }
 
     public void remove(int i){
-        if (inventory.size()-1 <= i && i>=0) {
-            inventory.remove(i);
+        if (getInventory().size()-1 <= i && i>=0) {
+            getInventory().remove(i);
         }
 
     }
 
     public void useItem(Item item){
         if (item instanceof Weapon){
-            this.setAttack(this.getAttack() - this.weapon.getDamage() + ((Weapon) item).getDamage());
-            this.weapon = (Weapon) item;
+            this.setAttack(this.getAttack() - this.getWeapon().getDamage() + ((Weapon) item).getDamage());
+            this.setWeapon((Weapon) item);
         }
         if (item instanceof Legs){
-            this.setArmor(this.getArmor() - this.legs.getDefence() + ((Legs) item).getDefence());
-            this.legs = (Legs) item;
+            this.setArmor(this.getArmor() - this.getLegs().getDefence() + ((Legs) item).getDefence());
+            this.setLegs((Legs) item);
         }
         if (item instanceof Arms){
-            this.setArmor(this.getArmor() - this.arms.getDefence() + ((Arms) item).getDefence());
-            this.arms = (Arms) item;
+            this.setArmor(this.getArmor() - this.getArms().getDefence() + ((Arms) item).getDefence());
+            this.setArms((Arms) item);
         }
         if (item instanceof Torso){
-            this.setArmor(this.getArmor() - this.torso.getDefence() + ((Torso) item).getDefence());
-            this.torso = (Torso) item;
+            this.setArmor(this.getArmor() - this.getTorso().getDefence() + ((Torso) item).getDefence());
+            this.setTorso((Torso) item);
         }
         if (item instanceof Head){
-            this.setArmor(this.getArmor() - this.head.getDefence() + ((Head) item).getDefence());
-            this.head = (Head) item;
+            this.setArmor(this.getArmor() - this.getHead().getDefence() + ((Head) item).getDefence());
+            this.setHead((Head) item);
         }
         if (item instanceof Healing){
             setHp(Math.min(this.getHp()+((Healing) item).getRestore(), this.getMaxhp()));
@@ -150,46 +147,46 @@ public class Player extends Creature {
     }
 
     public int howManyItemsInInv(){
-        return this.inventory.size();
+        return this.getInventory().size();
     }
 
     public Item getItemFromInv(int i) {
-        if (i<howManyItemsInInv()) return this.inventory.get(i);
+        if (i<howManyItemsInInv()) return this.getInventory().get(i);
         return null;
     }
 
     public void removeItemFromInv(int i) {
-        if (i<howManyItemsInInv()) this.inventory.remove(i);
+        if (i<howManyItemsInInv()) this.getInventory().remove(i);
     }
 
     public void addItemToInv(Item item) {
-        if (howManyItemsInInv()<12) this.inventory.add(item);
+        if (howManyItemsInInv()<12) this.getInventory().add(item);
     }
 
     public void replaceItemInInvWith(int i, Item item) {
         if (i<howManyItemsInInv()) {
-            this.inventory.set(i, item);
+            this.getInventory().set(i, item);
         }
     }
 
     public void yeetItemFromInv(int i) {
-        if (i<howManyItemsInInv()) this.inventory.remove(i);
+        if (i<howManyItemsInInv()) this.getInventory().remove(i);
     }
 
     public void setEverythingToDefault(){
-        this.weapon = defaultWeapon;
-        this.legs = defaultLegs;
-        this.torso = defaultTorso;
-        this.arms = defaultArms;
-        this.head = defaultHead;
+        this.setWeapon(defaultWeapon);
+        this.setLegs(defaultLegs);
+        this.setTorso(defaultTorso);
+        this.setArms(defaultArms);
+        this.setHead(defaultHead);
         this.maxhp = defaultMaxHp;
         this.hp = defaultMaxHp;
         this.armor = defaultArmor;
         this.attack = defaultAttack;
         this.exp = defaultExp;
         this.money = defaultMoney;
-        this.inventory.clear();
-        this.inventory = defaultInventory;
+        this.getInventory().clear();
+        this.setInventory(defaultInventory);
         this.dayCount = 1;
         this.lastShopRestock = 1;
         this.killCount = 0;
@@ -327,4 +324,25 @@ public class Player extends Creature {
 
     public String getHobby2() { return hobby2; }
     public void setHobby2(String hobby2) { this.hobby2 = hobby2; }
+
+    public String getSaveName() {
+        return saveName;
+    }
+    public void setSaveName(String saveName) {
+        this.saveName = saveName;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public boolean getEnded() {
+        return ended;
+    }
+    public void setEnded(boolean ended) {
+        this.ended = ended;
+    }
 }

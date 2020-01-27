@@ -5,7 +5,6 @@ import game.engine.Helper;
 import game.generators.QuestGenerator;
 import game.generators.TextGenerator;
 import game.state.GameWorld;
-import org.w3c.dom.Text;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -108,7 +107,8 @@ public class Tavern {
         player.resetDailyKillCount();
 
         try{
-            BufferedWriter bw = new BufferedWriter(new FileWriter(player.savename + ".txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(player.getSaveName() + ".txt"));
+            bw.write(""+player.getEnded()); bw.newLine();
             bw.write(""+player.getHp()); bw.newLine();
             bw.write(""+player.getArmor()); bw.newLine();
             bw.write(""+player.getAttack()); bw.newLine();
@@ -120,6 +120,14 @@ public class Tavern {
             bw.write(""+player.killedPlainsBoss()); bw.newLine();
             bw.write(""+player.killedForestBoss()); bw.newLine();
             bw.write(""+player.killedMountainsBoss()); bw.newLine();
+            bw.write(""+player.triggeredMountainBoss()); bw.newLine();
+            bw.write(player.getTrait1()); bw.newLine();
+            bw.write(player.getTrait2()); bw.newLine();
+            bw.write(player.getAge()); bw.newLine();
+            bw.write(player.getGender()); bw.newLine();
+            bw.write(player.getHobby1()); bw.newLine();
+            bw.write(player.getHobby2()); bw.newLine();
+            bw.write(player.getJob()); bw.newLine();
             bw.write(""+player.howManyItemsInInv()); bw.newLine();
             for (int i = 0; i < player.howManyItemsInInv(); i++){
                 String p = String.valueOf(player.getItemFromInv(i).getClass().getSimpleName());

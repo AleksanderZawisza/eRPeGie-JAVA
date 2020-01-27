@@ -31,7 +31,7 @@ public class Town {
 
     public void contemplate() {
 
-        gameworld.getUi().mainTextArea.setText("Your NAME is "+GameWorld.getPlayer().getSavename()+". It is currently "+ TextGenerator.weather() +
+        gameworld.getUi().mainTextArea.setText("Your NAME is "+GameWorld.getPlayer().getSaveName()+". It is currently "+ TextGenerator.weather() +
                 ". You are a "+ GameWorld.getPlayer().getTrait1()+", "+GameWorld.getPlayer().getTrait2()+" "+
                 GameWorld.getPlayer().getAge()+" " + GameWorld.getPlayer().getGender()+".<br>"+
                 "You have a fondness for "+ GameWorld.getPlayer().getHobby1() +" and are an ASPIRING "+

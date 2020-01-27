@@ -1,20 +1,24 @@
+false
 100
-0
-2
+9000
+9002
 0
 0.0
 
 0
 0
-5
-Weapon
-ak-47
-9000
-420
-Head
-cool shades
-9000
-6969
+false
+false
+false
+false
+CHEERFUL
+YOUTHFUL
+OLD
+MALE
+WRITING
+BIRDWATCHING
+RAPPER
+3
 Healing
 yellow gatorade
 500
@@ -27,12 +31,12 @@ Healing
 blue gatorade
 2000
 10000
-trusty stick
-0
-0
-old straw hat
-0
-0
+ak-47
+9000
+420
+cool shades
+9000
+6969
 frayed friendship bracelet
 0
 0

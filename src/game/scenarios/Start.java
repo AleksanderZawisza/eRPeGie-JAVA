@@ -19,33 +19,17 @@ public class Start {
     Player player = GameWorld.getPlayer();
 
     public void begin(){
-
         gameworld.getVm().setEverythingWhite();
         gameworld.getVm().toBegin();
         gameworld.getVm().updateCurrentHPLabel(player.getHp());
-
-
-        /* EW DO IMPLEMENTACJI
-        System.out.print("<br>" + savename + ", right? [Y/N]<br>> ");
-        String answer = input.nextLine();
-        answer = answer.toLowerCase();
-        while (!answer.toLowerCase().startsWith("y")) {
-            System.out.print("<br>Well then, what is it?<br>> ");
-            savename = input.nextLine();
-            savename = savename.toUpperCase();
-            System.out.print("<br>" + savename + "? [Y/N]<br>> ");
-            answer = input.nextLine();
-            answer = answer.toLowerCase();
-        }  // savename - do wczytywania save'ow DO ZAIMPLEMENTOWANIA
-        */
     }
 
 
     public void description() throws IOException {
 
-        String savename = player.savename;
+        String savename = player.getSaveName();
         savename = savename.toUpperCase();
-        player.setSavename(savename);
+        player.setSaveName(savename);
         File file = new File(savename+".txt");
         player.setEverythingToDefault(); // tu do zmiany jak ładowanie postaci
         player.setHp(player.getMaxhp());
@@ -54,6 +38,7 @@ public class Start {
         if (file.exists() && !savename.equals("TESTMASTER")){
             loaded = "Welcome back!<br>";
             BufferedReader br = new BufferedReader(new FileReader(file));
+            player.setEnded(Boolean.parseBoolean(br.readLine()));
             player.setMaxhp(Integer.parseInt(br.readLine()));
             player.setHp(player.getMaxhp());
             player.setArmor(Integer.parseInt(br.readLine()));
@@ -66,6 +51,14 @@ public class Start {
             player.setKilledPlainsBoss(Boolean.parseBoolean(br.readLine()));
             player.setKilledForestBoss(Boolean.parseBoolean(br.readLine()));
             player.setKilledMountainsBoss(Boolean.parseBoolean(br.readLine()));
+            player.setTriggeredMountainBoss(Boolean.parseBoolean(br.readLine()));
+            player.setTrait1(br.readLine());
+            player.setTrait2(br.readLine());
+            player.setAge(br.readLine());
+            player.setGender(br.readLine());
+            player.setHobby1(br.readLine());
+            player.setHobby2(br.readLine());
+            player.setJob(br.readLine());
             int num = Integer.parseInt(br.readLine());
             for (int i = 0; i < num; i++){
                 String clazzName = br.readLine();
@@ -118,10 +111,10 @@ public class Start {
 
         }
 
-        if (player.savename.equals("FARTMASTER") && !file.exists()) {
-            player.inventory.add(new Weapon("poop on a stick", 1, 1));
+        if (player.getSaveName().equals("FARTMASTER") && !file.exists()) {
+            player.getInventory().add(new Weapon("poop on a stick", 1, 1));
             gameworld.getUi().mainTextArea.setText("Fine then, be like that." +
-            "<br>Your NAME now is " + player.savename + ", and that's the NAME you're going to have TILL YOU DIE." +
+            "<br>Your NAME now is " + player.getSaveName() + ", and that's the NAME you're going to have TILL YOU DIE." +
             "<br>Have fun with that, dumbass.");
             gameworld.getUi().choice1.setText("Uh oh");
             if (player.fartmasterCount>=4){
@@ -129,19 +122,19 @@ public class Start {
                 gameworld.getUi().choice1.setText("¯\\_(ツ)_/¯");
             }
         }
-        else if (player.savename.equals("TESTMASTER")) {
-            player.inventory.add(new Weapon("ak-47", 9000, 420));
-            player.inventory.add(new Head("cool shades", 9000, 6969));
-            player.inventory.add(new Healing("yellow gatorade", 500, 1000));
-            player.inventory.add(new Healing("red gatorade", 1000, 5000));
-            player.inventory.add(new Healing("blue gatorade", 2000, 10000));
+        else if (player.getSaveName().equals("TESTMASTER")) {
+            player.getInventory().add(new Weapon("ak-47", 9000, 420));
+            player.getInventory().add(new Head("cool shades", 9000, 6969));
+            player.getInventory().add(new Healing("yellow gatorade", 500, 1000));
+            player.getInventory().add(new Healing("red gatorade", 1000, 5000));
+            player.getInventory().add(new Healing("blue gatorade", 2000, 10000));
             gameworld.getUi().mainTextArea.setText("Sweet shades, bro." +
-                    "<br>Happy hunting " + player.savename + "!");
+                    "<br>Happy hunting " + player.getSaveName() + "!");
             gameworld.getUi().choice1.setText("Sure");
         } //cheaty
         else {
-            gameworld.getUi().mainTextArea.setText(loaded+"Your NAME now is " + player.savename + "." +
-                    "<br>GOOD LUCK on your quest, " + player.savename + "!");
+            gameworld.getUi().mainTextArea.setText(loaded+"Your NAME now is " + player.getSaveName() + "." +
+                    "<br>GOOD LUCK on your quest, " + player.getSaveName() + "!");
             gameworld.getUi().choice1.setText("Yeah!");
         }
 

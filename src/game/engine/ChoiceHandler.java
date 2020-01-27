@@ -40,7 +40,7 @@ public class ChoiceHandler implements ActionListener{
                         gameworld.getUi().nameTextLabel.setText("Really now?");}
                     if (bullshitCount>=4) {
                         gameworld.getUi().nameTextLabel.setText("So what's it gonne be, FARTMASTER?");
-                        player.setSavename("FARTMASTER");
+                        player.setSaveName("FARTMASTER");
                         try {
                             gameworld.selectPosition("DESCRIPTION");
                         } catch (IOException e) {
@@ -49,7 +49,7 @@ public class ChoiceHandler implements ActionListener{
                     }
                     player.fartmasterCount = bullshitCount;
                     break; }
-                player.setSavename(text);
+                player.setSaveName(text);
                 player.fartmasterCount = bullshitCount;
                 try {
                     gameworld.selectPosition("DESCRIPTION");

@@ -18,8 +18,8 @@ public class ItemTest {
         player.useItem(kek);
         System.out.println("newattack " + player.getAttack());
         System.out.println("newarmor " + player.getArmor());
-        System.out.println("weapon " + player.weapon);
-        System.out.println("amrs " + player.arms);
+        System.out.println("weapon " + player.getWeapon());
+        System.out.println("amrs " + player.getArms());
 
 
     }

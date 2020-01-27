@@ -1,14 +1,23 @@
+false
 123
-9444
-9123
-9021
-14.0
+9000
+9002
+10000
+0.0
 
 0
 0
 false
 false
 false
+false
+CHEERFUL
+YOUTHFUL
+OLD
+MALE
+WRITING
+BIRDWATCHING
+RAPPER
 3
 Healing
 yellow gatorade
@@ -28,12 +37,12 @@ ak-47
 cool shades
 9000
 6969
-legendary leather gauntlets
-104
-299
-plain iron breastplate
-137
-500
-great steel shorts
-80
-180
+frayed friendship bracelet
+0
+0
+simple linen shirt
+0
+0
+patched linen pants
+0
+0

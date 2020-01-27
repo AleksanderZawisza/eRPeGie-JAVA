@@ -1,6 +1,7 @@
 package game.scenarios;
 
 import game.generators.EnemyGenerator;
+import game.state.Game;
 import game.state.GameWorld;
 
 public class Boss {
@@ -198,7 +199,7 @@ public class Boss {
         gameworld.getUi().mainTextArea.setText("<center><font color ='gray'>Traveller, I wish I could say that there is still time to stop this. " +
                 "I wish I could say it and mean it, but it is too late now. Far too late. You killed everything there was to kill. " +
                 "This land is barren. The people dead or gone. The settlements abandoned. Was it hate or ambition that drove you to this, "
-                + GameWorld.getPlayer().getSavename() +"? Or maybe just plain boredom?</font></center>");
+                + GameWorld.getPlayer().getSaveName() +"? Or maybe just plain boredom?</font></center>");
 
         gameworld.getUi().choice1.setText("<html><font color='red'>...</font></html>");
         gameworld.getUi().choice2.setText("");
@@ -239,6 +240,7 @@ public class Boss {
                 "<br>The air smells like <font color='red'>BLOOD</font> and <font color='red'>DEATH</font>." +
                 "<br><br><font color='red'>It's peaceful.</font>");
 
+        GameWorld.getPlayer().setEnded(true);
         gameworld.getUi().choice1.setText("<html><font color='red'>...</font></html>");
         gameworld.getUi().choice2.setText("");
         gameworld.getUi().choice3.setText("");

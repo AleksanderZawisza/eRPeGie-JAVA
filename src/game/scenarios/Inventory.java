@@ -46,11 +46,11 @@ public class Inventory {
         );
         gameworld.getUi().characterEqArea.setText(
                 "Equipped items:" +
-                "<br><br>Weapon: " + player.weapon.getName().toUpperCase() + " (+" +  player.weapon.getDamage() + ")" +
-                "<br><br>Head: " + player.head.getName().toUpperCase() + " (+" +  player.head.getDefence() + ")" +
-                "<br><br>Torso: " + player.torso.getName().toUpperCase() + " (+" +  player.torso.getDefence() + ")" +
-                "<br><br>Arms: " + player.arms.getName().toUpperCase() + " (+" +  player.arms.getDefence() + ")" +
-                "<br><br>Legs: " + player.legs.getName().toUpperCase() + " (+" +  player.legs.getDefence() + ")"
+                "<br><br>Weapon: " + player.getWeapon().getName().toUpperCase() + " (+" +  player.getWeapon().getDamage() + ")" +
+                "<br><br>Head: " + player.getHead().getName().toUpperCase() + " (+" +  player.getHead().getDefence() + ")" +
+                "<br><br>Torso: " + player.getTorso().getName().toUpperCase() + " (+" +  player.getTorso().getDefence() + ")" +
+                "<br><br>Arms: " + player.getArms().getName().toUpperCase() + " (+" +  player.getArms().getDefence() + ")" +
+                "<br><br>Legs: " + player.getLegs().getName().toUpperCase() + " (+" +  player.getLegs().getDefence() + ")"
 
         );
     }
@@ -89,16 +89,16 @@ public class Inventory {
         if (item instanceof Weapon) {
             gameworld.getUi().mainTextArea.setText(tmpText +
                     "<br><br>Attack: +" + ((Weapon) item).getDamage() +
-                    "<br>Worn weapon's attack: +" + player.weapon.getDamage() +
+                    "<br>Worn weapon's attack: +" + player.getWeapon().getDamage() +
                     "<br>Worth: " + item.getPrice() + " GOLD COINS"
             );
         }
         if (item instanceof Armor){
             Armor tmp = new Armor();
-            if (item instanceof Arms) tmp = player.arms;
-            if (item instanceof Torso) tmp = player.torso;
-            if (item instanceof Legs) tmp = player.legs;
-            if (item instanceof Head) tmp = player.head;
+            if (item instanceof Arms) tmp = player.getArms();
+            if (item instanceof Torso) tmp = player.getTorso();
+            if (item instanceof Legs) tmp = player.getLegs();
+            if (item instanceof Head) tmp = player.getHead();
 
             gameworld.getUi().mainTextArea.setText(tmpText +
                     "<br><br>Defence: +" + ((Armor) item).getDefence() +
@@ -144,27 +144,27 @@ public class Inventory {
         Item tmp = player.getItemFromInv(this.lastLooked);
 
         if (tmp instanceof Weapon) {
-            gameworld.getUi().mainTextArea.setText("You let go of the " + player.weapon.getName().toUpperCase() +
+            gameworld.getUi().mainTextArea.setText("You let go of the " + player.getWeapon().getName().toUpperCase() +
                     " and arm yourself with the " + tmp.getName().toUpperCase() + "."
             );
         }
         if (tmp instanceof Head) {
-            gameworld.getUi().mainTextArea.setText("You take off the " + player.head.getName().toUpperCase() +
+            gameworld.getUi().mainTextArea.setText("You take off the " + player.getHead().getName().toUpperCase() +
                     " and put on the " + tmp.getName().toUpperCase() + "."
             );
         }
         if (tmp instanceof Torso) {
-            gameworld.getUi().mainTextArea.setText("You take off the " + player.torso.getName().toUpperCase() +
+            gameworld.getUi().mainTextArea.setText("You take off the " + player.getTorso().getName().toUpperCase() +
                     " and put on the " + tmp.getName().toUpperCase() + "."
             );
         }
         if (tmp instanceof Arms) {
-            gameworld.getUi().mainTextArea.setText("You take off the " + player.arms.getName().toUpperCase() +
+            gameworld.getUi().mainTextArea.setText("You take off the " + player.getArms().getName().toUpperCase() +
                     " and put on the " + tmp.getName().toUpperCase() + "."
             );
         }
         if (tmp instanceof Legs) {
-            gameworld.getUi().mainTextArea.setText("You take off the " + player.legs.getName().toUpperCase() +
+            gameworld.getUi().mainTextArea.setText("You take off the " + player.getLegs().getName().toUpperCase() +
                     " and put on the " + tmp.getName().toUpperCase() + "."
             );
         }
@@ -188,11 +188,11 @@ public class Inventory {
         gameworld.setNextPosition3("");
         gameworld.setNextPosition4("");
 
-        if (tmp instanceof Weapon) player.replaceItemInInvWith(this.lastLooked, player.weapon);
-        else if (tmp instanceof Head) player.replaceItemInInvWith(this.lastLooked, player.head);
-        else if (tmp instanceof Torso) player.replaceItemInInvWith(this.lastLooked, player.torso);
-        else if (tmp instanceof Arms) player.replaceItemInInvWith(this.lastLooked, player.arms);
-        else if (tmp instanceof Legs) player.replaceItemInInvWith(this.lastLooked, player.legs);
+        if (tmp instanceof Weapon) player.replaceItemInInvWith(this.lastLooked, player.getWeapon());
+        else if (tmp instanceof Head) player.replaceItemInInvWith(this.lastLooked, player.getHead());
+        else if (tmp instanceof Torso) player.replaceItemInInvWith(this.lastLooked, player.getTorso());
+        else if (tmp instanceof Arms) player.replaceItemInInvWith(this.lastLooked, player.getArms());
+        else if (tmp instanceof Legs) player.replaceItemInInvWith(this.lastLooked, player.getLegs());
 
         this.player.useItem(tmp);
 
