@@ -36,6 +36,38 @@ public class Forest {
         gameworld.setNextPosition3("FIGHT_CHOOSE");
         gameworld.setNextPosition4("");
 
+        if (!GameWorld.getPlayer().getCurrentQuest().equals("") & !GameWorld.getPlayer().getCurrentQuest().equals(" ")
+                & GameWorld.getPlayer().getWhereQuest().equals("FOREST")) {
+            gameworld.setNextPosition3("FOREST_HUNT"); // hunt
+            gameworld.setNextPosition4("FIGHT_CHOOSE");
+        }
+
+        if (player.getDailyKillCount()>=12 & player.getExp()>=50 & player.killedPlainsBoss()) gameworld.getBoss().forestBoss1(); //BOSS
+        if (player.killedForestBoss()) gameworld.getBoss().forestBossKilled(); //AFTER BOSS
+    }
+
+    public void hunt() {
+
+        enemy = GameWorld.getCurrentEnemy();
+
+        if (!gameworld.getFromInventory()){
+            enemy = EnemyGenerator.forestEnemyName(GameWorld.getPlayer().getCurrentQuest());
+            GameWorld.setCurrentEnemy(enemy);
+        }
+
+        FightText.lookingAround("FOREST", enemy, gameworld);
+
+        gameworld.setNextPosition1("FOREST_FIGHT_CHOOSE");
+        gameworld.setNextPosition2("FOREST");
+        gameworld.setNextPosition3("FIGHT_CHOOSE");
+        gameworld.setNextPosition4("");
+
+        if (!GameWorld.getPlayer().getCurrentQuest().equals("") & !GameWorld.getPlayer().getCurrentQuest().equals(" ")
+                & GameWorld.getPlayer().getWhereQuest().equals("FOREST")) {
+            gameworld.setNextPosition3("FOREST_HUNT"); // hunt
+            gameworld.setNextPosition4("FIGHT_CHOOSE");
+        }
+
         if (player.getDailyKillCount()>=12 & player.getExp()>=50 & player.killedPlainsBoss()) gameworld.getBoss().forestBoss1(); //BOSS
         if (player.killedForestBoss()) gameworld.getBoss().forestBossKilled(); //AFTER BOSS
     }

@@ -36,6 +36,38 @@ public class Mountains {
         gameworld.setNextPosition3("FIGHT_CHOOSE");
         gameworld.setNextPosition4("");
 
+        if (!GameWorld.getPlayer().getCurrentQuest().equals("") & !GameWorld.getPlayer().getCurrentQuest().equals(" ")
+                & GameWorld.getPlayer().getWhereQuest().equals("MOUNTAINS")) {
+            gameworld.setNextPosition3("MOUNTAINS_HUNT"); // hunt
+            gameworld.setNextPosition4("FIGHT_CHOOSE");
+        }
+
+        if (player.getDailyKillCount()>=16 & player.getExp()>=100 & player.killedForestBoss()) gameworld.getBoss().mountainsBoss1(); //BOSS
+        if (player.killedMountainsBoss()) gameworld.getBoss().mountainsBossKilled(); //AFTER BOSS
+    }
+
+    public void hunt() {
+
+        enemy = GameWorld.getCurrentEnemy();
+
+        if (!gameworld.getFromInventory()){
+            enemy = EnemyGenerator.mountainEnemyName(GameWorld.getPlayer().getCurrentQuest());
+            GameWorld.setCurrentEnemy(enemy);
+        }
+
+        FightText.lookingAround("MOUNTAINS", enemy, gameworld);
+
+        gameworld.setNextPosition1("MOUNTAINS_FIGHT_CHOOSE");
+        gameworld.setNextPosition2("MOUNTAINS");
+        gameworld.setNextPosition3("FIGHT_CHOOSE");
+        gameworld.setNextPosition4("");
+
+        if (!GameWorld.getPlayer().getCurrentQuest().equals("") & !GameWorld.getPlayer().getCurrentQuest().equals(" ")
+                & GameWorld.getPlayer().getWhereQuest().equals("MOUNTAINS")) {
+            gameworld.setNextPosition3("MOUNTAINS_HUNT"); // hunt
+            gameworld.setNextPosition4("FIGHT_CHOOSE");
+        }
+
         if (player.getDailyKillCount()>=16 & player.getExp()>=100 & player.killedForestBoss()) gameworld.getBoss().mountainsBoss1(); //BOSS
         if (player.killedMountainsBoss()) gameworld.getBoss().mountainsBossKilled(); //AFTER BOSS
     }

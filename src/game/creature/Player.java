@@ -19,6 +19,7 @@ public class Player extends Creature {
     private String currentQuest = "";
     private int questCount = 0;
     private int maxQuestCount = 0;
+    private String whereQuest = "";
     private Weapon defaultWeapon = new Weapon("trusty stick",0,0);
     private Legs defaultLegs = new Legs("patched linen pants",0,0);
     private Torso defaultTorso = new Torso("simple linen shirt",0,0);
@@ -211,6 +212,13 @@ public class Player extends Creature {
     }
     public int getMaxQuestCount() {
         return maxQuestCount;
+    }
+
+    public void setWhereQuest(String whereQuest) {
+        this.whereQuest = whereQuest;
+    }
+    public String getWhereQuest() {
+        return whereQuest;
     }
 
     public Weapon getWeapon() {

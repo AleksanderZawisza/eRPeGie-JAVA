@@ -61,7 +61,7 @@ public class Tavern {
             quest = QuestGenerator.newQuest(player);
         }
 
-        String pre = " ";
+        String pre;
         if (Helper.startsWithVowel(quest)){ pre = " an "; }
         else { pre = " a "; }
 
@@ -94,9 +94,10 @@ public class Tavern {
                 "...<br>" + "Rise and shine! It's a NEW DAY. The SUN is UP and SO ARE YOU. You get up and GET OUT.<br>");
 
         player.setHp(player.getMaxhp());    // HEALOWANIE I UPDATE HP
-        player.resetQuestCount();
+        player.resetQuestCount();   // reset dziennego questa
         player.setCurrentQuest("");
         player.setMaxQuestCount(0);
+        resetCost();   //reset ceny drinka
         gameworld.getVm().updateCurrentHPLabel(player.getHp());
 
         player.addOneDay(); //+1 do licznika dni i reset dailyKillCount

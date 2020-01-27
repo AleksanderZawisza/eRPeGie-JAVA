@@ -41,6 +41,12 @@ public class FightText {
         gameworld.getUi().choice2.setText("SEARCH for other enemies");
         gameworld.getUi().choice3.setText("GET BACK on the road");
         gameworld.getUi().choice4.setText("");
+
+        if (!GameWorld.getPlayer().getCurrentQuest().equals("") & !GameWorld.getPlayer().getCurrentQuest().equals(" ")
+                & GameWorld.getPlayer().getWhereQuest().equals(where))  {
+            gameworld.getUi().choice3.setText("HUNT for " + GameWorld.getPlayer().getCurrentQuest());
+            gameworld.getUi().choice4.setText("GET BACK on the road");
+        }
     }
 
     public static void whatNow(Enemy enemy, GameWorld gameworld){

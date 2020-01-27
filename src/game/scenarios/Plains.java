@@ -25,8 +25,8 @@ public class Plains {
         enemy = GameWorld.getCurrentEnemy();
 
         if (!gameworld.getFromInventory()){
-            enemy = EnemyGenerator.plainsEnemy();
-            GameWorld.setCurrentEnemy(enemy);
+                enemy = EnemyGenerator.plainsEnemy();
+                GameWorld.setCurrentEnemy(enemy);
         }
 
         FightText.lookingAround("PLAINS", enemy, gameworld);
@@ -35,6 +35,38 @@ public class Plains {
         gameworld.setNextPosition2("PLAINS");
         gameworld.setNextPosition3("FIGHT_CHOOSE");
         gameworld.setNextPosition4("");
+
+        if (!GameWorld.getPlayer().getCurrentQuest().equals("") & !GameWorld.getPlayer().getCurrentQuest().equals(" ")
+                & GameWorld.getPlayer().getWhereQuest().equals("PLAINS")) {
+            gameworld.setNextPosition3("PLAINS_HUNT"); // hunt
+            gameworld.setNextPosition4("FIGHT_CHOOSE");
+        }
+
+        if (player.getDailyKillCount()>=8 & player.getExp()>=20) gameworld.getBoss().plainsBoss1(); //BOSS
+        if (player.killedPlainsBoss()) gameworld.getBoss().plainsBossKilled(); //AFTER BOSS
+    }
+
+    public void hunt() {
+
+        enemy = GameWorld.getCurrentEnemy();
+
+        if (!gameworld.getFromInventory()){
+                enemy = EnemyGenerator.plainsEnemyName(GameWorld.getPlayer().getCurrentQuest());
+                GameWorld.setCurrentEnemy(enemy);
+        }
+
+        FightText.lookingAround("PLAINS", enemy, gameworld);
+
+        gameworld.setNextPosition1("PLAINS_FIGHT_CHOOSE");
+        gameworld.setNextPosition2("PLAINS");
+        gameworld.setNextPosition3("FIGHT_CHOOSE");
+        gameworld.setNextPosition4("");
+
+        if (!GameWorld.getPlayer().getCurrentQuest().equals("") & !GameWorld.getPlayer().getCurrentQuest().equals(" ")
+                & GameWorld.getPlayer().getWhereQuest().equals("PLAINS")) {
+            gameworld.setNextPosition3("PLAINS_HUNT"); // hunt
+            gameworld.setNextPosition4("FIGHT_CHOOSE");
+        }
 
         if (player.getDailyKillCount()>=8 & player.getExp()>=20) gameworld.getBoss().plainsBoss1(); //BOSS
         if (player.killedPlainsBoss()) gameworld.getBoss().plainsBossKilled(); //AFTER BOSS
