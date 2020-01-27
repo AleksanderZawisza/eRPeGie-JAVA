@@ -241,6 +241,7 @@ public class Boss {
                 "<br><br><font color='red'>It's peaceful.</font>");
 
         GameWorld.getPlayer().setEnded(true);
+        gameworld.getVm().showEndButton();
         gameworld.getUi().choice1.setText("<html><font color='red'>...</font></html>");
         gameworld.getUi().choice2.setText("");
         gameworld.getUi().choice3.setText("");

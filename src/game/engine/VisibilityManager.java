@@ -266,5 +266,9 @@ public class VisibilityManager {
         }
     }
 
+    public void showEndButton(){
+        ui.playerPaneMiddleButton.setVisible(true);
+    }
+
 
 }
