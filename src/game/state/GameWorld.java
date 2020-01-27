@@ -41,6 +41,7 @@ public class GameWorld {
     private Mountains mountains = new Mountains(this);
     private Inventory inventory = new Inventory(this);
     private Boss boss = new Boss(this);
+    private GhostTown ghostTown = new GhostTown(this);
 
     public static Player getPlayer() {
         return player;
@@ -63,6 +64,7 @@ public class GameWorld {
         if (!nextPosition.contains("INVENTORY") && !nextPosition.equals("CHARACTER_SHEET")) {
             getInventory().setLastPosition(nextPosition);
         }
+        if (player.killedMountainsBoss()) vm.setEverythingGray();
         switch(nextPosition){
             case "BEGIN": getStart().begin(); break;
             case "DESCRIPTION": getStart().description(); break;
@@ -111,6 +113,16 @@ public class GameWorld {
             case "MOUNTAINS_BOSS_4": getBoss().mountainsBoss4(); break;
             case "MOUNTAINS_BOSS_FIGHT": getBoss().mountainsBossFight(); break;
             case "DEAD": break;
+        }
+        if (player.killedMountainsBoss()) {
+            switch(nextPosition){
+                case "CONTEMPLATE": getGhostTown().contemplate(); break;
+                case "TOWN": getGhostTown().town(); break;
+                case "TAVERN": getGhostTown().tavern(); break;
+                case "SHOP": getGhostTown().shop(); break;
+                case "CHARACTER_SHEET": getGhostTown().characterSheet(); break;
+                case "FIGHT_CHOOSE": getGhostTown().fightChoose(); break;
+            }
         }
         this.setTrueLastState(nextPosition);
         getVm().hideUselessChoiceButtons();
@@ -242,5 +254,8 @@ public class GameWorld {
 
     public Boss getBoss() { return boss; }
 
-    public void setBoss(Boss boss) { this.boss = boss; }
+
+    public GhostTown getGhostTown() {
+        return ghostTown;
+    }
 }
