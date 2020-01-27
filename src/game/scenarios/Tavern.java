@@ -34,7 +34,7 @@ public class Tavern {
                     "What are you gonna do now?");
         }
 
-        gameworld.getUi().choice1.setText("Buy yourself a STIFF DRINK" + " ( " + cost + "G )");
+        gameworld.getUi().choice1.setText("Buy yourself a STIFF DRINK" + " { " + cost + "G }");
         gameworld.getUi().choice2.setText("Get a room and HIT THE HAY");
         gameworld.getUi().choice3.setText("Get OUT OF here");
         gameworld.getUi().choice4.setText("");
@@ -75,7 +75,7 @@ public class Tavern {
         gameworld.getUi().mainTextArea.setText("You get yourself " + tmp + TextGenerator.drink()+". It tastes "+
                 TextGenerator.taste()+". "+ quest);
 
-        gameworld.getUi().choice1.setText("Buy yourself ANOTHER STIFF DRINK" + " {" + cost + " G}");
+        gameworld.getUi().choice1.setText("Buy yourself ANOTHER STIFF DRINK" + " { " + cost + " G }");
         gameworld.getUi().choice2.setText("Get a room and HIT THE HAY");
         gameworld.getUi().choice3.setText("Get OUT OF here");
         gameworld.getUi().choice4.setText("");
