@@ -151,6 +151,10 @@ public class Start {
         gameworld.setNextPosition3("");
         gameworld.setNextPosition4("");
 
-
-}
+        if (player.getEnded()){
+            gameworld.getUi().mainTextArea.setText("There is nothing here!");
+            gameworld.setNextPosition1("BEGIN");
+            gameworld.getUi().choice1.setText("Oh no!");
+        }
+    }
 }
